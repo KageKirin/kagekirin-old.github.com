@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemy]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-02-15T23:27:44+09:00</updated>
+  <updated>2012-02-16T00:06:38+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,5 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/02/15/hello-world/"/>
+    <updated>2012-02-15T23:31:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/02/15/hello-world</id>
+    <content type="html"><![CDATA[<p><em>Hello World</em>
+Like the first words an infant says, a coder starts his &#8220;coder life&#8221; by printing those simple words.</p>
+
+<p>More in detail, the point of creating a program that prints a little message is to prove that the programming statements are understood by the parser, can be translated into an abstract syntax, and finally translated into binary instructions understandable by the machine. In short, if this simple program can be compiled and linked, any other program can be built as well.</p>
+
+<p>As such, there&#8217;s nothing more appropriate as to start this dev blog by stating &#8220;Hello World&#8221;.
+I.e. if this post can be generated, any post can be generated.</p>
+
+<p>tl;dr
+This looks nicer than a generic lorem ipsum.</p>
+]]></content>
+  </entry>
   
 </feed>
