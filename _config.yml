@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://KageKirin.github.com
-title: Code Alchemy
+title: Code Alchemist
 subtitle: KageKirin's Dev Blog
 author: Chris Helmich
 simple_search: http://google.com/search
@@ -94,7 +94,7 @@ disqus_short_name: kagekirin
 disqus_show_comment_count: true
 
   # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-29293069-1
 
 # Facebook Like
 facebook_like: true
