@@ -3,7 +3,7 @@ layout: post
 title: "Rediscovering Web Development in 2012"
 date: 2012-02-19 22:49
 comments: true
-categories: 
+categories: [web, jekyll, octopress, ios, webgl]
 author: Chris
 ---
 
