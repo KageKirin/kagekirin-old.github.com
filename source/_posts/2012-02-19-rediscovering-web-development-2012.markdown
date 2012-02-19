@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rediscovering Web Development 2012"
+title: "Rediscovering Web Development in 2012"
 date: 2012-02-19 22:49
 comments: true
 categories: 
@@ -28,6 +28,11 @@ But then I found Octopress, and Jekyll as a static page generator as its base, a
 
 Looking closer at my requirements, I found out that there's already been someone with a similar idea, which has resulted in a project called Mulberry.
 
+Mulberry is based on PhoneGap and Jekyll and allows to generate the "scaffolding" of an app for iOS and Android. I've been toying with for a couplke of hours today, but it looks pretty promising.
+
 **tl;dr** Web development has gone a long way, and I'm looking forward to learn more about all these new technologies.
+Actually, it's awesome to see all the new evolutions of web technologies, and even to be using them.
+
+On this matter of thought, if anyone knowds how to put in a WebGL-powered tag cloud for the categories of my posts, I'd like to hear about it.
 
 
