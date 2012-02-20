@@ -98,3 +98,7 @@ google_analytics_tracking_id: UA-29293069-1
 
 # Facebook Like
 facebook_like: true
+
+#Coderwall
+coderwall_user: KageKirin
+coderwall_show_profile_link: true
