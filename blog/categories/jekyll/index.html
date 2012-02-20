@@ -29,6 +29,8 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<link href="http://coderwall.com/stylesheets/jquery.coderwall.css" media="all" rel="stylesheet" type="text/css">
+<script src="http://coderwall.com/javascripts/jquery.coderwall.js"></script>
   
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -173,36 +175,10 @@
 </section>
 
 
-<section>
+<section class="coderwall"
+  data-coderwall-username="KageKirin"
+  data-coderwall-orientation="horizontal" >
   <h1>Coderwall Badges</h1>
-  <ul id="cw_badges">
-    <li class="loading">Status updating...</li>
-  </ul>
-  
-  <a href="http://coderwall.com/KageKirin">@KageKirin</a> on Coderwall
-  
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'KageKirin',
-            count: 5,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-  <a href="http://coderwall.com/KageKirin">
-    <img src="http://api.coderwall.com/KageKirin/endorsecount.png" />
-  </a>
 </section>
 
 
