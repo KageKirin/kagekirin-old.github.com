@@ -33,6 +33,6 @@ Mulberry is based on PhoneGap and Jekyll and allows to generate the "scaffolding
 **tl;dr** Web development has gone a long way, and I'm looking forward to learn more about all these new technologies.
 Actually, it's awesome to see all the new evolutions of web technologies, and even to be using them.
 
-On this matter of thought, if anyone knowds how to put in a WebGL-powered tag cloud for the categories of my posts, I'd like to hear about it.
+On this matter of thought, if anyone knows how to put in a WebGL-powered tag cloud for the categories of my posts, I'd like to hear about it.
 
 
