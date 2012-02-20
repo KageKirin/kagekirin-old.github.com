@@ -1,7 +1,12 @@
 {% if site.coderwall_user %}
-<section class="coderwall"
+<section>
+  <h1>Coderwall Badges</h1>
+  <div class="coderwall"
   data-coderwall-username="{{site.coderwall_user}}"
   data-coderwall-orientation="horizontal" >
-  <h1>Coderwall Badges</h1>
+  </div>
+  <a href="http://coderwall.com/{{site.coderwall_user}}">
+    <img src="http://api.coderwall.com/{{site.coderwall_user}}/endorsecount.png" />
+  </a>
 </section>
 {% endif %}
