@@ -16,6 +16,10 @@
       }
       document.write(wall);
     }
-    </script>
-    <script src="http://coderwall.com/{{site.coderwall_user}}.json?callback=display_coderwall"></script></section>
+  </script>
+  <script src="http://coderwall.com/{{site.coderwall_user}}.json?callback=display_coderwall"></script>
+  {% if site.coderwall_show_endorse_link %}
+  <a href="http://coderwall.com/{{site.coderwall_user}}"><img src="http://api.coderwall.com/{{site.coderwall_user}}/endorsecount.png" /></a>
+  {% endif %}
+</section>
 {% endif %}
