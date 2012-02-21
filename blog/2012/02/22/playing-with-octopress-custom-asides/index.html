@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - Code Alchemist</title>
+  <title>Playing with Octopress - Custom Asides - Code Alchemist</title>
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="Blog Archive 2012 Playing with Octopress - Custom Asides
-Feb 22 2012 Rediscovering Web Development in 2012
-Feb 19 2012 posted in ios, jekyll, &hellip;">
+  <meta name="description" content="If you&#8217;ve followed this blog, you might noticed a couple of changes in the last days.
+In fact, I&#8217;ve been playing around with customizing &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@ Feb 19 2012 posted in ios, jekyll, &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://KageKirin.github.com/blog/archives">
+  <link rel="canonical" href="http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -80,56 +79,106 @@ Feb 19 2012 posted in ios, jekyll, &hellip;">
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Playing With Octopress - Custom Asides</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-22T01:31:00+09:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>If you&#8217;ve followed this blog, you might noticed a couple of changes in the last days.
+In fact, I&#8217;ve been playing around with customizing Octopress by adding a couple of custom asides.</p>
 
-  
-  <h2>2012</h2>
+<h1>Coderwall</h1>
 
-<article>
-  
-<h1><a href="/blog/2012/02/22/playing-with-octopress-custom-asides/">Playing with Octopress - Custom Asides</a></h1>
-<time datetime="2012-02-22T01:31:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>22</span> <span class='year'>2012</span></time>
+<p>I wanted to add my Coderwall badges in the asides. A bit of googling lead me to another Octopress blog (http://tzangms.com), which was using Mizzy&#8217;s code (http://mizzy.org/blog/2012/01/13/coderwall-badges-on-the-sidebar/) to display the badges. From there, it was pretty to exctract the Javascript code from the page source. I only found the original author&#8217;s page later today, but I had already a working code by then.</p>
 
+<p>As a kind of customization on that code, I added the img@alt and img@title attributes, also generated from tCoderwall&#8217;s JSON response data.</p>
 
-</article>
+<p>(I&#8217;ll update this post after I found out how to post source code)</p>
 
+<h1>Xbox Live</h1>
 
+<p>The second custom aside I created is taking the Xbox Live Gamercard from the official Xbox site. It&#8217;s using an iframe, which I don&#8217;t really like, but it&#8217;s working that&#8217;S the essential.</p>
 
-<article>
-  
-<h1><a href="/blog/2012/02/19/rediscovering-web-development-2012/">Rediscovering Web Development in 2012</a></h1>
-<time datetime="2012-02-19T22:49:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>19</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/mulberry/'>mulberry</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/web/'>web</a>, <a class='category' href='/blog/categories/webgl/'>webgl</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2012/02/15/hello-world/">Hello World</a></h1>
-<time datetime="2012-02-15T23:31:00+09:00" pubdate><span class='month'>Feb</span> <span class='day'>15</span> <span class='year'>2012</span></time>
-
-
-</article>
-
+<p>And that&#8217;s it. Too late to properly write anyway.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Chris Helmich</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-22T01:31:00+09:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/" data-via="KageKirin" data-counturl="http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/02/19/rediscovering-web-development-2012/" title="Previous Post: Rediscovering Web Development in 2012">&laquo; Rediscovering Web Development in 2012</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -264,7 +313,10 @@ Feb 19 2012 posted in ios, jekyll, &hellip;">
       var disqus_shortname = 'kagekirin';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/';
+        var disqus_url = 'http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
