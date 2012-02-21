@@ -263,25 +263,27 @@ This looks nicer than a generic lorem ipsum.</p>
 
 <section>
   <h1>Coderwall Badges</h1>
-  <script>
-    function display_coderwall(args) {
-      var badges = args["data"]["badges"];
-      var wall = '';
-      for ( var i = 0; i < badges.length; i++ ) {
-        var alt_txt = badges[i]["name"];
-        var title_txt = badges[i]["name"] + ' - ' + badges[i]["description"];
-        wall += '<a href="http://coderwall.com/KageKirin/"><img src="'
-          + badges[i]["badge"]
-          + '" width="48" height="48" alt="' + alt_txt
-          + '" title="' + title_txt
-          + '"/></a>';
+  <p>
+    <script type="text/javascript">
+      function display_coderwall(args) {
+        var badges = args["data"]["badges"];
+        var wall = '';
+        for ( var i = 0; i < badges.length; i++ ) {
+          var alt_txt = badges[i]["name"];
+          var title_txt = badges[i]["name"] + ' - ' + badges[i]["description"];
+          wall += '<a href="http://coderwall.com/KageKirin/"><img src="'
+            + badges[i]["badge"]
+            + '" width="48" height="48" alt="' + alt_txt
+            + '" title="' + title_txt
+            + '"/></a>';
+        }
+        document.write(wall);
       }
-      document.write(wall);
-    }
-  </script>
-  <script src="http://coderwall.com/KageKirin.json?callback=display_coderwall"></script>
+    </script>
+    <script src="http://coderwall.com/KageKirin.json?callback=display_coderwall"></script>
+  </p>
   
-  <a href="http://coderwall.com/KageKirin"><img src="http://api.coderwall.com/KageKirin/endorsecount.png" /></a>
+  <p><a href="http://coderwall.com/KageKirin"><img src="http://api.coderwall.com/KageKirin/endorsecount.png" /></a></p>
   
 </section>
 
