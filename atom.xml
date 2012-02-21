@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-02-22T01:48:36+09:00</updated>
+  <updated>2012-02-22T01:59:19+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -25,13 +25,13 @@ In fact, I&#8217;ve been playing around with customizing Octopress by adding a c
 
 <p>I wanted to add my Coderwall badges in the asides. A bit of googling lead me to another Octopress blog (http://tzangms.com), which was using Mizzy&#8217;s code (http://mizzy.org/blog/2012/01/13/coderwall-badges-on-the-sidebar/) to display the badges. From there, it was pretty to exctract the Javascript code from the page source. I only found the original author&#8217;s page later today, but I had already a working code by then.</p>
 
-<p>As a kind of customization on that code, I added the img@alt and img@title attributes, also generated from tCoderwall&#8217;s JSON response data.</p>
+<p>As a kind of customization on that code, I added the img@alt and img@title attributes, also generated from Coderwall&#8217;s JSON response data.</p>
 
 <p>(I&#8217;ll update this post after I found out how to post source code)</p>
 
 <h2>Xbox Live</h2>
 
-<p>The second custom aside I created is taking the Xbox Live Gamercard from the official Xbox site. It&#8217;s using an iframe, which I don&#8217;t really like, but it&#8217;s working that&#8217;S the essential.</p>
+<p>The second custom aside I created is taking the Xbox Live Gamercard from the official Xbox site. It&#8217;s using an iframe, which I don&#8217;t really like, but it&#8217;s working, that&#8217;s the essential.</p>
 
 <p>And that&#8217;s it. Too late to properly write anyway.</p>
 ]]></content>
