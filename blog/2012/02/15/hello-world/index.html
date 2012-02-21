@@ -240,12 +240,15 @@ This looks nicer than a generic lorem ipsum.</p>
 
 <section>
   <h1>Coderwall Badges</h1>
+  <ul id="cw_badges">
+    <li class="loading">Loading badges...</li>
+  </ul>
   <script>
     function display_coderwall(args) {
       var badges = args["data"]["badges"];
       var wall = '';
       for ( var i = 0; i < badges.length; i++ ) {
-        wall += '<a href="http://coderwall.com/KageKirin/"><img src="'+ badges[i]["badge"] + '" width="80" height="80" /></a>';
+        wall += '<a href="http://coderwall.com/KageKirin/"><img src="'+ badges[i]["badge"] + '" width="48" height="48" /></a>';
       }
       document.write(wall);
     }
