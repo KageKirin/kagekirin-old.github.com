@@ -263,26 +263,17 @@ This looks nicer than a generic lorem ipsum.</p>
 
 <section>
   <h1>Coderwall Badges</h1>
-  function display_coderwall(args)
-    {
-      var badges = args[&#8220;data&#8221;][&#8220;badges&#8221;];
-      var wall = &#8221;;
-      for ( var i = 0; i < badges.length; i++ )
-      {
-        wall += '<a href="http://coderwall.com/KageKirin/">&#8217;;
-        wall += &#8217;<img width="48" height="48" ';
-        wall += 'src="' + badges[i]["badge"] + ' ';
-        wall += 'alt="' + badges[i]["name"] + ": " + badges[i]["description"]"';
-        wall += '/></a>&#8217;;
+  <script>
+    function display_coderwall(args) {
+      var badges = args["data"]["badges"];
+      var wall = '';
+      for ( var i = 0; i < badges.length; i++ ) {
+        wall += '<a href="http://coderwall.com/kagekirin/"><img src="'+ badges[i]["badge"] + '" width="80" height="80" /></a>';
       }
       document.write(wall);
     }
     </script>
-    <script src="http://coderwall.com/KageKirin.json?callback=display_coderwall"></script>
-    <a href="http://coderwall.com/KageKirin">
-      <img src="http://api.coderwall.com/KageKirin/endorsecount.png" />
-    </a>
-</section>
+    <script src="http://coderwall.com/kagekirin.json?callback=display_coderwall"></script></section>
 
 
 
