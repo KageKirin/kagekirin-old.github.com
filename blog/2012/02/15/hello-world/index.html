@@ -245,8 +245,15 @@ This looks nicer than a generic lorem ipsum.</p>
       var badges = args["data"]["badges"];
       var wall = '';
       for ( var i = 0; i < badges.length; i++ ) {
-        var alt_txt = badges[i]["name"] + ' ' + badges[i]["description"];
-        wall += '<a href="http://coderwall.com/KageKirin/"><img src="'+ badges[i]["badge"] + '" width="48" height="48" alt="'+ alt_txt + '"/></a>';
+        var alt_txt = badges[i]["name"];
+        var title_txt = badges[i]["name"] + ' ' + badges[i]["description"];
+        wall += '<a href="http://coderwall.com/KageKirin/"><img src="'
+          + badges[i]["badge"]
+          + '" width="48" height="48" alt="'
+          + alt_txt
+          + '" title="'
+          + title_txt
+          + '"/></a>';
       }
       document.write(wall);
     }
