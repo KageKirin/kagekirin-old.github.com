@@ -101,4 +101,4 @@ facebook_like: true
 
 #Coderwall
 coderwall_user: KageKirin
-coderwall_show_profile_link: true
+coderwall_show_endorse_link: true
