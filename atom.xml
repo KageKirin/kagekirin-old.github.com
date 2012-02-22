@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-02-22T23:32:40+09:00</updated>
+  <updated>2012-02-22T23:36:56+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -27,13 +27,83 @@ In fact, I&#8217;ve been playing around with customizing Octopress by adding a c
 
 <p>As a kind of customization on that code, I added the img@alt and img@title attributes, also generated from Coderwall&#8217;s JSON response data.</p>
 
-<p>Liquid error: No such file or directory - /Users/chris/Documents/Coding/blog-kagekirin.github.com/source/downloads/code</p>
+<figure class='code'><figcaption><span> (coderwall.html)</span> <a href='http://KageKirin.github.com/downloads/code/../../_includes/asides/coderwall.html'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.coderwall_user %}
+</span><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Coderwall Badges<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="kd">function</span> <span class="nx">display_coderwall</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">badges</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;badges&quot;</span><span class="p">];</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">wall</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span> <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">badges</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">alt_txt</span> <span class="o">=</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">];</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">title_txt</span> <span class="o">=</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; - &#39;</span> <span class="o">+</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;description&quot;</span><span class="p">];</span>
+</span><span class='line'>          <span class="nx">wall</span> <span class="o">+=</span> <span class="s1">&#39;&lt;a href=&quot;http://coderwall.com/{{site.coderwall_user}}/&quot;&gt;&lt;img src=&quot;&#39;</span>
+</span><span class='line'>            <span class="o">+</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;badge&quot;</span><span class="p">]</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot; width=&quot;48&quot; height=&quot;48&quot; alt=&quot;&#39;</span> <span class="o">+</span> <span class="nx">alt_txt</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot; title=&quot;&#39;</span> <span class="o">+</span> <span class="nx">title_txt</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot;/&gt;&lt;/a&gt;&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">wall</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://coderwall.com/{{site.coderwall_user}}.json?callback=display_coderwall&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  {% if site.coderwall_show_endorse_link %}
+</span><span class='line'>  <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://coderwall.com/{{site.coderwall_user}}&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;http://api.coderwall.com/{{site.coderwall_user}}/endorsecount.png&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/p&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>Xbox Live</h2>
 
 <p>The second custom aside I created is taking the Xbox Live Gamercard from the official Xbox site. It&#8217;s using an iframe, which I don&#8217;t really like, but it&#8217;s working, that&#8217;s the essential.</p>
 
-<p>Liquid error: No such file or directory - /Users/chris/Documents/Coding/blog-kagekirin.github.com/source/downloads/code</p>
+<figure class='code'><figcaption><span> (xboxlive.html)</span> <a href='http://KageKirin.github.com/downloads/code/../../_includes/asides/xboxlive.html'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.xboxlive_user %}
+</span><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Xbox Live<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">&quot;http://gamercard.xbox.com/{{site.xboxlive_user}}.card&quot;</span> <span class="na">scrolling=</span><span class="s">&quot;no&quot;</span> <span class="na">frameBorder=</span><span class="s">&quot;0&quot;</span> <span class="na">height=</span><span class="s">&quot;140&quot;</span> <span class="na">width=</span><span class="s">&quot;204&quot;</span><span class="nt">&gt;</span>{{site.xboxlive_user}}<span class="nt">&lt;/iframe&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2>Configuration</h2>
 
