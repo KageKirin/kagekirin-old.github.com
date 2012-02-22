@@ -14,47 +14,12 @@ I wanted to add my Coderwall badges in the asides. A bit of googling lead me to 
 
 As a kind of customization on that code, I added the img@alt and img@title attributes, also generated from Coderwall's JSON response data.
 
-```
-{% if site.coderwall_user %}
-<section>
-  <h1>Coderwall Badges</h1>
-  <p>
-    <script type="text/javascript">
-      function display_coderwall(args) {
-        var badges = args["data"]["badges"];
-        var wall = '';
-        for ( var i = 0; i < badges.length; i++ ) {
-          var alt_txt = badges[i]["name"];
-          var title_txt = badges[i]["name"] + ' - ' + badges[i]["description"];
-          wall += '<a href="http://coderwall.com/{{site.coderwall_user}}/"><img src="'
-            + badges[i]["badge"]
-            + '" width="48" height="48" alt="' + alt_txt
-            + '" title="' + title_txt
-            + '"/></a>';
-        }
-        document.write(wall);
-      }
-    </script>
-    <script src="http://coderwall.com/{{site.coderwall_user}}.json?callback=display_coderwall"></script>
-  </p>
-  {% if site.coderwall_show_endorse_link %}
-  <p><a href="http://coderwall.com/{{site.coderwall_user}}"><img src="http://api.coderwall.com/{{site.coderwall_user}}/endorsecount.png" /></a></p>
-  {% endif %}
-</section>
-{% endif %}
-```
+{% include_code ../../_includes/asides/coderwall.html %}
 
 ## Xbox Live
 The second custom aside I created is taking the Xbox Live Gamercard from the official Xbox site. It's using an iframe, which I don't really like, but it's working, that's the essential.
 
-{% codeblock xboxlive.html %}
-{% if site.xboxlive_user %}
-<section>
-  <h1>Xbox Live</h1>
-  <iframe src="http://gamercard.xbox.com/{{site.xboxlive_user}}.card" scrolling="no" frameBorder="0" height="140" width="204">{{site.xboxlive_user}}</iframe>
-</section>
-{% endif %}
-{% endcodeblock %}
+{% include_code ../../_includes/asides/xboxlive.html %}
 
 ## Configuration
 You will need to specify a coderwall_user and xboxlive_user in _config.yml for this to work.
