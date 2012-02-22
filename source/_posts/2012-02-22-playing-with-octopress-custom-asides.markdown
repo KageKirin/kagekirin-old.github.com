@@ -14,12 +14,12 @@ I wanted to add my Coderwall badges in the asides. A bit of googling lead me to 
 
 As a kind of customization on that code, I added the img@alt and img@title attributes, also generated from Coderwall's JSON response data.
 
-{% include_code ../_includes/asides/coderwall.html %}
+{% include_code source/_includes/asides/coderwall.html %}
 
 ## Xbox Live
 The second custom aside I created is taking the Xbox Live Gamercard from the official Xbox site. It's using an iframe, which I don't really like, but it's working, that's the essential.
 
-{% include_code ../_includes/asides/xboxlive.html %}
+{% include_code source/_includes/asides/xboxlive.html %}
 
 ## Configuration
 You will need to specify a coderwall_user and xboxlive_user in _config.yml for this to work.
