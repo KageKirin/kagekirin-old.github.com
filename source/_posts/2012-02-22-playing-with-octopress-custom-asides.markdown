@@ -3,7 +3,8 @@ layout: post
 title: "Playing with Octopress -- Custom Asides"
 date: 2012-02-22 01:31
 comments: true
-categories: 
+categories: ["octopress"]
+toc : true
 ---
 
 If you've followed this blog, you might have noticed a couple of changes in the last days.
