@@ -11,7 +11,7 @@ If you've followed this blog, you might have noticed a couple of changes in the 
 In fact, I've been playing around with customizing Octopress and added a couple of custom asides.
 
 ## Coderwall
-I wanted to add my Coderwall badges in the asides. A bit of googling lead me to another Octopress blog (http://tzangms.com), which was using Mizzy's code (http://mizzy.org/blog/2012/01/13/coderwall-badges-on-the-sidebar/) to display the badges. From there, it was pretty easy to extract the Javascript code from the page source. I only found the original author's page later today, but by then, I had already a working version.
+I wanted to add my Coderwall badges in the asides. A bit of googling lead me to [another Octopress blog](http://tzangms.com), which was using [Mizzy](http://mizzy.org/blog/2012/01/13/coderwall-badges-on-the-sidebar/)'s code to display the badges. From there, it was pretty easy to extract the Javascript code from the page source. I only found the original author's page later today, but by then, I had already a working version.
 
 As customization on the original code, I added the img@alt and img@title attributes to be generated from Coderwall's JSON response data. This gives a nice addition for hovering over the badge to get its description, and an alternative description for non-graphic browsers.
 
