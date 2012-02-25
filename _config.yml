@@ -7,7 +7,7 @@ title: Code Alchemist
 subtitle: KageKirin's Dev Blog
 author: Chris Helmich
 simple_search: http://google.com/search
-description: dev blog, ranting about C++ or code quality, work or other programming stuff
+description: dev blog, ranting about C++ or code quality, graphics programming, work or other programming stuff
 
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -46,7 +46,7 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/coderwall.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html, asides/xboxlive.html]
+default_asides: [custom/asides/about.html, asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/coderwall.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html, asides/xboxlive.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
