@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-02-29T00:44:05+09:00</updated>
+  <updated>2012-03-01T01:46:39+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[An outlook and some orientation]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/"/>
+    <updated>2012-03-01T00:17:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation</id>
+    <content type="html"><![CDATA[<p>What will this blog be about?</p>
+
+<p>I stated in my opening post that I will blog about graphics programming, programming on a general level, and add some tadbits about web programming. To concretize this plan, or rather as a TODO list, I wrote this post.</p>
+
+<h2>Web programming</h2>
+
+<p>Subjects to cover:
+- mostly about Octopress, how to, or better, how I customize parts of it.
+- some HTML5 and WebGL things I try out.
+- things that go hand in hand with the next topic</p>
+
+<h2>App programming</h2>
+
+<p>Subjects to cover:
+- Using PhoneGap to create web technology-based iOS apps
+&#8211; automatizing parts of the build process
+- Using Mulberry to create web technology-based iOS apps</p>
+
+<h2>Graphics programming</h2>
+
+<p>Subjects to cover:
+- Algorithms I implement either at work or at home
+- Explanations about graphics algorithms
+- Personal research</p>
+
+<h2>General programming</h2>
+
+<p>Subjects to cover:
+- Refactoring
+- Optimization
+- Things I run into at work</p>
+
+<p>I will probably edit this over the time&#8230;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Playing with Octopress -- Custom Asides]]></title>
