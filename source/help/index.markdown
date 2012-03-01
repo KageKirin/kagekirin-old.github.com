@@ -65,7 +65,159 @@ Original documentation: [Daring Fireball](http://daringfireball.net/projects/mar
 Another documentation: [kohanut](http://kohanut.com/docs/using.markdown)
 Not used here, but useful for GitHub commits: [GitHub Flavored Markdown](http://github.github.com/github-flavored-markdown/)
 
+### Section headings
+```
+# H1
+## H2
+###### H6 (which is max)
+```
 
+### Emphasizes
+```
+*emphasized text - single asterisk*
+_emphasized text - single underscore_
+**bold text - double asterisk**
+__bold text - double underscore__
+
+--barred text--
+==double-barred text==
+```
+--barred text--
+==double-barred text==
+
+Literal signs must be escaped
+```
+\*literal asterisk\*
+\_literal underscore\_
+```
+
+### Paragraphs
+```
+Some text.
+More text on the same paragraph.
+
+New paragraph.  
+More text after forced line break. Note the double space at the end of the previous line.
+```
+
+
+### Blockquote
+Just like in emails.
+```
+> A blockquote, like quoting in emails
+> can span over multiple lines
+> > double nested
+> > > now this can get messy.
+```
+
+### Lists
+#### Unordered lists
+```
+*  Element 1
+*  Element 2
+```
+```
++  Element 1
++  Element 2
+```
+```
+-  Element 1
+-  Element 2
+```
+
+#### Ordered lists
+```
+1.  Element 1
+2.  Element 2
+```
+
+#### Ordered lists for lazy people (e.g. me)
+```
+1.  Element 1
+1.  Element 2
+```
+
+#### Conflicts with normal punctuation can be resolved with a backslash escape.
+```
+1986\. What a great season.
+```
+
+### Links
+```
+[link text](#page-anchor)
+[link text](url)
+```
+
+#### Reference-style links to re-use same link several times (explicit version)
+```
+[an example][id] reference-style link				
+[id]: http://example.com/  "Optional Title Here"	#defined anywhere in the document. best as a footnote
+```
+
+#### Reference-style links (implicit version)
+```
+[Google][]											#implicit id, i.e. name is id
+[Google]: http://google.com/
+Visit [Daring Fireball][] for more information.
+[Daring Fireball]: http://daringfireball.net/
+```
+
+#### Automatic links
+```
+<http://example.com/>
+<address@example.com>	#will try to fool mail address collector bots
+```
+
+### Source code
+#### Inline source
+```
+`printf();`	#single backtick
+``SELECT `id` FROM `people`;	#double backtick makes single backtick usabe in code 
+```
+
+#### Source paragraph
+Indented paragraph
+```
+	#source goes here
+	#1-tab indenting
+    #4-spaces indenting
+```
+or triple-backtick. See further down about this.
+
+
+### Images
+```
+![Alt text](/path/to/img.jpg "Optional title")
+```
+or see further below for Octopress/Jekyll tag.
+
+
+### Misc
+#### Backslash escaping
+available for following characters
+```
+\   backslash
+`   backtick
+*   asterisk
+_   underscore
+{}  curly braces
+[]  square brackets
+()  parentheses
+#   hash mark
++   plus sign
+-   minus sign (hyphen)
+.   dot
+!   exclamation mark
+```
+
+#### Horizontal rule 
+```
+* * *
+***
+*****
+- - -
+---------------------------------------
+```
 
 
 
@@ -77,7 +229,7 @@ Not used here, but useful for GitHub commits: [GitHub Flavored Markdown](http://
 Triple backticks
 {% codeblock %}
 ``` [language] [title] [url] [link text]
-code snippet
+#code goes here
 ```
 {% endcodeblock %}
 
@@ -124,10 +276,10 @@ jsFiddle (a site for code sharing, apparently)
 {% video url/to/video [width height] [url/to/poster] %}
 ```
 
-## More stuff
+## More Jekyll stuff
 
 ### Render partial
-From [here](http://octopress.org/docs/plugins/render-partial/). Partials get resolved and embedded BEFORE Jekyll translation.
+From [here](http://octopress.org/docs/plugins/render-partial/): Partials get resolved and embedded BEFORE Jekyll translation.
 
 ```
 {% render_partial path/to/file %}	#path can be anywhere on generating machine (best inside blog git repo)
@@ -136,7 +288,7 @@ From [here](http://octopress.org/docs/plugins/render-partial/). Partials get res
 ```
 
 ### Blockquote
-From [here](http://octopress.org/docs/plugins/blockquote/)
+From [here](http://octopress.org/docs/plugins/blockquote/):
 ```
 {% blockquote [author[, source]] [link] [source_link_title] %}
 Quote string
@@ -144,7 +296,7 @@ Quote string
 ```
 
 ### Pullquote
-From [here](http://octopress.org/docs/plugins/pullquote/)
+From [here](http://octopress.org/docs/plugins/pullquote/):
 ```
 {% pullquote %}
 Surround your paragraph with the pull quote tags. Then when you come to
