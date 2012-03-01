@@ -105,65 +105,47 @@ For reference, the original Octopress docs are <a href="http://octopress.org/doc
 
 <p>Page generation</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake new_post["title"]                   #creates new blog post in source/_posts/
-</span><span class='line'>rake new_page[path/to/file.html]      #creates path/to/file.html
-</span><span class='line'>rake new_page[path/to/file.markdown]  #creates path/to/file.markdown
-</span><span class='line'>rake new_page[path/to/folder]         #creates path/to/folder/index.markdown</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>rake new_post["title"]                #creates new blog post in source/_posts/
+rake new_page[path/to/file.html]        #creates path/to/file.html
+rake new_page[path/to/file.markdown]    #creates path/to/file.markdown
+rake new_page[path/to/folder]       #creates path/to/folder/index.markdown
+</code></pre>
 
 <p>Site regeneration and testing</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate   # Generates posts and pages into the public directory
-</span><span class='line'>rake watch      # Watches source/ and sass/ for changes and regenerates
-</span><span class='line'>rake preview    # Watches, and mounts a webserver at http://localhost:4000</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>rake generate   # Generates posts and pages into the public directory
+rake watch      # Watches source/ and sass/ for changes and regenerates
+rake preview    # Watches, and mounts a webserver at http://localhost:4000
+</code></pre>
 
 <p>(And I should be using the preview functionality BEFORE committing everything back to the server to see any changes).</p>
 
 <p>Deploying to GitHub (given you followed the <a href="http://octopress.org/docs/deploying/github/">installation guide</a>)</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
-</span><span class='line'>rake deploy
-</span><span class='line'>git add .
-</span><span class='line'>git commit -m "updated blog"
-</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>rake generate
+rake deploy
+git add .
+git commit -m "updated blog"
+git push origin source
+</code></pre>
 
 <p>Deploying to Heroku (given you followed the <a href="http://octopress.org/docs/deploying/heroku/">installation guide</a>)</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate
-</span><span class='line'>git add .
-</span><span class='line'>git commit -m "updated blog"
-</span><span class='line'>git push origin master</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>rake generate
+git add .
+git commit -m "updated blog"
+git push origin master
+</code></pre>
 
 <p>Note: There&#8217;s my <code>regen.sh</code> that automatizes the updating to the server</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ./regen.sh</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>$ ./regen.sh
+</code></pre>
 
 <p>Updating Octopress (from original GitHub source)</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git pull octopress master    #and pray you don't get merge conflicts</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>git pull octopress master   #and pray you don't get merge conflicts
+</code></pre>
 
 <p>Obviously, a visual git client could be used, but for what purpose? Scripts are faster.</p>
 
@@ -175,180 +157,130 @@ Not used here, but useful for GitHub commits: <a href="http://github.github.com/
 
 <h3>Section headings</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># H1
-</span><span class='line'>## H2
-</span><span class='line'>###### H6 (which is max)</span></code></pre></td></tr></table></div></figure>
-
+<pre><code># H1
+## H2
+###### H6 (which is max)
+</code></pre>
 
 <h3>Emphasizes</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>*emphasized text - single asterisk*
-</span><span class='line'>_emphasized text - single underscore_
-</span><span class='line'>**bold text - double asterisk**
-</span><span class='line'>__bold text - double underscore__
-</span><span class='line'>
-</span><span class='line'>--barred text--
-</span><span class='line'>==double-barred text==</span></code></pre></td></tr></table></div></figure>
+<pre><code>*emphasized text - single asterisk*
+_emphasized text - single underscore_
+**bold text - double asterisk**
+__bold text - double underscore__
 
+--barred text--
+==double-barred text==
+</code></pre>
 
 <p>&#8211;barred text&#8211;
 ==double-barred text==</p>
 
-<p>Literal signs must be escaped</p>
+<p>Literal signs must be escaped.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>\*literal asterisk\*
-</span><span class='line'>\_literal underscore\_</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>\*literal asterisk\*
+\_literal underscore\_
+</code></pre>
 
 <h3>Paragraphs</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Some text.
-</span><span class='line'>More text on the same paragraph.
-</span><span class='line'>
-</span><span class='line'>New paragraph.  
-</span><span class='line'>More text after forced line break. Note the double space at the end of the previous line.</span></code></pre></td></tr></table></div></figure>
+<pre><code>Some text.
+More text on the same paragraph.
 
+New paragraph.  
+More text after forced line break. Note the double space at the end of the previous line.
+</code></pre>
 
 <h3>Blockquote</h3>
 
 <p>Just like in emails.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; A blockquote, like quoting in emails
-</span><span class='line'>&gt; can span over multiple lines
-</span><span class='line'>&gt; &gt; double nested
-</span><span class='line'>&gt; &gt; &gt; now this can get messy.</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>&gt; A blockquote, like quoting in emails
+&gt; can span over multiple lines
+&gt; &gt; double nested
+&gt; &gt; &gt; now this can get messy.
+</code></pre>
 
 <h3>Lists</h3>
 
 <h4>Unordered lists</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>*  Element 1
-</span><span class='line'>*  Element 2</span></code></pre></td></tr></table></div></figure>
+<pre><code>*   Element 1
+*   Element 2
 
++   Element 1
++   Element 2
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+  Element 1
-</span><span class='line'>+  Element 2</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>-  Element 1
-</span><span class='line'>-  Element 2</span></code></pre></td></tr></table></div></figure>
-
+-   Element 1
+-   Element 2
+</code></pre>
 
 <h4>Ordered lists</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1.  Element 1
-</span><span class='line'>2.  Element 2</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>1.  Element 1
+2.  Element 2
+</code></pre>
 
 <h4>Ordered lists for lazy people (e.g. me)</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1.  Element 1
-</span><span class='line'>1.  Element 2</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>1.  Element 1
+1.  Element 2
+</code></pre>
 
 <h4>Conflicts with normal punctuation can be resolved with a backslash escape.</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1986\. What a great season.</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>1986\. What a great season.
+</code></pre>
 
 <h3>Links</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[link text](#page-anchor)
-</span><span class='line'>[link text](url)</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>[link text](#page-anchor)
+[link text](url)
+</code></pre>
 
 <h4>Reference-style links to re-use same link several times (explicit version)</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[an example][id] reference-style link                
-</span><span class='line'>[id]: http://example.com/  "Optional Title Here"  #defined anywhere in the document. best as a footnote</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>[an example][id] reference-style link               
+[id]: http://example.com/  "Optional Title Here"    #defined anywhere in the document. best as a footnote
+</code></pre>
 
 <h4>Reference-style links (implicit version)</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Google][]                                           #implicit id, i.e. name is id
-</span><span class='line'>[Google]: http://google.com/
-</span><span class='line'>Visit [Daring Fireball][] for more information.
-</span><span class='line'>[Daring Fireball]: http://daringfireball.net/</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>[Google][]                                          #implicit id, i.e. name is id
+[Google]: http://google.com/
+Visit [Daring Fireball][] for more information.
+[Daring Fireball]: http://daringfireball.net/
+</code></pre>
 
 <h4>Automatic links</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;http://example.com/&gt;
-</span><span class='line'>&lt;address@example.com&gt;   #will try to fool mail address collector bots</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>&lt;http://example.com/&gt;
+&lt;address@example.com&gt;   #will try to fool mail address collector bots
+</code></pre>
 
 <h3>Source code</h3>
 
 <h4>Inline source</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>`printf();`  #single backtick
-</span><span class='line'>``SELECT `id` FROM `people`;  #double backtick makes single backtick usabe in code </span></code></pre></td></tr></table></div></figure>
-
+<pre><code>`printf();` #single backtick
+``SELECT `id` FROM `people`;    #double backtick makes single backtick usabe in code 
+</code></pre>
 
 <h4>Source paragraph</h4>
 
 <p>Indented paragraph</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>#source goes here
-</span><span class='line'>#1-tab indenting
-</span><span class='line'>#4-spaces indenting</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>    #source goes here
+    #1-tab indenting
+    #4-spaces indenting
+</code></pre>
 
 <p>or triple-backtick. See further down about this.</p>
 
 <h3>Images</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>![Alt text](/path/to/img.jpg "Optional title")</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>![Alt text](/path/to/img.jpg "Optional title")
+</code></pre>
 
 <p>or see further below for Octopress/Jekyll tag.</p>
 
@@ -358,45 +290,28 @@ Not used here, but useful for GitHub commits: <a href="http://github.github.com/
 
 <p>available for following characters</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>\   backslash
-</span><span class='line'>`   backtick
-</span><span class='line'>*   asterisk
-</span><span class='line'>_   underscore
-</span><span class='line'>{}  curly braces
-</span><span class='line'>[]  square brackets
-</span><span class='line'>()  parentheses
-</span><span class='line'>#   hash mark
-</span><span class='line'>+   plus sign
-</span><span class='line'>-   minus sign (hyphen)
-</span><span class='line'>.   dot
-</span><span class='line'>!   exclamation mark</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>\   backslash
+`   backtick
+*   asterisk
+_   underscore
+{}  curly braces
+[]  square brackets
+()  parentheses
+#   hash mark
++   plus sign
+-   minus sign (hyphen)
+.   dot
+!   exclamation mark
+</code></pre>
 
 <h4>Horizontal rule</h4>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>* * *
-</span><span class='line'>***
-</span><span class='line'>*****
-</span><span class='line'>- - -
-</span><span class='line'>---------------------------------------</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>* * *
+***
+*****
+- - -
+---------------------------------------
+</code></pre>
 
 <h2>Octopress Plugins</h2>
 
@@ -404,97 +319,52 @@ Not used here, but useful for GitHub commits: <a href="http://github.github.com/
 
 <p>Triple backticks</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>\`\`\` [language] [title] [url] [link text]
-</span><span class='line'>#code goes here
-</span><span class='line'>\`\`\`</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>``` [language] [title] [url] [link text]
+#code goes here
+```
+</code></pre>
 
 <p>Codeblock element</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Liquid error: ClassNotFound: no lexer for alias 'language' found</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Codeblock element</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Liquid error: ClassNotFound: no lexer for alias 'language' found</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>\{% codeblock [title] [lang:language] [url] [link text] %\}
+#code goes here
+\{% endcodeblock %\}
+</code></pre>
 
 <p>Gist</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Liquid error: bad URI(is not URI?): https://raw.github.com/gist//[filename]
-</span><span class='line'><div><script src='https://gist.github.com/1059334.js?file=svg_bullets.rb'></script>
-<noscript><pre><code>require 'sass'
-
-module Sass::Script::Functions
-  def svg_circle(radius, color, circle_type)
-    img = if circle_type.value == &quot;disc&quot;
-      %Q{&lt;circle cx=&quot;#{radius.value}&quot; cy=&quot;#{radius.value}&quot; r=&quot;#{radius.value}&quot;
-                          stroke-width=&quot;0&quot; fill=&quot;#{color}&quot;/&gt;}
-    else
-      %Q{&lt;circle cx=&quot;#{radius.value}&quot; cy=&quot;#{radius.value}&quot; r=&quot;#{radius.value}&quot;
-                          stroke=&quot;#{color}&quot; stroke-width=&quot;1&quot; fill=&quot;white&quot;/&gt;}
-    end
-    inline_image_string(svg_circle_envelope(img).gsub(/  +/, ' '), 'image/svg+xml')
-  end
-  private
-  def svg_circle_envelope(content)
-    %Q{&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;svg version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;#{content}&lt;/svg&gt;}
-  end
-end
-</code></pre></noscript></div>
-    #e.g.</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>{% gist gist_id [filename] %}
+{% gist 1059334 svg_bullets.rb %}   #e.g.
+</code></pre>
 
 <p>Note: how to get a gist ID?</p>
 
 <p>Files</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>File /Users/chris/Documents/Coding/blog-kagekirin.github.com/source/downloads/code/path/to/file could not be found   #path must be relative to root (or source?) folder, else you get a nice "source not found" instead.
-</span><span class='line'>File /Users/chris/Documents/Coding/blog-kagekirin.github.com/source/downloads/code/test.coffee could not be found</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>{% include_code [title] [lang:language] path/to/file %} #path must be relative to root (or source?) folder, else you get a nice "source not found" instead.
+{% include_code A CoffeeScript Test test.coffee lang:coffeescript %}
+</code></pre>
 
 <p>jsFiddle (a site for code sharing, apparently)</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'><iframe style="width: 100%; height: 300px" src="http://jsfiddle.net/shorttag/embedded/js,resources,html,css,result/light/"></iframe></span></code></pre></td></tr></table></div></figure>
-
+<pre><code>{% jsfiddle shorttag [tabs] [skin] [height] [width] %}
+</code></pre>
 
 <h3>Image embedding</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'><img class="[class names]" src="/path/to/image" title="[width] [height] [title text [alt text]]" >   #path must be relative to root (or source?) folder</span></code></pre></td></tr></table></div></figure>
+<pre><code>{% img [class names] /path/to/image [width] [height] [title text [alt text]] %} #path must be relative to root (or source?) folder
 
 
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'><img src="http://placekitten.com/890/280">
-</span><span class='line'><img class="left" src="http://placekitten.com/320/250" title="Place Kitten #2" >
-</span><span class='line'><img class="right" src="http://placekitten.com/300/500" width="150" height="250" title="Place Kitten #3" >
-</span><span class='line'><img class="right" src="http://placekitten.com/300/500" width="150" height="250" title="Place Kitten #4" alt="An image of a very cute kitten"></span></code></pre></td></tr></table></div></figure>
-
+{% img http://placekitten.com/890/280 %}
+{% img left http://placekitten.com/320/250 Place Kitten #2 %}
+{% img right http://placekitten.com/300/500 150 250 Place Kitten #3 %}
+{% img right http://placekitten.com/300/500 150 250 'Place Kitten #4' 'An image of a very cute kitten' %}
+</code></pre>
 
 <h3>Video embedding</h3>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'><video width='' height='' preload='none' controls poster=''><source src='/to/video' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'/></video></span></code></pre></td></tr></table></div></figure>
-
+<pre><code>{% video url/to/video [width height] [url/to/poster] %}
+</code></pre>
 
 <h2>More Jekyll stuff</h2>
 
@@ -502,37 +372,29 @@ end
 
 <p>From <a href="http://octopress.org/docs/plugins/render-partial/">here</a>: Partials get resolved and embedded BEFORE Jekyll translation.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>File /Users/chris/Documents/Coding/blog-kagekirin.github.com/source/path/to/file could not be found  #path can be anywhere on generating machine (best inside blog git repo)
-</span><span class='line'>File /Users/chris/Documents/Coding/blog-kagekirin.github.com/source/~/Documents/README.markdown could not be found    #e.g.
-</span><span class='line'>File /Users/chris/Documents/Coding/blog-kagekirin.github.com/source/documentation/TOC.markdown could not be found     #partials can be used for shared content, e.g. a TOC generator</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>{% render_partial path/to/file %}       #path can be anywhere on generating machine (best inside blog git repo)
+{% render_partial ~/Documents/README.markdown %}    #e.g.
+{% render_partial documentation/TOC.markdown %}     #partials can be used for shared content, e.g. a TOC generator
+</code></pre>
 
 <h3>Blockquote</h3>
 
 <p>From <a href="http://octopress.org/docs/plugins/blockquote/">here</a>:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'><blockquote><p></span><span class='line'>Quote string<br/></span><span class='line'></p><footer><strong>[author[</strong> <cite>Source]] [Link] [Source_link_title]</cite></footer></blockquote></span></code></pre></td></tr></table></div></figure>
-
+<pre><code>{% blockquote [author[, source]] [link] [source_link_title] %}
+Quote string
+{% endblockquote %}
+</code></pre>
 
 <h3>Pullquote</h3>
 
 <p>From <a href="http://octopress.org/docs/plugins/pullquote/">here</a>:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'><span class='pullquote-right' data-pullquote='surround it like this '>
-</span><span class='line'>Surround your paragraph with the pull quote tags. Then when you come to
-</span><span class='line'>the text you want to pull, surround it like this and that's all there is to it.
-</span><span class='line'></span></span></code></pre></td></tr></table></div></figure>
-
+<pre><code>{% pullquote %}
+Surround your paragraph with the pull quote tags. Then when you come to
+the text you want to pull, {" surround it like this "} and that's all there is to it.
+{% endpullquote %}
+</code></pre>
 
   
     <footer>
