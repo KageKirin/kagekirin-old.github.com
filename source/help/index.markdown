@@ -83,20 +83,76 @@ code snippet
 
 Codeblock element
 ```
-{% codeblock %}
-# code here
+{% codeblock [title] [lang:language] [url] [link text] %}
+#code goes here
 {% endcodeblock %}
 ```
 
+Gist
+```
+{% gist gist_id [filename] %}
+{% gist 1059334 svg_bullets.rb %}	#e.g.
+```
+Note: how to get a gist ID?
+
+Files
+```
+{% include_code [title] [lang:language] path/to/file %}	#path must be relative to root (or source?) folder, else you get a nice "source not found" instead.
+{% include_code A CoffeeScript Test test.coffee lang:coffeescript %}
+```
+
+jsFiddle (a site for code sharing, apparently)
+```
+{% jsfiddle shorttag [tabs] [skin] [height] [width] %}
+```
 
 
 ### Image embedding
+```
+{% img [class names] /path/to/image [width] [height] [title text [alt text]] %}	#path must be relative to root (or source?) folder
+```
 
+```
+{% img http://placekitten.com/890/280 %}
+{% img left http://placekitten.com/320/250 Place Kitten #2 %}
+{% img right http://placekitten.com/300/500 150 250 Place Kitten #3 %}
+{% img right http://placekitten.com/300/500 150 250 'Place Kitten #4' 'An image of a very cute kitten' %}
+```
 
 ### Video embedding
-
+```
+{% video url/to/video [width height] [url/to/poster] %}
+```
 
 ## More stuff
+
+### Render partial
+From [here](http://octopress.org/docs/plugins/render-partial/). Partials get resolved and embedded BEFORE Jekyll translation.
+
+```
+{% render_partial path/to/file %}	#path can be anywhere on generating machine (best inside blog git repo)
+{% render_partial ~/Documents/README.markdown %}	#e.g.
+{% render_partial documentation/TOC.markdown %}		#partials can be used for shared content, e.g. a TOC generator
+```
+
+### Blockquote
+From [here](http://octopress.org/docs/plugins/blockquote/)
+```
+{% blockquote [author[, source]] [link] [source_link_title] %}
+Quote string
+{% endblockquote %}
+```
+
+### Pullquote
+From [here](http://octopress.org/docs/plugins/pullquote/)
+```
+{% pullquote %}
+Surround your paragraph with the pull quote tags. Then when you come to
+the text you want to pull, {" surround it like this "} and that's all there is to it.
+{% endpullquote %}
+```
+
+
 
 
 
