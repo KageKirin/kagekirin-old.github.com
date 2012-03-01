@@ -23,3 +23,6 @@ echo "deploying site"
 git add . 
 git commit -am "regenerated blog"
 git push origin source
+
+echo "backing up"
+git push backup source
