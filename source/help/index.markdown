@@ -220,18 +220,26 @@ _   underscore
 ```
 
 
-
-
 ## Octopress Plugins
 
 ### Source embedding
 
 Triple backticks
-{% codeblock %}
-``` [language] [title] [url] [link text]
-#code goes here
 ```
+\`\`\` [language] [title] [url] [link text]
+#code goes here
+\`\`\`
+```
+
+Codeblock element
+```
+{% codeblock [title] [lang:language] [url] [link text] %}
+#code goes here
 {% endcodeblock %}
+```
+
+
+
 
 Codeblock element
 ```
@@ -303,8 +311,3 @@ Surround your paragraph with the pull quote tags. Then when you come to
 the text you want to pull, {" surround it like this "} and that's all there is to it.
 {% endpullquote %}
 ```
-
-
-
-
-
