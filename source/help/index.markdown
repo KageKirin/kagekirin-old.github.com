@@ -54,9 +54,9 @@ Obviously, a visual git client could be used, but for what purpose? Scripts are 
 
 
 ## Markdown Syntax
-Original documentation: [Daring Fireball](http://daringfireball.net/projects/markdown/syntax)
-Another documentation: [kohanut](http://kohanut.com/docs/using.markdown)
-Not used here, but useful for GitHub commits: [GitHub Flavored Markdown](http://github.github.com/github-flavored-markdown/)
+Original documentation: [Daring Fireball](http://daringfireball.net/projects/markdown/syntax)  
+Another documentation: [kohanut](http://kohanut.com/docs/using.markdown)  
+Not used here, but useful for GitHub commits: [GitHub Flavored Markdown](http://github.github.com/github-flavored-markdown/)  
 
 ### Section headings
     # H1
