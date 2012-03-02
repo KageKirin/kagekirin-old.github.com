@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "help"
+title: "Octopress Cheat Sheet"
 date: 2012-02-20 01:39
 comments: false
 sharing: true
