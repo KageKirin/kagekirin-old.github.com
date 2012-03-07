@@ -145,15 +145,15 @@ and the reference to it must be placed inside the page referring to it.
 #### Example: a sample video
 1.  We place our asset `sample_video.mp4` into `<app-root>/assets/videos/sample_video.mp4`.  
 1.  We create the caption `sample_video.md` in `<app-root>/assets/videos/captions/sample_video.md`. (e.g. `touch <app-root>/assets/videos/captions/sample_video.md`).  
-1.  We edit `sample_video.md` as follows:  
+1.  We edit `sample_video.md` as follows (the only YAML front matter needed is the name of the video):
 ``` yaml an example markdown for a sample video
 ---
 name: A sample video
 ---
 
 This is a sample video.
-```  
-The only YAML front matter needed is the name of the video.  
+```
+
 1.  We create a new page for this video with `mulberry create page video_page` and edit it as follows:  
 1.  1.  We change the page_def to a page able to display the video: `videos-and-text-<platform>` sounds like a good candidate.  
     page_def:
