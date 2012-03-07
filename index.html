@@ -487,20 +487,26 @@ and the reference to it must be placed inside the page referring to it.<br/>
 <p>
 The only YAML front matter needed is the name of the video.<br/>
 1.  We create a new page for this video with <code>mulberry create page video_page</code> and edit it as follows:<br/>
-1.1.  We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.</p>
+1.  1.  We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.</p>
 
 <pre><code>page_def:
     phone: videos-and-text-phone
     tablet: videos-and-text-tablet
 </code></pre>
 
-<p>1.1.  We add a reference to our video to the <code>videos</code> list in the front matter:</p>
+<ol>
+<li><ol>
+<li>We add a reference to our video to the <code>videos</code> list in the front matter:<br/>
+videos: sample_video.mp4</li>
+</ol>
+</li>
+<li><ol>
+<li>Optionally, we add a header image and a short describing text inside the markdown area after the front matter.<br/>
+And that&#8217;s it.</li>
+</ol>
+</li>
+</ol>
 
-<pre><code>videos: sample_video.mp4
-</code></pre>
-
-<p>1.1.  Optionally, we add a header image and a short describing text inside the markdown area after the front matter.<br/>
-And that&#8217;s it.</p>
 
 <p>The <code>&lt;app-root&gt;/pages/video_page.md</code> should look like this:</p>
 
