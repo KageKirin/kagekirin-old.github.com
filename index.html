@@ -467,7 +467,7 @@ and the reference to it must be placed inside the page referring to it.<br/>
 <ol>
 <li>We place our asset <code>sample_video.mp4</code> into <code>&lt;app-root&gt;/assets/videos/sample_video.mp4</code>.</li>
 <li>We create the caption <code>sample_video.md</code> in <code>&lt;app-root&gt;/assets/videos/captions/sample_video.md</code>. (e.g. <code>touch &lt;app-root&gt;/assets/videos/captions/sample_video.md</code>).</li>
-<li>We edit <code>sample_video.md</code> as follows:</li>
+<li>We edit <code>sample_video.md</code> as follows (the only YAML front matter needed is the name of the video):</li>
 </ol>
 
 
@@ -484,17 +484,15 @@ and the reference to it must be placed inside the page referring to it.<br/>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-The only YAML front matter needed is the name of the video.<br/>
-1.  We create a new page for this video with <code>mulberry create page video_page</code> and edit it as follows:<br/>
-1.  1.  We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.</p>
-
-<pre><code>page_def:
-    phone: videos-and-text-phone
-    tablet: videos-and-text-tablet
-</code></pre>
-
 <ol>
+<li>We create a new page for this video with <code>mulberry create page video_page</code> and edit it as follows:</li>
+<li><ol>
+<li>We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.<br/>
+page_def:
+phone: videos-and-text-phone
+tablet: videos-and-text-tablet</li>
+</ol>
+</li>
 <li><ol>
 <li>We add a reference to our video to the <code>videos</code> list in the front matter:<br/>
 videos: sample_video.mp4</li>
