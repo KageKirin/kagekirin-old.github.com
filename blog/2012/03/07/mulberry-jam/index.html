@@ -484,42 +484,61 @@ and the reference to it must be placed inside the page referring to it.<br/>
 <p>
 The only YAML front matter needed is the name of the video.<br/>
 1.  We create a new page for this video with <code>mulberry create page video_page</code> and edit it as follows:<br/>
-  1.  We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.</p>
+1.1.  We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.</p>
 
 <pre><code>page_def:
     phone: videos-and-text-phone
     tablet: videos-and-text-tablet
 </code></pre>
 
-<ol>
-<li>We add a reference to our video to the <code>videos</code> list in the front matter:<br/>
-videos: sample_video.mp4</li>
-<li>Optionally, we add a header image and a short describing text inside the markdown area after the front matter.<br/>
-And that&#8217;s it.
+<p>1.1.  We add a reference to our video to the <code>videos</code> list in the front matter:</p>
 
-<h2>The <code>&lt;app-root&gt;/pages/video_page.md</code> should look like this:  </h2>
-
-<p>title: videotest
-page_def:
-phone: videos-and-text-phone
-tablet: videos-and-text-tablet</p></li>
-</ol>
-
-
-<pre><code># each of these properties can contain an array of filenames
-images:
-videos: sample_video.mp4
-audios:
-feeds:
-locations:
-data:
-
-# this should optionally point at an image in the images dir
-header_image:
----
-
-# A test video
+<pre><code>videos: sample_video.mp4
 </code></pre>
+
+<p>1.1.  Optionally, we add a header image and a short describing text inside the markdown area after the front matter.<br/>
+And that&#8217;s it.</p>
+
+<p>The <code>&lt;app-root&gt;/pages/video_page.md</code> should look like this:</p>
+
+<figure class='code'><figcaption><span>a sample page for videos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">videotest</span>
+</span><span class='line'><span class="l-Scalar-Plain">page_def</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">phone</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">videos-and-text-phone</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">tablet</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">videos-and-text-tablet</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># each of these properties can contain an array of filenames</span>
+</span><span class='line'><span class="l-Scalar-Plain">images</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="l-Scalar-Plain">videos</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">sample_video.mp4</span>
+</span><span class='line'><span class="l-Scalar-Plain">audios</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="l-Scalar-Plain">feeds</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="l-Scalar-Plain">locations</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="l-Scalar-Plain">data</span><span class="p-Indicator">:</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># this should optionally point at an image in the images dir</span>
+</span><span class='line'><span class="l-Scalar-Plain">header_image</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">A test video</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>I didn&#8217;t mention it, but the video or image has to be in a format readable by the target platform. (JPEG, PNG is fine for pictures, MP4 great for videos, and MP3 an obvious choice for audio).</p>
 
