@@ -13,7 +13,7 @@ Note: I will mostly cover the iOS apps development process since I just happen t
 (OK, me not wanting to bother with installing Eclipse at the moment is the other perfectly valid reason).
 
 
-# Installation
+## Installation
 You can install Mulberry from the [release package](http://mulberry.toura.com/download/) or by cloning its [git repo on GitHub](https://github.com/Toura/mulberry). I recommend you to do the latter because it's easier to get updates.
 In fact, you should fork it first, then clone your fork, and finally add the official repo as another remote.
 
@@ -78,7 +78,7 @@ Here's the full change:
 The install script will add a few lines to `.bash_profile`. You might need to adapt this to your installation. (`.profile` is usually the default shell config on OSX).
 
 
-# Hello Mulberry and Terminology
+## Hello Mulberry and Terminology
 In Mulberry's terms, creating the base for an app is called "to scaffold", so this is the first command to invoke.  
 Note that you have to be inside the folder you installed Mulberry to for it to work. (That's an issue related to RVM, afaik).
 
@@ -107,12 +107,12 @@ There is a fully featured demo in `<mulberry-root>/demo` that is worth checking 
 but it might be interesting to branch them as well.
 
  
-# Content creation
+## Content creation
 The base command to create new content is
 	mulberry create <what> <name>
 with a few exceptions I will explain later.
 	
-## Adding pages
+### Adding pages
 	mulberry create page <pagename>
 will create a file at `<app-root>/pages/<pagename>.md` that contains the basic YAML front matter for defining a page, and some sample text.
 
@@ -131,7 +131,7 @@ To access this newly created page, you need to edit `<app-root>/sitemap.yml` in 
 
 Pages all lie in `<app-root>/pages/`, without any hierarchy. Good naming (prefixes?) might greatly ease the pain of dealing with lots of pages.
 
-## Adding images, videos and audios
+### Adding images, videos and audios
 From my (naive and potentially wrong) understanding of the docs, these kind of *assets* can be added for visualization/playback to a page with the right page-def (format) to present it.
 This also counts for all the other type of implemented assets, or for your custom ones.
 
@@ -142,24 +142,24 @@ and the reference to it must be placed inside the page referring to it.
 (Don't panic, it'll all become much clearer in the example below).
 
 
-### Example: a sample video
-1.  We place our asset `sample_video.mp4` into `<app-root>/assets/videos/sample_video.mp4`.
-1.  We create the caption `sample_video.md` in `<app-root>/assets/videos/captions/sample_video.md`. (e.g. `touch <app-root>/assets/videos/captions/sample_video.md`).
-1.  We edit `sample_video.md` as follows:
+#### Example: a sample video
+1.  We place our asset `sample_video.mp4` into `<app-root>/assets/videos/sample_video.mp4`.  
+1.  We create the caption `sample_video.md` in `<app-root>/assets/videos/captions/sample_video.md`. (e.g. `touch <app-root>/assets/videos/captions/sample_video.md`).  
+1.  We edit `sample_video.md` as follows:  
 ``` yaml an example markdown for a sample video
 ---
 name: A sample video
 ---
 
 This is a sample video.
-```
-The only YAML front matter needed is the name of the video.
-1.  We create a new page for this video with `mulberry create page video_page` and edit it as follows:
-  1.  We change the page_def to a page able to display the video: `videos-and-text-<platform>` sounds like a good candidate.
+```  
+The only YAML front matter needed is the name of the video.  
+1.  We create a new page for this video with `mulberry create page video_page` and edit it as follows:  
+  1.  We change the page_def to a page able to display the video: `videos-and-text-<platform>` sounds like a good candidate.  
     page_def:
         phone: videos-and-text-phone
         tablet: videos-and-text-tablet
-  1.  We add a reference to our video to the `videos` list in the front matter:
+  1.  We add a reference to our video to the `videos` list in the front matter:  
     videos: sample_video.mp4
   1.  Optionally, we add a header image and a short describing text inside the markdown area after the front matter.  
 And that's it.  
@@ -189,25 +189,28 @@ I didn't mention it, but the video or image has to be in a format readable by th
 When re-generating (or serving) the app, the video will be accessible on the page you put it on.
 
 
-## Adding data, feeds, locations
+### Adding data, feeds, locations
 What the [doc](https://github.com/Toura/mulberry/wiki/Command-Line-Interface) says, but honestly, I have no idea what they mean. Could you explain it to me?
 What do they mean by data (a database, a blob?), feed (RSS/ATOM feed reference?) and locations (GPS or Google Maps locations?) ?
 
 I have not really investigated, nor understood the stuff below, but I'll edit this later once the understanding is there.
 ***
 
-# Customization
-## Page-defs
 
-## Components
+## Customization
+
+### Page-defs
+
+### Components
 
 ## App Icon
+
 ## Flash screen
 
-# Universal Apps
+## Universal Apps
 there should be way to create them...
 
-# Automatic build
+## Automatic build
 Command line and Jenkins integration
 
 
