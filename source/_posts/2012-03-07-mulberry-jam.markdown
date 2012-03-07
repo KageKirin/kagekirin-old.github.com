@@ -116,16 +116,85 @@ with a few exceptions I will explain later.
 	mulberry create page <pagename>
 will create a file at `<app-root>/pages/<pagename>.md` that contains the basic YAML front matter for defining a page, and some sample text.
 
-To access this newly created page, you need to edit `<app-root>/sitemap.yml` in order to include it at the correct place in the page hierarchy.
-	TODO: add reference to existing sitemap.yml.
-	
+To access this newly created page, you need to edit `<app-root>/sitemap.yml` in order to include it at the correct place in the page hierarchy. It's YAML, and it really contains just the hierarchy. Mulberry will arrange the pages to present the links on the subsequent pages in the order you declare them.
+``` yaml real-life example of a sitemap.yml
+- home:
+  - osu
+  - dojokun
+  - organization:
+    - founder
+    - president
+    - vicepresident
+    - ikocommittee
+- about
+```
+
+Pages all lie in `<app-root>/pages/`, without any hierarchy. Good naming (prefixes?) might greatly ease the pain of dealing with lots of pages.
+
+## Adding images, videos and audios
+From my (naive and potentially wrong) understanding of the docs, these kind of *assets* can be added for visualization/playback to a page with the right page-def (format) to present it.
+This also counts for all the other type of implemented assets, or for your custom ones.
+
+Any asset needs to be placed inside the correct folder, which is  
+`<app-root>/assets/<asset-type>/` for the asset file itself,  
+`<app-root>/assets/<asset-type>/captions/` for a *caption* describing the asset, which is a markdown file with the same name as the asset,  
+and the reference to it must be placed inside the page referring to it.  
+(Don't panic, it'll all become much clearer in the example below).
 
 
-## Adding images
-## Adding videos and audios
+### Example: a sample video
+1.  We place our asset `sample_video.mp4` into `<app-root>/assets/videos/sample_video.mp4`.
+1.  We create the caption `sample_video.md` in `<app-root>/assets/videos/captions/sample_video.md`. (e.g. `touch <app-root>/assets/videos/captions/sample_video.md`).
+1.  We edit `sample_video.md` as follows:
+``` yaml an example markdown for a sample video
+---
+name: A sample video
+---
 
-## Adding data, feeds etc.
+This is a sample video.
+```
+The only YAML front matter needed is the name of the video.
+1.  We create a new page for this video with `mulberry create page video_page` and edit it as follows:
+  1.  We change the page_def to a page able to display the video: `videos-and-text-<platform>` sounds like a good candidate.
+    page_def:
+        phone: videos-and-text-phone
+        tablet: videos-and-text-tablet
+  1.  We add a reference to our video to the `videos` list in the front matter:
+    videos: sample_video.mp4
+  1.  Optionally, we add a header image and a short describing text inside the markdown area after the front matter.  
+And that's it.  
+The `<app-root>/pages/video_page.md` should look like this:  
+    ---
+    title: videotest
+    page_def:
+      phone: videos-and-text-phone
+      tablet: videos-and-text-tablet
+    
+    # each of these properties can contain an array of filenames
+    images:
+    videos: sample_video.mp4
+    audios:
+    feeds:
+    locations:
+    data:
+    
+    # this should optionally point at an image in the images dir
+    header_image:
+    ---
+    
+    # A test video
+
+I didn't mention it, but the video or image has to be in a format readable by the target platform. (JPEG, PNG is fine for pictures, MP4 great for videos, and MP3 an obvious choice for audio).
+
+When re-generating (or serving) the app, the video will be accessible on the page you put it on.
+
+
+## Adding data, feeds, locations
 What the [doc](https://github.com/Toura/mulberry/wiki/Command-Line-Interface) says, but honestly, I have no idea what they mean. Could you explain it to me?
+What do they mean by data (a database, a blob?), feed (RSS/ATOM feed reference?) and locations (GPS or Google Maps locations?) ?
+
+I have not really investigated, nor understood the stuff below, but I'll edit this later once the understanding is there.
+***
 
 # Customization
 ## Page-defs
@@ -143,4 +212,6 @@ Command line and Jenkins integration
 
 
 **tl;dr** I hope this short guide was useful to you.  
-I've created a [help page]() and although it's more a reminder for myself, you can use it as an easy overview.
+I've created a [help page](/help/mulberry-cheat-sheet.html) and although it's more a reminder for myself, you can use it as an easy overview.
+
+
