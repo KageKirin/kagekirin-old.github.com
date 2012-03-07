@@ -164,7 +164,8 @@ The only YAML front matter needed is the name of the video.
 1.1.  Optionally, we add a header image and a short describing text inside the markdown area after the front matter.  
 And that's it.
 
-The `<app-root>/pages/video_page.md` should look like this:
+The `<app-root>/pages/video_page.md` should look like this:  
+
 ``` yaml a sample page for videos
 ---
 title: videotest
