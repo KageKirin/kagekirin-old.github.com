@@ -9,7 +9,7 @@
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="Mulberry Cheat Sheet Feb 20th, 2012 Official documentation Feb 20th, 2012 Tweet About Me I'm an european graphics programmer working in Japan and &hellip;">
+  <meta name="description" content="Mulberry Cheat Sheet Feb 20th, 2012 Official documentation Installation Installation is mostly automatic. It&#8217;s started by running install/&lt; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +98,59 @@
   
   <p><a href="https://github.com/Toura/mulberry/wiki/">Official documentation</a></p>
 
+<h1>Installation</h1>
+
+<p>Installation is mostly automatic. It&#8217;s started by running <code>install/&lt;your-platform&gt;/install.sh</code>.</p>
+
+<h2>Required base packages</h2>
+
+<h3>OSX</h3>
+
+<p>For OSX, the required packages are:<br/>
+-  Xcode in version 4.3 or later
+-  Java</p>
+
+<h2>Packages built and installed by script if not found:</h2>
+
+<h3>OSX</h3>
+
+<ul>
+<li>RVM</li>
+<li>Ruby (in version 1.9.2 or 1.9.3 depending on script). Ruby@1.9.3 might <em>NOT</em> build on OSX 10.7.3.</li>
+<li>Rubygems and following gems:</li>
+<li> Bundler</li>
+<li> Mulberry (obviously)</li>
+<li>Homebrew</li>
+<li>Ant (through Brew)</li>
+<li>Android SDK</li>
+<li>PhoneGap</li>
+</ul>
+
+
+<h1>Basic commands</h1>
+
+<pre><code>mulberry scaffold
+</code></pre>
+
+<p>creates a new app scaffolding</p>
+
+<pre><code>mulberry serve
+</code></pre>
+
+<p>builds app for web and starts http server on port 3001</p>
+
+<pre><code>mulberry deploy
+</code></pre>
+
+<p>builds app for deployment and creates xcode workspaces</p>
+
+<pre><code>mulberry test
+</code></pre>
+
+<p>builds app for deployment, creates xcode workspaces and opens them for testing. Apple-R to run in simulator/on device.</p>
+
+<h1>Content creation commands</h1>
+
   
     <footer>
       <p class="meta">
@@ -149,6 +202,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/07/mulberry-jam/">Mulberry Jam</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/01/an-outlook-and-some-orientation/">An outlook and some orientation</a>
       </li>
     
@@ -162,10 +219,6 @@
     
       <li class="post">
         <a href="/blog/2012/02/15/opening-post/">Opening Post</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/02/15/hello-world/">Hello World</a>
       </li>
     
   </ul>
