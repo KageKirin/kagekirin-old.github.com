@@ -42,6 +42,17 @@ Deploying to Heroku (given you followed the [installation guide](http://octopres
     git commit -m "updated blog"
     git push origin master
 
+Deploying to Amazon S3 and CloudFront is not covered here, but here are some links.  
+[Octopress in the cloud - part 1](http://www.whatwherewhy.me/blog/2012/01/16/octopress-in-the-cloud/)  
+[Deployment to Amazon S3](http://www.jerome-bernard.com/blog/2011/08/20/quick-tip-for-easily-deploying-octopress-blog-on-amazon-s3/)  
+[Deployment to Amazon CloudFront](http://www.jerome-bernard.com/blog/2011/08/20/quick-tip-for-easily-deploying-octopress-blog-on-amazon-cloudfront/)  
+
+Deplyoing to Google AppEngine is not covered here either. Besides the links below, there is an GAE app to run Octopress on GAE while hosting the source on GitHub with the full git goodness this offers. (Incidentally, there are also GAE apps to host git repos on GAE).  
+[Proof of concept](http://octoprs.appspot.com/blog/2011/11/08/host-an-octopress-blog-on-google-app-engine/) (from [here](http://mt.junli.me/blog/2011/11/host-an-octopress-blog-on-google-app-engine/))  
+
+Migration from WordPress -- again, not covered here, but Google is your friend.  
+[One blog](http://praveen.kumar.in/2012/02/20/octopress-on-amazon-s3/) that covered how to import comments from WP to Disqus.
+
 
 Note: There's my `regen.sh` that automatizes the updating to the server
     $ ./regen.sh
