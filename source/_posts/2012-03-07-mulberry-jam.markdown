@@ -215,6 +215,7 @@ there should be way to create them...
 
 ## Automatic build
 Command line and Jenkins integration
+[This link](http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution) looks helpful.
 
 
 **tl;dr** I hope this short guide was useful to you.  
