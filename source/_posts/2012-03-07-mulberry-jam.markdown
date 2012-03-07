@@ -155,34 +155,36 @@ This is a sample video.
 ```  
 The only YAML front matter needed is the name of the video.  
 1.  We create a new page for this video with `mulberry create page video_page` and edit it as follows:  
-  1.  We change the page_def to a page able to display the video: `videos-and-text-<platform>` sounds like a good candidate.  
+1.1.  We change the page_def to a page able to display the video: `videos-and-text-<platform>` sounds like a good candidate.  
     page_def:
         phone: videos-and-text-phone
         tablet: videos-and-text-tablet
-  1.  We add a reference to our video to the `videos` list in the front matter:  
+1.1.  We add a reference to our video to the `videos` list in the front matter:  
     videos: sample_video.mp4
-  1.  Optionally, we add a header image and a short describing text inside the markdown area after the front matter.  
-And that's it.  
-The `<app-root>/pages/video_page.md` should look like this:  
-    ---
-    title: videotest
-    page_def:
-      phone: videos-and-text-phone
-      tablet: videos-and-text-tablet
+1.1.  Optionally, we add a header image and a short describing text inside the markdown area after the front matter.  
+And that's it.
+
+The `<app-root>/pages/video_page.md` should look like this:
+``` yaml a sample page for videos
+---
+title: videotest
+page_def:
+    phone: videos-and-text-phone
+    tablet: videos-and-text-tablet
     
-    # each of these properties can contain an array of filenames
-    images:
-    videos: sample_video.mp4
-    audios:
-    feeds:
-    locations:
-    data:
-    
-    # this should optionally point at an image in the images dir
-    header_image:
-    ---
-    
-    # A test video
+# each of these properties can contain an array of filenames
+images:
+videos: sample_video.mp4
+audios:
+feeds:
+locations:
+data:
+   
+# this should optionally point at an image in the images dir
+header_image:
+---
+A test video
+```
 
 I didn't mention it, but the video or image has to be in a format readable by the target platform. (JPEG, PNG is fine for pictures, MP4 great for videos, and MP3 an obvious choice for audio).
 
