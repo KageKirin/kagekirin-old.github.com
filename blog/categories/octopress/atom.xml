@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: octopress | Code Alchemist]]></title>
+  <link href="http://KageKirin.github.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://KageKirin.github.com/"/>
+  <updated>2012-03-08T02:43:43+09:00</updated>
+  <id>http://KageKirin.github.com/</id>
+  <author>
+    <name><![CDATA[Chris Helmich]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Playing with Octopress -- Custom Asides]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/"/>
+    <updated>2012-02-22T01:31:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides</id>
+    <content type="html"><![CDATA[<p>If you've followed this blog, you might have noticed a couple of changes in the last days.
+In fact, I've been playing around with customizing Octopress and added a couple of custom asides.</p>
+
+<h2>Coderwall</h2>
+
+<p>I wanted to add my Coderwall badges in the asides. A bit of googling lead me to <a href="http://tzangms.com">another Octopress blog</a>, which was using <a href="http://mizzy.org/blog/2012/01/13/coderwall-badges-on-the-sidebar/">Mizzy</a>'s code to display the badges. From there, it was pretty easy to extract the Javascript code from the page source. I only found the original author's page later today, but by then, I had already a working version.</p>
+
+<p>As customization on the original code, I added the img@alt and img@title attributes to be generated from Coderwall's JSON response data. This gives a nice addition for hovering over the badge to get its description, and an alternative description for non-graphic browsers.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (coderwall.html)</span> <a href='/downloads/code/../../_includes/asides/coderwall.html'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.coderwall_user %}
+</span><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Coderwall Badges<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;p&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="kd">function</span> <span class="nx">display_coderwall</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">badges</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;badges&quot;</span><span class="p">];</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">wall</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">for</span> <span class="p">(</span> <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">badges</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">alt_txt</span> <span class="o">=</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">];</span>
+</span><span class='line'>          <span class="kd">var</span> <span class="nx">title_txt</span> <span class="o">=</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; - &#39;</span> <span class="o">+</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;description&quot;</span><span class="p">];</span>
+</span><span class='line'>          <span class="nx">wall</span> <span class="o">+=</span> <span class="s1">&#39;&lt;a href=&quot;http://coderwall.com/{{site.coderwall_user}}/&quot;&gt;&lt;img src=&quot;&#39;</span>
+</span><span class='line'>            <span class="o">+</span> <span class="nx">badges</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="s2">&quot;badge&quot;</span><span class="p">]</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot; width=&quot;48&quot; height=&quot;48&quot; alt=&quot;&#39;</span> <span class="o">+</span> <span class="nx">alt_txt</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot; title=&quot;&#39;</span> <span class="o">+</span> <span class="nx">title_txt</span>
+</span><span class='line'>            <span class="o">+</span> <span class="s1">&#39;&quot;/&gt;&lt;/a&gt;&#39;</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">wall</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://coderwall.com/{{site.coderwall_user}}.json?callback=display_coderwall&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  {% if site.coderwall_show_endorse_link %}
+</span><span class='line'>  <span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://coderwall.com/{{site.coderwall_user}}&quot;</span><span class="nt">&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;http://api.coderwall.com/{{site.coderwall_user}}/endorsecount.png&quot;</span> <span class="nt">/&gt;&lt;/a&gt;&lt;/p&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Xbox Live</h2>
+
+<p>The second custom aside I created follows the implementation as described on the official Xbox site, which is using an iframe to embed the card. I don't really like the iframe to embed an external page, but this implementation was small and function, which is the essential.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span> (xboxlive.html)</span> <a href='/downloads/code/../../_includes/asides/xboxlive.html'>download</a></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% if site.xboxlive_user %}
+</span><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Xbox Live<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;iframe</span> <span class="na">src=</span><span class="s">&quot;http://gamercard.xbox.com/{{site.xboxlive_user}}.card&quot;</span> <span class="na">scrolling=</span><span class="s">&quot;no&quot;</span> <span class="na">frameBorder=</span><span class="s">&quot;0&quot;</span> <span class="na">height=</span><span class="s">&quot;140&quot;</span> <span class="na">width=</span><span class="s">&quot;204&quot;</span><span class="nt">&gt;</span>{{site.xboxlive_user}}<span class="nt">&lt;/iframe&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Configuration</h2>
+
+<p>The coderwall_user and xboxlive_user need to be specified in _config.yml.</p>
+
+<h2>More gamercard services</h2>
+
+<p>Given you have a website that generates nice gamercards (there are ton of thems), you can use the above code to include your custom gamercard as an aside.</p>
+
+<p><strong> tl;dr </strong>
+Creating asides is super easy with Jekyll/Octopress. And I'll probably create a few more for fun.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rediscovering Web Development in 2012]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/"/>
+    <updated>2012-02-19T22:49:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012</id>
+    <content type="html"><![CDATA[<p>I'm not a web developer by birth.
+I've done some web development as cheap jobs when I was a student. As such, I knew the vital parts of PHP, some bits of Javascript and of course the HTML4 DOM and the basics of CSS. Just enough to pound out a (-cheap-looking- programmer art) webpage, with MySQL for database support.
+That was between 1999 and 2006. Then I graduated.</p>
+
+<p>Not that web development was boring, but since the web bubble just exploded when I was in my 2nd year at University, I had some prejudices to web development being a good career path. Plus, game programming was something I wanted to do since my childhood, and graphics programming was something I studied, I chose the path of a graphics programmer, and not the one of a web developper.</p>
+
+<p>Hence, I didn't follow the evolutions that closely.
+Well, I saw XHTML coming during the XML boom -- put everything into XML, and if you need the data in a different format, add some XML layer on top of it -- and going, I saw HTML5 arriving to make the web better (and played Apple's "Checkers" demo countless of times), saw the rise of CSS, to the point of CSS3 (I liked the part where it killed the old tablosaurs), and WebGL arriving (after seeing VRML and X3D dying their all-to-merited death), all that without really taking part in those changes.</p>
+
+<p>And now, in 2012, I finally decided to relaunch my blog in a different form (I had a self-hosted WordPress blog, but I let it die without updates, neither in the form of WP patches, nor in content) and found this Octopress thingy I am using, which looks to me that it's using a great bunch of new technologies, that didn't ring any bells until now: SASS, Liquid, Jekyll, jQuery, etc.</p>
+
+<p>So I'm entering totally new terrain, which is both terrifying (in the amount of new stuff to learn) and interesting (in the amount of new stuff to discover) at the same time, and I'll be blogging about my discoverings here from time to time.</p>
+
+<p>Besides trying to configure this site to look a bit "different" from the vanilla Octopress theme, I have one other motivation to go all this way:
+I was asked by some very good friends if I could produce some small iOS app for their organization. Hence I've been spending some time to look into possible solutions to produce an app (possibly not limited to iOS) in the short amount of time I have besides work.</p>
+
+<p>I already knew PhoneGap from some earlier "research", but haven't come to use it yet.
+But then I found Octopress, and Jekyll as a static page generator as its base, and this idea kinda stuck with me: If I'm going to put out a little app that's going to contain little more than text, I could use those technologies to pound out an app pretty quickly. Modifying the styles could even be done by my friends, and since I could easily host its sources on github, it would make the updates pretty easy.</p>
+
+<p>Looking closer at my requirements, I found out that there's already been someone with a similar idea, which has resulted in a project called Mulberry.</p>
+
+<p>Mulberry is based on PhoneGap and Jekyll and allows to generate the "scaffolding" of an app for iOS and Android. I've been toying with for a couplke of hours today, but it looks pretty promising.</p>
+
+<p><strong>tl;dr</strong> Web development has gone a long way, and I'm looking forward to learn more about all these new technologies.
+Actually, it's awesome to see all the new evolutions of web technologies, and even to be using them.</p>
+
+<p>On this matter of thought, if anyone knows how to put in a WebGL-powered tag cloud for the categories of my posts, I'd like to hear about it.</p>
+]]></content>
+  </entry>
+  
+</feed>
