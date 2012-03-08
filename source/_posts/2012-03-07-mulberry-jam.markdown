@@ -100,9 +100,15 @@ To generate all the pages and create the custom components:
 To generate and launch a webserver (on port 3001 by default) from where you can access your app in Mobile Safari:
 	mulberry serve
 
-To launch the full compilation process, at which end it will start Xcode from where you can Apple-R(un) the app either in the simulator or on your provisioned device:
+To launch the full build process for debug builds, at which end it will start Xcode from where you can Apple-R(un) the app either in the simulator or on your provisioned device:
 	mulberry test
+Debug builds include the debugging toolbar and uncompressed Javascript.
 
+To launch the full build process for builds ready to be submitted, use
+	mulberry deploy
+which builds for all devices specified in the `config.yml`.  
+Deploy builds do NOT include the debugging toolbar, nor the uncompressed Javascript.
+	
 There is a fully featured demo in `<mulberry-root>/demo` that is worth checking out as an example. There used to be other apps in previous revisions (which disappeared in a recent update),
 but it might be interesting to branch them as well.
 
@@ -193,10 +199,27 @@ When re-generating (or serving) the app, the video will be accessible on the pag
 
 
 ### Adding data, feeds, locations
-What the [doc](https://github.com/Toura/mulberry/wiki/Command-Line-Interface) says, but honestly, I have no idea what they mean. Could you explain it to me?
-What do they mean by data (a database, a blob?), feed (RSS/ATOM feed reference?) and locations (GPS or Google Maps locations?) ?
+Those 3 types of assets can be created from the command line.
+
+To create a data file that can contain custom data to be used by the app, use
+	mulberry create data <name>
+which will create a file at `<app-root>/assets/data/<name>.yml`.
+
+(I haven't figured out, what kind of data the docs mean, but I guess it's up to the application or a custom component to read and use it).
+
+To create a file associated with an RSS/ATOM feed, use
+	mulberry create feed <name>
+which will create a file at `<app-root>/assets/feeds/<name>.yml`.  
+(Note to self: run and see what kind of files are created).	
+
+To create a geographic location that gets included in the app, run
+	mulberry create location <name>
+which will create a file at `<app-root>/assets/locations/<name>.yml`.  
+(I still need to investigate its format and the use of this).
+	
 
 I have not really investigated, nor understood the stuff below, but I'll edit this later once the understanding is there.
+
 ***
 *here be dragons*
 
@@ -204,15 +227,40 @@ I have not really investigated, nor understood the stuff below, but I'll edit th
 ## Customization
 
 ### Page-defs
+A page-def defines the template for generated pages, i.e. the layout, components and capabilities to be used on a page.  
+Custom page-defs can be generated with the command below:
+	mulberry create page_def <name>
+which will create a file at `<app-root>/page_defs/<name>.yml`.  
+More info [here](https://github.com/Toura/mulberry/wiki/Page-Definitions)
 
 ### Components
+	mulberry create component <name>
+which will create a file at `<app-root>/javascript/components/<name>.js`.  
+See [here](https://github.com/Toura/mulberry/wiki/Creating-Custom-Components) for more info.
+
+### Others
+Capability
+	mulberry create capability <name>
+which will create a file at `<app-root>/javascript/capabilities/<name>.js`.  
+[More info](https://github.com/Toura/mulberry/wiki/Capabilities)
+
+Datasource
+	mulberry create datasource <name>
+which will create a file at `<app-root>/javascript/data/<name>.js`.  
+
+### Feature flags
+See [here](https://github.com/Toura/mulberry/wiki/Feature-Flags) for info on feature flags that determine whether a given feature is active or not.
 
 ## App Icon
+By default, we get the PhoneGap app icon. To change it, replace the following files:
+(TODO: include list of files here)
 
 ## Flash screen
+By default, we get the PhoneGap flash screen. To change it, replace the following files:
 
 ## Universal Apps
-there should be way to create them...
+Atm, iPhone and iPad projects are created separately, but there should be way to create them, be it by editing the Xcode project (not a good idea as it gets regenerated), or by changing some little colde somewhere.
+(TODO: find out where and post modified script).
 
 ## Automatic build
 Command line and Jenkins integration
