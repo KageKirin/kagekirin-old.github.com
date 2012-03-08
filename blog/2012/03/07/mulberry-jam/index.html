@@ -477,24 +477,14 @@ and the reference to it must be placed inside the page referring to it.<br/>
 
 <pre><code>touch &lt;app-root&gt;/assets/videos/captions/sample_video.md
 </code></pre></li>
-<li>We edit <code>sample_video.md</code> as follows (the only YAML front matter needed is the name of the video):</li>
-</ol>
+<li>We edit <code>sample_video.md</code> as follows (the only YAML front matter needed is the name of the video):
 
+<h2>&#8220;` yaml an example markdown for a sample video</h2>
 
-<figure class='code'><figcaption><span>an example markdown for a sample video</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">A sample video</span>
-</span><span class='line'><span class="nn">---</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">This is a sample video.</span>
-</span></code></pre></td></tr></table></div></figure>
+<h2>name: A sample video</h2>
 
-
-<ol>
+<p>This is a sample video.
+&#8220;`</p></li>
 <li>We create a new page for this video with <code>mulberry create page video_page</code> and edit it as follows:</li>
 <li><ol>
 <li>We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.
