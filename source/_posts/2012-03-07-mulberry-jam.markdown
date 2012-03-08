@@ -153,13 +153,10 @@ and the reference to it must be placed inside the page referring to it.
 1.  We create the caption `sample_video.md` in `<app-root>/assets/videos/captions/sample_video.md`.
 		touch <app-root>/assets/videos/captions/sample_video.md
 1.  We edit `sample_video.md` as follows (the only YAML front matter needed is the name of the video):
-    {% codeblock "an example markdown for a sample video" lang:yaml %}
-    ---
-    name: A sample video
-    ---
-    
-    This is a sample video.
-    {% endcodeblock %}
+    	---
+    	name: A sample video
+    	---
+    	This is a sample video.
 1.  We create a new page for this video with `mulberry create page video_page` and edit it as follows:  
 1.  1.  We change the page_def to a page able to display the video: `videos-and-text-<platform>` sounds like a good candidate.  
 			page_def:
