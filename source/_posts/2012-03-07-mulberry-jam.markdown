@@ -235,13 +235,12 @@ More info [here](https://github.com/Toura/mulberry/wiki/Page-Definitions)
 which will create a file at `<app-root>/javascript/components/<name>.js`.  
 See [here](https://github.com/Toura/mulberry/wiki/Creating-Custom-Components) for more info.
 
-### Others
-Capability
+### Capability
 	mulberry create capability <name>
 which will create a file at `<app-root>/javascript/capabilities/<name>.js`.  
 [More info](https://github.com/Toura/mulberry/wiki/Capabilities)
 
-Datasource
+### Datasource
 	mulberry create datasource <name>
 which will create a file at `<app-root>/javascript/data/<name>.js`.  
 
