@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-03-09T01:57:09+09:00</updated>
+  <updated>2012-03-11T15:10:42+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -515,9 +515,7 @@ More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here
 <p>which will create a file at <code>&lt;app-root&gt;/javascript/components/&lt;name&gt;.js</code>.<br/>
 See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">here</a> for more info.</p>
 
-<h3>Others</h3>
-
-<p>Capability</p>
+<h3>Capability</h3>
 
 <pre><code>mulberry create capability &lt;name&gt;
 </code></pre>
@@ -525,7 +523,7 @@ See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">
 <p>which will create a file at <code>&lt;app-root&gt;/javascript/capabilities/&lt;name&gt;.js</code>.<br/>
 <a href="https://github.com/Toura/mulberry/wiki/Capabilities">More info</a></p>
 
-<p>Datasource</p>
+<h3>Datasource</h3>
 
 <pre><code>mulberry create datasource &lt;name&gt;
 </code></pre>
