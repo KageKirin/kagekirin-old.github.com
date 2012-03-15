@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>An outlook and some orientation - Code Alchemist</title>
+  <title>Mulberry Jam (cont'd) - Code Alchemist</title>
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="What will this blog be about? I stated in my opening post that I will blog about graphics programming, programming on a general level, and add some &hellip;">
+  <meta name="description" content="Follow up on last week&#8217;s post about Mulberry. There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation">
+  <link rel="canonical" href="http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">An Outlook and Some Orientation</h1>
+      <h1 class="entry-title">Mulberry Jam (Cont'd)</h1>
     
     
       <p class="meta">
@@ -97,7 +97,7 @@
   
 
 
-<time datetime="2012-03-01T00:17:00+09:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
+<time datetime="2012-03-14T01:00:00+09:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -106,89 +106,135 @@
   </header>
 
 
-<div class="entry-content"><p>What will this blog be about?</p>
+<div class="entry-content"><p>Follow up on last week&#8217;s post about Mulberry.</p>
 
-<p>I stated in my opening post that I will blog about graphics programming, programming on a general level, and add some tadbits about web programming. To concretize this plan, or rather as a TODO list, I wrote this post.</p>
+<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave a hard time&#8230;
+In the end, I had to re-scaffold my test-apps from scratch and move my content over because of a few noteworthy changes.<br/>
+Incidentally, those changes concern the parts I did not treat in detail in my last post (or just brushed over without investigating it into depth),
+thus this follow-up makes a lot of sense.</p>
 
-<h2>Web programming</h2>
+<p>Giving the demo-app &#8220;kitchensink&#8221; (located in <code>demos</code>) a closer look cleared a couple of questions I still had, so here I go:</p>
 
-<ul>
-<li>mostly about Octopress, how to, or better, how I customize parts of it.</li>
-<li>some HTML5 and WebGL things I try out.</li>
-<li>things that go hand in hand with the next topic</li>
-</ul>
+<h2>Customization</h2>
 
+<h3>Page-defs</h3>
 
-<h2>App programming</h2>
+<p>A page-def defines the template for generated pages, i.e. the layout, components and capabilities to be used on a page.<br/>
+Custom page-defs can be generated with the command below:</p>
 
-<ul>
-<li>Using PhoneGap to create web technology-based iOS apps
-&#8211;  automating parts of the build process</li>
-<li>Using Mulberry to create web technology-based iOS apps</li>
-<li>Other tools to create iOS apps</li>
-</ul>
+<pre><code>mulberry create page_def &lt;name&gt;
+</code></pre>
 
+<p>which will create a file at <code>&lt;app-root&gt;/page_defs/&lt;name&gt;.yml</code>.<br/>
+More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here</a></p>
 
-<h2>Graphics programming</h2>
+<p>All pre-existing page-defs lie in <code>&lt;mulberry-root&gt;/base_apps/toura/page_defs</code> and have their purpose written in their name, making it easy to guess what they may be intended for.<br/>
+Here&#8217;s a list of them, subject to changes as new versions arrise:</p>
 
-<ul>
-<li>Algorithms I implement either at work or at home</li>
-<li>Explanations about graphics algorithms</li>
-<li>Personal research</li>
-</ul>
+<pre><code>audio-with-images-phone.yml
+audio-with-images-tablet.yml
+debug.yml
+default.yml
+favorites.yml
+feed-item.yml
+feed-list-phone.yml
+feed-list-tablet.yml
+full-screen-images.yml
+google-map-phone.yml
+google-map-tablet.yml
+grid-view.yml
+home-phone.yml
+home-tablet.yml
+home-with-header-phone.yml
+home-with-header-tablet.yml
+hotspots.yml
+images-and-text-phone.yml
+images-and-text-tablet.yml
+location-list.yml
+node-gallery.yml
+search.yml
+videos-and-text-phone.yml
+videos-and-text-tablet.yml
+</code></pre>
 
+<p>If you are creating your own page-defs for more than one project, I makes sense to put them inside this folder (and to commit them back to contribute to the project).</p>
 
-<h2>General programming</h2>
+<p>A page-def defines which components will be visible for pages based on it. E.g.:</p>
 
-<ul>
-<li>Refactoring</li>
-<li>Optimization</li>
-<li>Things I run into at work</li>
-<li>The &#8220;dark magic&#8221; of language mixing
-&#8211;  Preprocessor and templates
-&#8211;  Obj-C and C++ templates (I see you gasping in horror at the sheer idea of this).
-&#8211;  Preprocessor code generation</li>
-</ul>
+<pre><code>home-with-header-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: header-image
+      components:
+      - PageHeaderImage
 
+    - scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
 
-<h2>Game programming</h2>
+    - className: nav
+      components:
+      - AppNav
+</code></pre>
 
-<ul>
-<li>Algorithms for game logic</li>
-<li>Framework architecture</li>
-<li>Other findings</li>
-</ul>
+<h3>Components</h3>
 
+<pre><code>mulberry create component &lt;name&gt;
+</code></pre>
 
-<h2>Unity3D programming</h2>
+<p>which will create a Dojo UI component at <code>&lt;app-root&gt;/app/components/&lt;name&gt;.js</code> and <code>&lt;app-root&gt;/app/components/&lt;name&gt;/&lt;name&gt;.haml</code>).<br/>
+See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">here</a> for more info.</p>
 
-<ul>
-<li>C# in Unity</li>
-<li>Learning progress</li>
-<li>Shaders in Unity</li>
-</ul>
+<h3>Capability</h3>
 
+<p><strong>obsolete</strong></p>
 
-<h2>Development tools</h2>
+<pre><code>mulberry create capability &lt;name&gt;
+</code></pre>
 
-<ul>
-<li>VisualStudio</li>
-<li>Xcode</li>
-<li>Perforce (mostly how much I despise this system)</li>
-<li>Git</li>
-<li>Mercurial</li>
-<li>Diffing</li>
-</ul>
+<p>which will create a file at <code>&lt;app-root&gt;/javascript/capabilities/&lt;name&gt;.js</code>.<br/>
+<a href="https://github.com/Toura/mulberry/wiki/Capabilities">More info</a></p>
 
+<h3>Datasource</h3>
 
-<h2>Papers</h2>
+<pre><code>mulberry create datasource &lt;name&gt;
+</code></pre>
 
-<p>I might want to write (more or less academic) papers and submit them for review. You will find them here as well.</p>
+<p>which will create a JSON file at <code>&lt;app-root&gt;/assets/data/&lt;name&gt;.json</code>. It can hold any data (as long as it&#8217;s valid JSON) and it&#8217;s up to the app to implement the functionality to read and use it.</p>
 
-<p>I will probably edit this list over time&#8230;</p>
+<h3>Feature flags</h3>
 
-<p><strong> tl;dr </strong><br/>
-I have no clue what I will write about on this blog. But be sure that it&#8217;ll be code-related.</p>
+<p>See <a href="https://github.com/Toura/mulberry/wiki/Feature-Flags">here</a> for info on feature flags that determine whether a given feature is active or not.</p>
+
+<h2>App customization</h2>
+
+<h3>App Icon, Splash Screen, and Project file</h3>
+
+<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into our app&#8217;s <code>&lt;app-root&gt;/build</code> folder,
+where they could be further customized. (Although I&#8217;m not sure if re-generating the app overwrites the customized versions).</p>
+
+<p>The source files are located at <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura</code> for the projects and further below in <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/icons</code>
+and <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/splash</code> respectively for icons and splash screens.</p>
+
+<p>It would be a nice extension to Mulberry if I could refer to my custom icons, loading screens, etc. in the config.yml and having those replace the default versions.</p>
+
+<h3>Universal build</h3>
+
+<p>At the moment, the iPhone and iPad have 2 separate projects (<code>Toura.xcodeproj</code> and <code>Toura-iPad.xcodeproj</code>).
+But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal apps might be another welcome extension.</p>
+
+<h2>Automatic build</h2>
+
+<p>Command line and Jenkins integration
+<a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
+
+<p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
+I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
+
+<p>Next up: Further Mulberry app customization &#8211; adapting style and layout.</p>
 </div>
 
 
@@ -211,7 +257,7 @@ I have no clue what I will write about on this blog. But be sure that it&#8217;l
   
 
 
-<time datetime="2012-03-01T00:17:00+09:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
+<time datetime="2012-03-14T01:00:00+09:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
       
 
 
@@ -219,7 +265,7 @@ I have no clue what I will write about on this blog. But be sure that it&#8217;l
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/" data-via="KageKirin" data-counturl="http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/" data-via="KageKirin" data-counturl="http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -232,10 +278,8 @@ I have no clue what I will write about on this blog. But be sure that it&#8217;l
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/02/22/playing-with-octopress-custom-asides/" title="Previous Post: Playing with Octopress -- Custom Asides">&laquo; Playing with Octopress -- Custom Asides</a>
+        <a class="basic-alignment left" href="/blog/2012/03/07/mulberry-jam/" title="Previous Post: Mulberry Jam">&laquo; Mulberry Jam</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/03/07/mulberry-jam/" title="next Post: Mulberry Jam">Mulberry Jam &raquo;</a>
       
     </p>
   </footer>
@@ -394,8 +438,8 @@ I have no clue what I will write about on this blog. But be sure that it&#8217;l
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/';
-        var disqus_url = 'http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/';
+        var disqus_identifier = 'http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/';
+        var disqus_url = 'http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/';
         var disqus_script = 'embed.js';
       
     (function () {

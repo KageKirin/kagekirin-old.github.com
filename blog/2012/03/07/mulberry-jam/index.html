@@ -576,74 +576,6 @@ The <code>&lt;app-root&gt;/pages/video_page.md</code> should look like this:</p>
 
 <p>which will create a file at <code>&lt;app-root&gt;/assets/locations/&lt;name&gt;.yml</code>.<br/>
 (I still need to investigate its format and the use of this).</p>
-
-<p>I have not really investigated, nor understood the stuff below, but I&#8217;ll edit this later once the understanding is there.</p>
-
-<hr />
-
-<p><em>here be dragons</em></p>
-
-<h2>Customization</h2>
-
-<h3>Page-defs</h3>
-
-<p>A page-def defines the template for generated pages, i.e. the layout, components and capabilities to be used on a page.<br/>
-Custom page-defs can be generated with the command below:</p>
-
-<pre><code>mulberry create page_def &lt;name&gt;
-</code></pre>
-
-<p>which will create a file at <code>&lt;app-root&gt;/page_defs/&lt;name&gt;.yml</code>.<br/>
-More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here</a></p>
-
-<h3>Components</h3>
-
-<pre><code>mulberry create component &lt;name&gt;
-</code></pre>
-
-<p>which will create a file at <code>&lt;app-root&gt;/javascript/components/&lt;name&gt;.js</code>.<br/>
-See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">here</a> for more info.</p>
-
-<h3>Capability</h3>
-
-<pre><code>mulberry create capability &lt;name&gt;
-</code></pre>
-
-<p>which will create a file at <code>&lt;app-root&gt;/javascript/capabilities/&lt;name&gt;.js</code>.<br/>
-<a href="https://github.com/Toura/mulberry/wiki/Capabilities">More info</a></p>
-
-<h3>Datasource</h3>
-
-<pre><code>mulberry create datasource &lt;name&gt;
-</code></pre>
-
-<p>which will create a file at <code>&lt;app-root&gt;/javascript/data/&lt;name&gt;.js</code>.</p>
-
-<h3>Feature flags</h3>
-
-<p>See <a href="https://github.com/Toura/mulberry/wiki/Feature-Flags">here</a> for info on feature flags that determine whether a given feature is active or not.</p>
-
-<h2>App Icon</h2>
-
-<p>By default, we get the PhoneGap app icon. To change it, replace the following files:
-(TODO: include list of files here)</p>
-
-<h2>Flash screen</h2>
-
-<p>By default, we get the PhoneGap flash screen. To change it, replace the following files:</p>
-
-<h2>Universal Apps</h2>
-
-<p>Atm, iPhone and iPad projects are created separately, but there should be way to create them, be it by editing the Xcode project (not a good idea as it gets regenerated), or by changing some little colde somewhere.
-(TODO: find out where and post modified script).</p>
-
-<h2>Automatic build</h2>
-
-<p>Command line and Jenkins integration
-<a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
-
-<p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
-I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
 </div>
 
 
@@ -690,6 +622,8 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
         <a class="basic-alignment left" href="/blog/2012/03/01/an-outlook-and-some-orientation/" title="Previous Post: An outlook and some orientation">&laquo; An outlook and some orientation</a>
       
       
+        <a class="basic-alignment right" href="/blog/2012/03/14/mulberry-jam-contd/" title="next Post: Mulberry Jam (cont'd)">Mulberry Jam (cont'd) &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -714,6 +648,10 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/03/14/mulberry-jam-contd/">Mulberry Jam (cont'd)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/07/mulberry-jam/">Mulberry Jam</a>
       </li>
     
@@ -727,10 +665,6 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
     
       <li class="post">
         <a href="/blog/2012/02/19/rediscovering-web-development-2012/">Rediscovering Web Development in 2012</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/02/15/opening-post/">Opening Post</a>
       </li>
     
   </ul>
