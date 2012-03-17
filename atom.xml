@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-03-15T22:41:30+09:00</updated>
+  <updated>2012-03-17T22:52:34+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -20,7 +20,7 @@
     <id>http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd</id>
     <content type="html"><![CDATA[<p>Follow up on last week&#8217;s post about Mulberry.</p>
 
-<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave a hard time&#8230;
+<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time&#8230;
 In the end, I had to re-scaffold my test-apps from scratch and move my content over because of a few noteworthy changes.<br/>
 Incidentally, those changes concern the parts I did not treat in detail in my last post (or just brushed over without investigating it into depth),
 thus this follow-up makes a lot of sense.</p>
@@ -41,7 +41,7 @@ Custom page-defs can be generated with the command below:</p>
 More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here</a></p>
 
 <p>All pre-existing page-defs lie in <code>&lt;mulberry-root&gt;/base_apps/toura/page_defs</code> and have their purpose written in their name, making it easy to guess what they may be intended for.<br/>
-Here&#8217;s a list of them, subject to changes as new versions arrise:</p>
+Here&#8217;s a list of them, subject to changes as new versions arise:</p>
 
 <pre><code>audio-with-images-phone.yml
 audio-with-images-tablet.yml
@@ -69,7 +69,7 @@ videos-and-text-phone.yml
 videos-and-text-tablet.yml
 </code></pre>
 
-<p>If you are creating your own page-defs for more than one project, I makes sense to put them inside this folder (and to commit them back to contribute to the project).</p>
+<p>If you are creating your own page-defs for more than one project, it would probably make sense to put them inside this folder (and to commit them back to the Mulberry project in order to contribute to it).</p>
 
 <p>A page-def defines which components will be visible for pages based on it. E.g.:</p>
 
@@ -121,12 +121,12 @@ See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">
 
 <p>See <a href="https://github.com/Toura/mulberry/wiki/Feature-Flags">here</a> for info on feature flags that determine whether a given feature is active or not.</p>
 
-<h2>App customization</h2>
+<h2>Xcode-side customization</h2>
 
 <h3>App Icon, Splash Screen, and Project file</h3>
 
-<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into our app&#8217;s <code>&lt;app-root&gt;/build</code> folder,
-where they could be further customized. (Although I&#8217;m not sure if re-generating the app overwrites the customized versions).</p>
+<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into the app&#8217;s <code>&lt;app-root&gt;/build</code> folder,
+where they can be further customized. (Although I&#8217;m not sure if re-generating the app overwrites the customized versions).</p>
 
 <p>The source files are located at <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura</code> for the projects and further below in <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/icons</code>
 and <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/splash</code> respectively for icons and splash screens.</p>
@@ -138,7 +138,7 @@ and <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/sp
 <p>At the moment, the iPhone and iPad have 2 separate projects (<code>Toura.xcodeproj</code> and <code>Toura-iPad.xcodeproj</code>).
 But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal apps might be another welcome extension.</p>
 
-<h2>Automatic build</h2>
+<h3>Automatic build</h3>
 
 <p>Command line and Jenkins integration
 <a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
