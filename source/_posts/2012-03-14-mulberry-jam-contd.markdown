@@ -8,7 +8,7 @@ categories:
 
 Follow up on last week's post about Mulberry.
 
-There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave a hard time...
+There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time...
 In the end, I had to re-scaffold my test-apps from scratch and move my content over because of a few noteworthy changes.  
 Incidentally, those changes concern the parts I did not treat in detail in my last post (or just brushed over without investigating it into depth),
 thus this follow-up makes a lot of sense.
@@ -25,7 +25,7 @@ which will create a file at `<app-root>/page_defs/<name>.yml`.
 More info [here](https://github.com/Toura/mulberry/wiki/Page-Definitions)
 
 All pre-existing page-defs lie in `<mulberry-root>/base_apps/toura/page_defs` and have their purpose written in their name, making it easy to guess what they may be intended for.  
-Here's a list of them, subject to changes as new versions arrise:  
+Here's a list of them, subject to changes as new versions arise:  
 	audio-with-images-phone.yml
 	audio-with-images-tablet.yml
 	debug.yml
@@ -50,7 +50,7 @@ Here's a list of them, subject to changes as new versions arrise:
 	search.yml
 	videos-and-text-phone.yml
 	videos-and-text-tablet.yml
-If you are creating your own page-defs for more than one project, I makes sense to put them inside this folder (and to commit them back to contribute to the project).
+If you are creating your own page-defs for more than one project, it would probably make sense to put them inside this folder (and to commit them back to the Mulberry project in order to contribute to it).
 
 A page-def defines which components will be visible for pages based on it. E.g.:  
 	home-with-header-phone:
@@ -91,11 +91,11 @@ which will create a JSON file at `<app-root>/assets/data/<name>.json`. It can ho
 See [here](https://github.com/Toura/mulberry/wiki/Feature-Flags) for info on feature flags that determine whether a given feature is active or not.
 
 
-## App customization
+## Xcode-side customization
 
 ### App Icon, Splash Screen, and Project file
-When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into our app's `<app-root>/build` folder,
-where they could be further customized. (Although I'm not sure if re-generating the app overwrites the customized versions).
+When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into the app's `<app-root>/build` folder,
+where they can be further customized. (Although I'm not sure if re-generating the app overwrites the customized versions).
 
 The source files are located at `<mulberry-root>/builder/project_templates/iOS/Toura` for the projects and further below in `<mulberry-root>/builder/project_templates/iOS/Toura/Resources/icons`
 and `<mulberry-root>/builder/project_templates/iOS/Toura/Resources/splash` respectively for icons and splash screens.
@@ -106,7 +106,7 @@ It would be a nice extension to Mulberry if I could refer to my custom icons, lo
 At the moment, the iPhone and iPad have 2 separate projects (`Toura.xcodeproj` and `Toura-iPad.xcodeproj`).
 But I guess, having a third `Toura-universal.xcodeproj` for universal apps might be another welcome extension.
 
-## Automatic build
+### Automatic build
 Command line and Jenkins integration
 [This link](http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution) looks helpful.
 
