@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-03-22T00:22:53+09:00</updated>
+  <updated>2012-03-22T01:28:48+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[more mulberry]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/03/22/more-mulberry/"/>
+    <updated>2012-03-22T01:25:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/03/22/more-mulberry</id>
+    <content type="html"><![CDATA[<p>Just found <a href="http://www.slideshare.net/rmurphey/getting-started-with-mulberry">this presentation about Mulberry</a> and wanted to share it.</p>
+
+<p>More about it tomorrow.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mulberry Jam (cont'd)]]></title>
