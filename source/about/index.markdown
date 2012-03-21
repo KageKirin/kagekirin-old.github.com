@@ -7,7 +7,7 @@ sharing: true
 footer: true
 ---
 
-Hi, my name is Chris. I'm a graphics programmer working at Valhalla Game Studios in Tokyo, Japan. Before expatriating, I've been working at Crytek in Frankfurt, Germany, both on the famous CryENGINE3 and titles such as Crysis 2.
+Hi, my name is Chris. I'm a [graphics programmer](./graphics-programmer.html) working at Valhalla Game Studios in Tokyo, Japan. Before expatriating, I've been working at Crytek in Frankfurt, Germany, both on the famous CryENGINE3 and titles such as Crysis 2.
 
 The rants I share here represent my own views only, and neither those of my current nor any former employer.
 Any article, rant, code or paper I share here is hereby licensed as CC-BY-NC, respectively MIT for code.
