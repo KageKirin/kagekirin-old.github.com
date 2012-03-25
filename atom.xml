@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-03-22T01:28:48+09:00</updated>
+  <updated>2012-03-25T16:44:19+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -14,13 +14,24 @@
 
   
   <entry>
-    <title type="html"><![CDATA[more mulberry]]></title>
+    <title type="html"><![CDATA[More Mulberry]]></title>
     <link href="http://KageKirin.github.com/blog/2012/03/22/more-mulberry/"/>
     <updated>2012-03-22T01:25:00+09:00</updated>
     <id>http://KageKirin.github.com/blog/2012/03/22/more-mulberry</id>
-    <content type="html"><![CDATA[<p>Just found <a href="http://www.slideshare.net/rmurphey/getting-started-with-mulberry">this presentation about Mulberry</a> and wanted to share it.</p>
+    <content type="html"><![CDATA[<p>I found <a href="http://www.slideshare.net/rmurphey/getting-started-with-mulberry">this presentation about Mulberry</a> and wanted to share it.<br/>
+It explains the core functionality of Mulberry.</p>
 
-<p>More about it tomorrow.</p>
+<p><strong>tl;dr</strong> Thinks to retain:</p>
+
+<p><em>Routes</em> manage high-level application state.</p>
+
+<p><em>Components</em> receive and render data and react to user input.</p>
+
+<p><em>Capabilities</em> provide data to components and broker communications between them.</p>
+
+<p><em>Page definitions</em> are reusable groupings of components and capabilities.</p>
+
+<p><em>Stores</em> persist data on the device, make that data query-able, and return model instances.</p>
 ]]></content>
   </entry>
   
