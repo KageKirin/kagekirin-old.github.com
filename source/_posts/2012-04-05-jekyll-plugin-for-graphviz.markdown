@@ -11,7 +11,7 @@ which allows to use [graphviz](http://www.graphviz.org/) notation inside a blog 
 [original link](http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/)
 
 Obviously, you need to have graphviz installed on your generating system.
-(`port install graphviz` should do it if you have MacPorts installed).
+(`port install graphviz` should do it if you have MacPorts installed, or well, [Brew](http://mxcl.github.com/homebrew/)).
 
 Here's a short test
 
