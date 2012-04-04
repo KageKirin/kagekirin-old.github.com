@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mulberry Jam (cont'd) - Code Alchemist</title>
+  <title>Test-Driven Shader Development (an idea) - Code Alchemist</title>
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="Follow up on last week&#8217;s post about Mulberry. There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that &hellip;">
+  <meta name="description" content="This post is more about an idea I had, than about its actual implementation. Test-driven Shader Development Base idea When doing shader development, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd">
+  <link rel="canonical" href="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -81,7 +81,7 @@
   
   <header>
     
-      <h1 class="entry-title">Mulberry Jam (Cont'd)</h1>
+      <h1 class="entry-title">Test-Driven Shader Development (an Idea)</h1>
     
     
       <p class="meta">
@@ -97,7 +97,7 @@
   
 
 
-<time datetime="2012-03-14T01:00:00+09:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+<time datetime="2012-04-05T00:57:00+09:00" pubdate data-updated="true">Apr 5<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -106,135 +106,94 @@
   </header>
 
 
-<div class="entry-content"><p>Follow up on last week&#8217;s post about Mulberry.</p>
+<div class="entry-content"><p>This post is more about an idea I had, than about its actual implementation.</p>
 
-<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time&#8230;
-In the end, I had to re-scaffold my test-apps from scratch and move my content over because of a few noteworthy changes.<br/>
-Incidentally, those changes concern the parts I did not treat in detail in my last post (or just brushed over without investigating it into depth),
-thus this follow-up makes a lot of sense.</p>
+<p>Test-driven Shader Development</p>
 
-<p>Giving the demo-app &#8220;kitchensink&#8221; (located in <code>demos</code>) a closer look cleared a couple of questions I still had, so here I go:</p>
+<h2>Base idea</h2>
 
-<h2>Customization</h2>
+<p>When doing shader development,
+be it for R&amp;D purposes or in a production environment,
+you will run into a couple of possible issues:<br/>
+-   shader not compiling
+-   shader not linking (in GL)
+-   shader not running due to wrong input
+-   shader running but not giving the expected result (algorithmic error)
+-   shader not returning the expected result due to wrong input
+-   wrong output from one shader breaking another shader (happens often when playing with lighting models)
+-   shader computationally too heavy (instruction-bound or texture-fetch-bound)
+-   a lot of other stuff that can go wrong, and by Murhpy&#8217;s law, will go wrong.</p>
 
-<h3>Page-defs</h3>
+<p>In many of these cases,
+nailing the problem down to a few causes,
+at best a single one,
+will allow for fast solutions
+and let the programmer focus on the more interesting parts.</p>
 
-<p>A page-def defines the template for generated pages, i.e. the layout, components and capabilities to be used on a page.<br/>
-Custom page-defs can be generated with the command below:</p>
+<h2>Compiler/Driver issues</h2>
 
-<pre><code>mulberry create page_def &lt;name&gt;
-</code></pre>
+<p>Those are mostly issues related to building and loading the shader.</p>
 
-<p>which will create a file at <code>&lt;app-root&gt;/page_defs/&lt;name&gt;.yml</code>.<br/>
-More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here</a></p>
+<p>The straightforward solution is to implement hot reload,
+i.e. reloading while the engine or test environment is running,
+and this everytime the shader file is saved.</p>
 
-<p>All pre-existing page-defs lie in <code>&lt;mulberry-root&gt;/base_apps/toura/page_defs</code> and have their purpose written in their name, making it easy to guess what they may be intended for.<br/>
-Here&#8217;s a list of them, subject to changes as new versions arise:</p>
+<p>The apported benefit is that this will allow for shader cooking,
+i.e. editing and tweaking of the shader depending on its &#8220;visual&#8221; result.<br/>
+(One of the features I loved on CryENGINE3, and that I&#8217;m totally missing on the current engine at work).</p>
 
-<pre><code>audio-with-images-phone.yml
-audio-with-images-tablet.yml
-debug.yml
-default.yml
-favorites.yml
-feed-item.yml
-feed-list-phone.yml
-feed-list-tablet.yml
-full-screen-images.yml
-google-map-phone.yml
-google-map-tablet.yml
-grid-view.yml
-home-phone.yml
-home-tablet.yml
-home-with-header-phone.yml
-home-with-header-tablet.yml
-hotspots.yml
-images-and-text-phone.yml
-images-and-text-tablet.yml
-location-list.yml
-node-gallery.yml
-search.yml
-videos-and-text-phone.yml
-videos-and-text-tablet.yml
-</code></pre>
+<p>An optimization to this:
+reload everytime a hash value depending on the full shader source,
+i.e. the <code>main</code> function file and all of its includes, changes.</p>
 
-<p>If you are creating your own page-defs for more than one project, it would probably make sense to put them inside this folder (and to commit them back to the Mulberry project in order to contribute to it).</p>
+<h2>Input issues</h2>
 
-<p>A page-def defines which components will be visible for pages based on it. E.g.:</p>
+<p>The straightforward solution is to have &#8220;static&#8221; inputs.
+Those can be:
+-   static textures to simulate a GBuffer
+-   static camera values
+-   static uniform settings
+-   static vertex settings</p>
 
-<pre><code>home-with-header-phone:
-  screens:
-  - name: index
-    backgroundImage: true
-    regions:
-    - className: header-image
-      components:
-      - PageHeaderImage
+<p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
 
-    - scrollable: true
-      components:
-      - BodyText
-      - ChildNodes
+<h2>Output issues</h2>
 
-    - className: nav
-      components:
-      - AppNav
-</code></pre>
+<p>This kind of issues can be caught by creating a difference image to either
+-   a &#8220;reference&#8221; image (e.g. created through raytracing instead of rendering)
+-   the last &#8220;good&#8221; result image</p>
 
-<h3>Components</h3>
+<p>The frame &#8220;correctness&#8221; is the amount of errors/differences in relation to the reference image.</p>
 
-<pre><code>mulberry create component &lt;name&gt;
-</code></pre>
+<h2>Algorithmic issues</h2>
 
-<p>which will create a Dojo UI component at <code>&lt;app-root&gt;/app/components/&lt;name&gt;.js</code> and <code>&lt;app-root&gt;/app/components/&lt;name&gt;/&lt;name&gt;.haml</code>).<br/>
-See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">here</a> for more info.</p>
+<ul>
+<li>using &#8220;random&#8221; inputs
 
-<h3>Capability</h3>
+<ul>
+<li>shuffle inputs several times, test if output is correct</li>
+</ul>
+</li>
+</ul>
 
-<p><strong>obsolete</strong></p>
 
-<pre><code>mulberry create capability &lt;name&gt;
-</code></pre>
+<h2>Saving the tests</h2>
 
-<p>which will create a file at <code>&lt;app-root&gt;/javascript/capabilities/&lt;name&gt;.js</code>.<br/>
-<a href="https://github.com/Toura/mulberry/wiki/Capabilities">More info</a></p>
+<p>A great addition for this kind of framework is to save the test &#8220;artifacts&#8221; (in Jenkins&#8217; terms) along with its inputs to allow for later reproducibility.
+-   inputs: the shader files, static input values, user input values
+-   artifacts as such would be: random input values, output frames</p>
 
-<h3>Datasource</h3>
+<h2>Generalization</h2>
 
-<pre><code>mulberry create datasource &lt;name&gt;
-</code></pre>
+<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1), OpenGL (several versions as well, but ES2 would make my day), and the exots like GX2 (&#8220;Café&#8221;) and GCM (PS3, Vita).</p>
 
-<p>which will create a JSON file at <code>&lt;app-root&gt;/assets/data/&lt;name&gt;.json</code>. It can hold any data (as long as it&#8217;s valid JSON) and it&#8217;s up to the app to implement the functionality to read and use it.</p>
+<p>Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
+(As would SPU jobs do, but that&#8217;s limited to a certain type of hardware).</p>
 
-<h3>Feature flags</h3>
+<p>A general solution would allow to have &#8220;any&#8221; kind of data
+processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL, or C++AMP.</p>
 
-<p>See <a href="https://github.com/Toura/mulberry/wiki/Feature-Flags">here</a> for info on feature flags that determine whether a given feature is active or not.</p>
-
-<h2>Xcode-side customization</h2>
-
-<h3>App Icon, Splash Screen, and Project file</h3>
-
-<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into the app&#8217;s <code>&lt;app-root&gt;/build</code> folder,
-where they can be further customized. (Although I&#8217;m not sure if re-generating the app overwrites the customized versions).</p>
-
-<p>The source files are located at <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura</code> for the projects and further below in <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/icons</code>
-and <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/splash</code> respectively for icons and splash screens.</p>
-
-<p>It would be a nice extension to Mulberry if I could refer to my custom icons, loading screens, etc. in the config.yml and having those replace the default versions.</p>
-
-<h3>Universal build</h3>
-
-<p>At the moment, the iPhone and iPad have 2 separate projects (<code>Toura.xcodeproj</code> and <code>Toura-iPad.xcodeproj</code>).
-But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal apps might be another welcome extension.</p>
-
-<h3>Automatic build</h3>
-
-<p>Command line and Jenkins integration
-<a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
-
-<p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
-I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
-
-<p>Next up: Further Mulberry app customization &#8211; adapting style and layout.</p>
+<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master&#8217;s thesis?</p>
 </div>
 
 
@@ -257,15 +216,21 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
   
 
 
-<time datetime="2012-03-14T01:00:00+09:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+<time datetime="2012-04-05T00:57:00+09:00" pubdate data-updated="true">Apr 5<span>th</span>, 2012</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/tdd/'>TDD</a>, <a class='category' href='/blog/categories/shader/'>shader</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/" data-via="KageKirin" data-counturl="http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/" data-via="KageKirin" data-counturl="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -278,10 +243,8 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/03/07/mulberry-jam/" title="Previous Post: Mulberry Jam">&laquo; Mulberry Jam</a>
+        <a class="basic-alignment left" href="/blog/2012/04/04/jekyll-plugin-for-graphviz/" title="Previous Post: Jekyll plugin for Graphviz">&laquo; Jekyll plugin for Graphviz</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/03/22/more-mulberry/" title="next Post: More Mulberry">More Mulberry &raquo;</a>
       
     </p>
   </footer>
@@ -440,8 +403,8 @@ I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/';
-        var disqus_url = 'http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/';
+        var disqus_identifier = 'http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/';
+        var disqus_url = 'http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/';
         var disqus_script = 'embed.js';
       
     (function () {

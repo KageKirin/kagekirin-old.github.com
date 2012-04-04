@@ -35,6 +35,16 @@
         <lastmod>2012-03-25T16:41:58+09:00</lastmod>
     </url>
     <url>
+        <loc>http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/</loc>
+        <lastmod>2012-04-05T01:18:43+09:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/
+        </loc>
+        <lastmod>2012-04-05T02:10:24+09:00</lastmod>
+    </url>
+    <url>
         <loc>http://KageKirin.github.com/about/cv.html</loc>
         <lastmod>2012-03-21T22:42:19+09:00</lastmod>
     </url>
@@ -52,7 +62,7 @@
     </url>
     <url>
         <loc>http://KageKirin.github.com/blog/archives/</loc>
-        <lastmod>2012-03-25T16:41:58+09:00</lastmod>
+        <lastmod>2012-04-05T02:10:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://KageKirin.github.com/help/</loc>
@@ -68,7 +78,7 @@
     </url>
     <url>
         <loc>http://KageKirin.github.com/</loc>
-        <lastmod>2012-03-25T16:41:58+09:00</lastmod>
+        <lastmod>2012-04-05T02:10:24+09:00</lastmod>
     </url>
     <url>
         <loc>http://KageKirin.github.com/test/</loc>

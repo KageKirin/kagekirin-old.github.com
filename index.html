@@ -9,8 +9,7 @@
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="I found this presentation about Mulberry and wanted to share it.
-It explains the core functionality of Mulberry. tl;dr Thinks to retain: Routes &hellip;">
+  <meta name="description" content="This post is more about an idea I had, than about its actual implementation. Test-driven Shader Development Base idea When doing shader development, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,192 @@ It explains the core functionality of Mulberry. tl;dr Thinks to retain: Routes &
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/05/test-driven-shader-development-an-idea/">Test-Driven Shader Development (an Idea)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-05T00:57:00+09:00" pubdate data-updated="true">Apr 5<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/05/test-driven-shader-development-an-idea/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post is more about an idea I had, than about its actual implementation.</p>
+
+<p>Test-driven Shader Development</p>
+
+<h2>Base idea</h2>
+
+<p>When doing shader development,
+be it for R&amp;D purposes or in a production environment,
+you will run into a couple of possible issues:<br/>
+-   shader not compiling
+-   shader not linking (in GL)
+-   shader not running due to wrong input
+-   shader running but not giving the expected result (algorithmic error)
+-   shader not returning the expected result due to wrong input
+-   wrong output from one shader breaking another shader (happens often when playing with lighting models)
+-   shader computationally too heavy (instruction-bound or texture-fetch-bound)
+-   a lot of other stuff that can go wrong, and by Murhpy&#8217;s law, will go wrong.</p>
+
+<p>In many of these cases,
+nailing the problem down to a few causes,
+at best a single one,
+will allow for fast solutions
+and let the programmer focus on the more interesting parts.</p>
+
+<h2>Compiler/Driver issues</h2>
+
+<p>Those are mostly issues related to building and loading the shader.</p>
+
+<p>The straightforward solution is to implement hot reload,
+i.e. reloading while the engine or test environment is running,
+and this everytime the shader file is saved.</p>
+
+<p>The apported benefit is that this will allow for shader cooking,
+i.e. editing and tweaking of the shader depending on its &#8220;visual&#8221; result.<br/>
+(One of the features I loved on CryENGINE3, and that I&#8217;m totally missing on the current engine at work).</p>
+
+<p>An optimization to this:
+reload everytime a hash value depending on the full shader source,
+i.e. the <code>main</code> function file and all of its includes, changes.</p>
+
+<h2>Input issues</h2>
+
+<p>The straightforward solution is to have &#8220;static&#8221; inputs.
+Those can be:
+-   static textures to simulate a GBuffer
+-   static camera values
+-   static uniform settings
+-   static vertex settings</p>
+
+<p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
+
+<h2>Output issues</h2>
+
+<p>This kind of issues can be caught by creating a difference image to either
+-   a &#8220;reference&#8221; image (e.g. created through raytracing instead of rendering)
+-   the last &#8220;good&#8221; result image</p>
+
+<p>The frame &#8220;correctness&#8221; is the amount of errors/differences in relation to the reference image.</p>
+
+<h2>Algorithmic issues</h2>
+
+<ul>
+<li>using &#8220;random&#8221; inputs
+
+<ul>
+<li>shuffle inputs several times, test if output is correct</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Saving the tests</h2>
+
+<p>A great addition for this kind of framework is to save the test &#8220;artifacts&#8221; (in Jenkins&#8217; terms) along with its inputs to allow for later reproducibility.
+-   inputs: the shader files, static input values, user input values
+-   artifacts as such would be: random input values, output frames</p>
+
+<h2>Generalization</h2>
+
+<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1), OpenGL (several versions as well, but ES2 would make my day), and the exots like GX2 (&#8220;Café&#8221;) and GCM (PS3, Vita).</p>
+
+<p>Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
+(As would SPU jobs do, but that&#8217;s limited to a certain type of hardware).</p>
+
+<p>A general solution would allow to have &#8220;any&#8221; kind of data
+processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL, or C++AMP.</p>
+
+<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master&#8217;s thesis?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/04/jekyll-plugin-for-graphviz/">Jekyll Plugin for Graphviz</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-04T23:28:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/04/jekyll-plugin-for-graphviz/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I stumbled over this small Jekyll plugin for Octopress
+which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation inside a blog post.<br/>
+<a href="http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/">original link</a></p>
+
+<p>Obviously, you need to have graphviz installed on your generating system.
+(<code>port install graphviz</code> should do it if you have MacPorts installed, or well, <a href="http://mxcl.github.com/homebrew/">Brew</a>).</p>
+
+<p>Here&#8217;s a short test</p>
+
+<pre><code>&lt;img src='/images/graphviz/g-ba228cc88633791ce9732f9659141ae8.svg'&gt;
+</code></pre>
+
+<p>should give the diagram below:</p>
+
+<p><img src='/images/graphviz/g-57023c2552f7752921d58001f1867c02.svg'></p>
+
+<p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
+
+<p>You probably should install the plugin from
+<a href="https://github.com/dryman/dryman.github.com/blob/src/plugins/graphviz_block.rb">its repository</a>
+or wait until it has been integrated into the mainline Octopress branch.</p>
+
+<p>And for the hardcore coders, it should be possible to add it to Mulberry/Toura as well, as it&#8217;s based on Jekyll as well.
+(Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1236,6 +1421,14 @@ This looks nicer than a generic lorem ipsum.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/05/test-driven-shader-development-an-idea/">Test-Driven Shader Development (an idea)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/04/jekyll-plugin-for-graphviz/">Jekyll plugin for Graphviz</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/22/more-mulberry/">More Mulberry</a>
       </li>
     
@@ -1245,14 +1438,6 @@ This looks nicer than a generic lorem ipsum.</p>
     
       <li class="post">
         <a href="/blog/2012/03/07/mulberry-jam/">Mulberry Jam</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/01/an-outlook-and-some-orientation/">An outlook and some orientation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/02/22/playing-with-octopress-custom-asides/">Playing with Octopress &#8211; Custom Asides</a>
       </li>
     
   </ul>
