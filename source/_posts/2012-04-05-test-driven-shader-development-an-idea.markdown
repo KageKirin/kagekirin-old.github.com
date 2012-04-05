@@ -13,7 +13,8 @@ Test-driven Shader Development
 ## Base idea
 When doing shader development,
 be it for R&D purposes or in a production environment,
-you will run into a couple of possible issues:  
+you will run into a couple of possible issues:
+
 -   shader not compiling
 -   shader not linking (in GL)
 -   incompatible vertex and pixel shader due to interpolator differences (Cg, DX)
@@ -48,7 +49,8 @@ i.e. the `main` function file and all of its includes, changes.
 ## Input issues
 
 The straightforward solution is to have "static" inputs.
-Those can be:  
+Those can be:
+
 -   static textures to simulate a GBuffer
 -   static camera values
 -   static uniform settings
@@ -69,7 +71,8 @@ The frame "correctness" is the amount of errors/differences in relation to the r
     -   shuffle inputs several times, test if output is correct
 
 ## Saving the tests
-A great addition for this kind of framework is to save the test "artifacts" (in Jenkins' terms) along with its inputs to allow for later reproducibility.  
+A great addition for this kind of framework is to save the test "artifacts" (in Jenkins' terms) along with its inputs to allow for later reproducibility.
+
 -   inputs: the shader files, static input values, user input values
 -   artifacts as such would be: random input values, output frames
 
