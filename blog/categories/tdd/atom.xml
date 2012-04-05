@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TDD | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-04-05T23:08:22+09:00</updated>
+  <updated>2012-04-05T23:23:05+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -27,13 +27,14 @@
 <p>When doing shader development,
 be it for R&amp;D purposes or in a production environment,
 you will run into a couple of possible issues:<br/>
--   shader not compiling<br/>
--   shader not linking (in GL)<br/>
--   shader not running due to wrong input<br/>
--   shader running but not giving the expected result (algorithmic error)<br/>
--   shader not returning the expected result due to wrong input<br/>
--   wrong output from one shader breaking another shader (happens often when playing with lighting models)<br/>
--   shader computationally too heavy (instruction-bound or texture-fetch-bound)<br/>
+-   shader not compiling
+-   shader not linking (in GL)
+-   incompatible vertex and pixel shader due to interpolator differences (Cg, DX)
+-   shader not running due to wrong input
+-   shader running but not giving the expected result (algorithmic error)
+-   shader not returning the expected result due to wrong input
+-   wrong output from one shader breaking another shader (happens often when playing with lighting models)
+-   shader computationally too heavy (instruction-bound or texture-fetch-bound)
 -   a lot of other stuff that can go wrong, and by Murphy's law, will go wrong.</p>
 
 <p>In many of these cases,
@@ -62,9 +63,9 @@ i.e. the <code>main</code> function file and all of its includes, changes.</p>
 
 <p>The straightforward solution is to have "static" inputs.
 Those can be:<br/>
--   static textures to simulate a GBuffer<br/>
--   static camera values<br/>
--   static uniform settings<br/>
+-   static textures to simulate a GBuffer
+-   static camera values
+-   static uniform settings
 -   static vertex settings</p>
 
 <p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
@@ -72,7 +73,7 @@ Those can be:<br/>
 <h2>Output issues</h2>
 
 <p>This kind of issues can be caught by creating a difference image to either<br/>
--   a "reference" image (e.g. created through raytracing instead of rendering)<br/>
+-   a "reference" image (e.g. created through raytracing instead of rendering)
 -   the last "good" result image</p>
 
 <p>The frame "correctness" is the amount of errors/differences in relation to the reference image.</p>
@@ -92,7 +93,7 @@ Those can be:<br/>
 <h2>Saving the tests</h2>
 
 <p>A great addition for this kind of framework is to save the test "artifacts" (in Jenkins' terms) along with its inputs to allow for later reproducibility.<br/>
--   inputs: the shader files, static input values, user input values<br/>
+-   inputs: the shader files, static input values, user input values
 -   artifacts as such would be: random input values, output frames</p>
 
 <h2>Generalization</h2>
