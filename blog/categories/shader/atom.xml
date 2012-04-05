@@ -4,7 +4,7 @@
   <title><![CDATA[Category: shader | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/shader/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-04-05T23:23:05+09:00</updated>
+  <updated>2012-04-05T23:25:54+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -26,16 +26,20 @@
 
 <p>When doing shader development,
 be it for R&amp;D purposes or in a production environment,
-you will run into a couple of possible issues:<br/>
--   shader not compiling
--   shader not linking (in GL)
--   incompatible vertex and pixel shader due to interpolator differences (Cg, DX)
--   shader not running due to wrong input
--   shader running but not giving the expected result (algorithmic error)
--   shader not returning the expected result due to wrong input
--   wrong output from one shader breaking another shader (happens often when playing with lighting models)
--   shader computationally too heavy (instruction-bound or texture-fetch-bound)
--   a lot of other stuff that can go wrong, and by Murphy's law, will go wrong.</p>
+you will run into a couple of possible issues:</p>
+
+<ul>
+<li>shader not compiling</li>
+<li>shader not linking (in GL)</li>
+<li>incompatible vertex and pixel shader due to interpolator differences (Cg, DX)</li>
+<li>shader not running due to wrong input</li>
+<li>shader running but not giving the expected result (algorithmic error)</li>
+<li>shader not returning the expected result due to wrong input</li>
+<li>wrong output from one shader breaking another shader (happens often when playing with lighting models)</li>
+<li>shader computationally too heavy (instruction-bound or texture-fetch-bound)</li>
+<li>a lot of other stuff that can go wrong, and by Murphy's law, will go wrong.</li>
+</ul>
+
 
 <p>In many of these cases,
 nailing the problem down to a few causes,
@@ -62,11 +66,15 @@ i.e. the <code>main</code> function file and all of its includes, changes.</p>
 <h2>Input issues</h2>
 
 <p>The straightforward solution is to have "static" inputs.
-Those can be:<br/>
--   static textures to simulate a GBuffer
--   static camera values
--   static uniform settings
--   static vertex settings</p>
+Those can be:</p>
+
+<ul>
+<li>static textures to simulate a GBuffer</li>
+<li>static camera values</li>
+<li>static uniform settings</li>
+<li>static vertex settings</li>
+</ul>
+
 
 <p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
 
@@ -92,9 +100,13 @@ Those can be:<br/>
 
 <h2>Saving the tests</h2>
 
-<p>A great addition for this kind of framework is to save the test "artifacts" (in Jenkins' terms) along with its inputs to allow for later reproducibility.<br/>
--   inputs: the shader files, static input values, user input values
--   artifacts as such would be: random input values, output frames</p>
+<p>A great addition for this kind of framework is to save the test "artifacts" (in Jenkins' terms) along with its inputs to allow for later reproducibility.</p>
+
+<ul>
+<li>inputs: the shader files, static input values, user input values</li>
+<li>artifacts as such would be: random input values, output frames</li>
+</ul>
+
 
 <h2>Generalization</h2>
 
