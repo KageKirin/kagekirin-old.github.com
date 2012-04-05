@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-04-05T02:19:03+09:00</updated>
+  <updated>2012-04-05T23:08:22+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -25,10 +25,10 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 <p>Obviously, you need to have graphviz installed on your generating system.
 (<code>port install graphviz</code> should do it if you have MacPorts installed, or well, <a href="http://mxcl.github.com/homebrew/">Brew</a>).</p>
 
-<p>Here's a short test
-```
+<p>Here's a short test</p>
 
-```</p>
+<pre><code>
+</code></pre>
 
 <p>should give the diagram below:</p>
 
@@ -42,6 +42,8 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
 
 <p>And for the hardcore coders, it should be possible to add it to Mulberry/Toura as well, as it's based on Jekyll as well.
 (Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).</p>
+
+<p>EDIT: I just saw a perfect application for graphs in an app that I'm working on, namely, a diagram for tournaments or championships, to show how the candidates (fighters in this case) advance from round to round.</p>
 ]]></content>
   </entry>
   

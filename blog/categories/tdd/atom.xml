@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TDD | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-04-05T02:19:03+09:00</updated>
+  <updated>2012-04-05T23:08:22+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -27,14 +27,14 @@
 <p>When doing shader development,
 be it for R&amp;D purposes or in a production environment,
 you will run into a couple of possible issues:<br/>
--   shader not compiling
--   shader not linking (in GL)
--   shader not running due to wrong input
--   shader running but not giving the expected result (algorithmic error)
--   shader not returning the expected result due to wrong input
--   wrong output from one shader breaking another shader (happens often when playing with lighting models)
--   shader computationally too heavy (instruction-bound or texture-fetch-bound)
--   a lot of other stuff that can go wrong, and by Murhpy's law, will go wrong.</p>
+-   shader not compiling<br/>
+-   shader not linking (in GL)<br/>
+-   shader not running due to wrong input<br/>
+-   shader running but not giving the expected result (algorithmic error)<br/>
+-   shader not returning the expected result due to wrong input<br/>
+-   wrong output from one shader breaking another shader (happens often when playing with lighting models)<br/>
+-   shader computationally too heavy (instruction-bound or texture-fetch-bound)<br/>
+-   a lot of other stuff that can go wrong, and by Murphy's law, will go wrong.</p>
 
 <p>In many of these cases,
 nailing the problem down to a few causes,
@@ -54,25 +54,25 @@ and this everytime the shader file is saved.</p>
 i.e. editing and tweaking of the shader depending on its "visual" result.<br/>
 (One of the features I loved on CryENGINE3, and that I'm totally missing on the current engine at work).</p>
 
-<p>An optimization to this:
+<p>An optimization to this:<br/>
 reload everytime a hash value depending on the full shader source,
 i.e. the <code>main</code> function file and all of its includes, changes.</p>
 
 <h2>Input issues</h2>
 
 <p>The straightforward solution is to have "static" inputs.
-Those can be:
--   static textures to simulate a GBuffer
--   static camera values
--   static uniform settings
+Those can be:<br/>
+-   static textures to simulate a GBuffer<br/>
+-   static camera values<br/>
+-   static uniform settings<br/>
 -   static vertex settings</p>
 
 <p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
 
 <h2>Output issues</h2>
 
-<p>This kind of issues can be caught by creating a difference image to either
--   a "reference" image (e.g. created through raytracing instead of rendering)
+<p>This kind of issues can be caught by creating a difference image to either<br/>
+-   a "reference" image (e.g. created through raytracing instead of rendering)<br/>
 -   the last "good" result image</p>
 
 <p>The frame "correctness" is the amount of errors/differences in relation to the reference image.</p>
@@ -91,21 +91,22 @@ Those can be:
 
 <h2>Saving the tests</h2>
 
-<p>A great addition for this kind of framework is to save the test "artifacts" (in Jenkins' terms) along with its inputs to allow for later reproducibility.
--   inputs: the shader files, static input values, user input values
+<p>A great addition for this kind of framework is to save the test "artifacts" (in Jenkins' terms) along with its inputs to allow for later reproducibility.<br/>
+-   inputs: the shader files, static input values, user input values<br/>
 -   artifacts as such would be: random input values, output frames</p>
 
 <h2>Generalization</h2>
 
-<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1), OpenGL (several versions as well, but ES2 would make my day), and the exots like GX2 ("Café") and GCM (PS3, Vita).</p>
+<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1) and OpenGL (several versions as well, but ES2 would make my day).
+And support for the exots like GX2 ("Café") and GCM (PS3, Vita). (The shader in latter systems are based on GLSL and Cg, respectively, making the porting easier).</p>
 
 <p>Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
 (As would SPU jobs do, but that's limited to a certain type of hardware).</p>
 
 <p>A general solution would allow to have "any" kind of data
-processed by "any" kind of "processor", be it DX, GL, CL, or C++AMP.</p>
+processed by "any" kind of "processor", be it DX, GL, CL or C++AMP.</p>
 
-<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master's thesis?</p>
+<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?</p>
 ]]></content>
   </entry>
   
