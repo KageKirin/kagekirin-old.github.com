@@ -14,28 +14,26 @@ Obviously, you need to have graphviz installed on your generating system.
 (`port install graphviz` should do it if you have MacPorts installed, or well, [Brew](http://mxcl.github.com/homebrew/)).
 
 Here's a short test
-```
-{% graphviz %}
-  digraph G {
-  compound=true;
-  subgraph cluster0 {
-    a -> b;
-    a -> c;
-    b -> d;
-    c -> d;
-  }
-  subgraph cluster1 {
-    e -> g;
-    e -> f;
-  }
-  b -> f [lhead=cluster1];
-  d -> e;
-  c -> g [ltail=cluster0, lhead=cluster1];
-  c -> e [ltail=cluster0];
-  d -> h;
-}
-{% endgraphviz %}
-```
+    {% graphviz %}
+      digraph G {
+      compound=true;
+      subgraph cluster0 {
+        a -> b;
+        a -> c;
+        b -> d;
+        c -> d;
+      }
+      subgraph cluster1 {
+        e -> g;
+        e -> f;
+      }
+      b -> f [lhead=cluster1];
+      d -> e;
+      c -> g [ltail=cluster0, lhead=cluster1];
+      c -> e [ltail=cluster0];
+      d -> h;
+    }
+    {% endgraphviz %}
 
 should give the diagram below:
 
@@ -69,4 +67,6 @@ or wait until it has been integrated into the mainline Octopress branch.
 
 And for the hardcore coders, it should be possible to add it to Mulberry/Toura as well, as it's based on Jekyll as well.
 (Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).
+
+EDIT: I just saw a perfect application for graphs in an app that I'm working on, namely, a diagram for tournaments or championships, to show how the candidates (fighters in this case) advance from round to round.
 
