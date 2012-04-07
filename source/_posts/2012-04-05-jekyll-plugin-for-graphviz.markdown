@@ -14,7 +14,7 @@ Obviously, you need to have graphviz installed on your generating system.
 (`port install graphviz` should do it if you have MacPorts installed, or well, [Brew](http://mxcl.github.com/homebrew/)).
 
 Here's a short test
-    {% graphviz %}
+    {\% graphviz \%}
       digraph G {
       compound=true;
       subgraph cluster0 {
@@ -33,7 +33,7 @@ Here's a short test
       c -> e [ltail=cluster0];
       d -> h;
     }
-    {% endgraphviz %}
+    {\% endgraphviz \%}
 
 should give the diagram below:
 
