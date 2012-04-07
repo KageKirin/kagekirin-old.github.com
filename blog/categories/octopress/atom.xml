@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-04-07T23:32:18+09:00</updated>
+  <updated>2012-04-07T23:34:04+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -27,7 +27,26 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>Here's a short test</p>
 
-<pre><code>
+<pre><code>{\% graphviz \%}
+  digraph G {
+  compound=true;
+  subgraph cluster0 {
+    a -&gt; b;
+    a -&gt; c;
+    b -&gt; d;
+    c -&gt; d;
+  }
+  subgraph cluster1 {
+    e -&gt; g;
+    e -&gt; f;
+  }
+  b -&gt; f [lhead=cluster1];
+  d -&gt; e;
+  c -&gt; g [ltail=cluster0, lhead=cluster1];
+  c -&gt; e [ltail=cluster0];
+  d -&gt; h;
+}
+{\% endgraphviz \%}
 </code></pre>
 
 <p>should give the diagram below:</p>
