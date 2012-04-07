@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TDD | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-04-07T23:29:50+09:00</updated>
+  <updated>2012-04-07T23:32:18+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -121,7 +121,7 @@ And support for the exots like GX2 ("Café") and GCM (PS3, Vita). (The shader in
 (As would SPU jobs do, but that's limited to a certain type of hardware).</p>
 
 <p>A general solution would allow to have "any" kind of data
-processed by "any" kind of "processor", be it DX, GL, CL or C++AMP.</p>
+processed by "any" kind of "processor", be it DX, GL, CL, CUDA or C++AMP.</p>
 
 <p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?</p>
 ]]></content>
