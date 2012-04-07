@@ -86,7 +86,7 @@ Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
 (As would SPU jobs do, but that's limited to a certain type of hardware).
 
 A general solution would allow to have "any" kind of data
-processed by "any" kind of "processor", be it DX, GL, CL or C++AMP.
+processed by "any" kind of "processor", be it DX, GL, CL, CUDA or C++AMP.
 
 ** tl;dr** Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?
 
