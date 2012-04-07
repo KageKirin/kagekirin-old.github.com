@@ -60,7 +60,8 @@ In the same idea, being able to tweak parameters and see its outcome is likely t
 
 ## Output issues
 
-This kind of issues can be caught by creating a difference image to either  
+This kind of issues can be caught by creating a difference image to either
+
 -   a "reference" image (e.g. created through raytracing instead of rendering)
 -   the last "good" result image
 
