@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-04-05T23:25:54+09:00</updated>
+  <updated>2012-04-07T23:29:50+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -80,9 +80,13 @@ Those can be:</p>
 
 <h2>Output issues</h2>
 
-<p>This kind of issues can be caught by creating a difference image to either<br/>
--   a &#8220;reference&#8221; image (e.g. created through raytracing instead of rendering)
--   the last &#8220;good&#8221; result image</p>
+<p>This kind of issues can be caught by creating a difference image to either</p>
+
+<ul>
+<li>a &#8220;reference&#8221; image (e.g. created through raytracing instead of rendering)</li>
+<li>the last &#8220;good&#8221; result image</li>
+</ul>
+
 
 <p>The frame &#8220;correctness&#8221; is the amount of errors/differences in relation to the reference image.</p>
 
