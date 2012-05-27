@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mulberry Cheat Sheet - Code Alchemist</title>
+  <title>Test-Driven Shader Development (an idea) - Code Alchemist</title>
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="Mulberry Cheat Sheet Feb 20th, 2012 Official documentation Installation Installation is mostly automatic. It&#8217;s started by running install/&lt; &hellip;">
+  <meta name="description" content="This post is more about an idea I had, than about its actual implementation. Test-driven Shader Development Base idea When doing shader development, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://KageKirin.github.com/help/mulberry-cheat-sheet.html">
+  <link rel="canonical" href="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,11 +77,15 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Mulberry Cheat Sheet</h1>
-    <p class="meta">
+    
+      <h1 class="entry-title">Test-Driven Shader Development (an Idea)</h1>
+    
+    
+      <p class="meta">
+        
 
 
 
@@ -93,87 +97,158 @@
   
 
 
-<time datetime="2012-02-20T01:39:00+09:00" pubdate data-updated="true">Feb 20<span>th</span>, 2012</time></p>
+<time datetime="2012-04-05T00:57:00+09:00" pubdate data-updated="true">Apr 5<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
   </header>
-  
-  <p><a href="https://github.com/Toura/mulberry/wiki/">Official documentation</a></p>
 
-<h1>Installation</h1>
 
-<p>Installation is mostly automatic. It&#8217;s started by running <code>install/&lt;your-platform&gt;/install.sh</code>.</p>
+<div class="entry-content"><p>This post is more about an idea I had, than about its actual implementation.</p>
 
-<h2>Required base packages</h2>
+<p>Test-driven Shader Development</p>
 
-<h3>OSX</h3>
+<h2>Base idea</h2>
 
-<p>For OSX, the required packages are:<br/>
--  Xcode in version 4.3 or later
--  Java</p>
-
-<h2>Packages built and installed by script if not found:</h2>
-
-<h3>OSX</h3>
+<p>When doing shader development,
+be it for R&amp;D purposes or in a production environment,
+you will run into a couple of possible issues:</p>
 
 <ul>
-<li>RVM</li>
-<li>Ruby (in version 1.9.2 or 1.9.3 depending on script). Ruby@1.9.3 might <em>NOT</em> build on OSX 10.7.3.</li>
-<li>Rubygems and following gems:</li>
-<li> Bundler</li>
-<li> Mulberry (obviously)</li>
-<li>Homebrew</li>
-<li>Ant (through Brew)</li>
-<li>Android SDK</li>
-<li>PhoneGap</li>
+<li>shader not compiling</li>
+<li>shader not linking (in GL)</li>
+<li>incompatible vertex and pixel shader due to interpolator differences (Cg, DX)</li>
+<li>shader not running due to wrong input</li>
+<li>shader running but not giving the expected result (algorithmic error)</li>
+<li>shader not returning the expected result due to wrong input</li>
+<li>wrong output from one shader breaking another shader (happens often when playing with lighting models)</li>
+<li>shader computationally too heavy (instruction-bound or texture-fetch-bound)</li>
+<li>a lot of other stuff that can go wrong, and by Murphy&#8217;s law, will go wrong.</li>
 </ul>
 
 
-<h1>Basic commands</h1>
+<p>In many of these cases,
+nailing the problem down to a few causes,
+at best a single one,
+will allow for fast solutions
+and let the programmer focus on the more interesting parts.</p>
 
-<pre><code>mulberry scaffold
-</code></pre>
+<h2>Compiler/Driver issues</h2>
 
-<p>creates a new app scaffolding</p>
+<p>Those are mostly issues related to building and loading the shader.</p>
 
-<pre><code>mulberry serve
-</code></pre>
+<p>The straightforward solution is to implement hot reload,
+i.e. reloading while the engine or test environment is running,
+and this everytime the shader file is saved.</p>
 
-<p>builds app for web and starts http server on port 3001</p>
+<p>The apported benefit is that this will allow for shader cooking,
+i.e. editing and tweaking of the shader depending on its &#8220;visual&#8221; result.<br/>
+(One of the features I loved on CryENGINE3, and that I&#8217;m totally missing on the current engine at work).</p>
 
-<pre><code>mulberry deploy
-</code></pre>
+<p>An optimization to this:<br/>
+reload everytime a hash value depending on the full shader source,
+i.e. the <code>main</code> function file and all of its includes, changes.</p>
 
-<p>builds app for deployment and creates xcode workspaces</p>
+<h2>Input issues</h2>
 
-<pre><code>mulberry test
-</code></pre>
+<p>The straightforward solution is to have &#8220;static&#8221; inputs.
+Those can be:</p>
 
-<p>builds app for deployment, creates xcode workspaces and opens them for testing. Apple-R to run in simulator/on device.</p>
-
-<h1>Content creation commands</h1>
-
-  
-    <footer>
-      <p class="meta">
-        
-        
-
-
-
-
-
-
+<ul>
+<li>static textures to simulate a GBuffer</li>
+<li>static camera values</li>
+<li>static uniform settings</li>
+<li>static vertex settings</li>
+</ul>
 
 
-  
+<p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
+
+<h2>Output issues</h2>
+
+<p>This kind of issues can be caught by creating a difference image to either</p>
+
+<ul>
+<li>a &#8220;reference&#8221; image (e.g. created through raytracing instead of rendering)</li>
+<li>the last &#8220;good&#8221; result image</li>
+</ul>
 
 
-<time datetime="2012-02-20T01:39:00+09:00" pubdate data-updated="true">Feb 20<span>th</span>, 2012</time>
-        
-      </p>
+<p>The frame &#8220;correctness&#8221; is the amount of errors/differences in relation to the reference image.</p>
+
+<h2>Algorithmic issues</h2>
+
+<ul>
+<li>using &#8220;random&#8221; inputs
+
+<ul>
+<li>shuffle inputs several times, test if output is correct</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Saving the tests</h2>
+
+<p>A great addition for this kind of framework is to save the test &#8220;artifacts&#8221; (in Jenkins&#8217; terms) along with its inputs to allow for later reproducibility.</p>
+
+<ul>
+<li>inputs: the shader files, static input values, user input values</li>
+<li>artifacts as such would be: random input values, output frames</li>
+</ul>
+
+
+<h2>Generalization</h2>
+
+<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1) and OpenGL (several versions as well, but ES2 would make my day).
+And support for the exots like GX2 (&#8220;Café&#8221;) and GCM (PS3, Vita). (The shader in latter systems are based on GLSL and Cg, respectively, making the porting easier).</p>
+
+<p>Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
+(As would SPU jobs do, but that&#8217;s limited to a certain type of hardware).</p>
+
+<p>A general solution would allow to have &#8220;any&#8221; kind of data
+processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL, CUDA or C++AMP.</p>
+
+<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/help/mulberry-cheat-sheet.html" data-via="KageKirin" data-counturl="http://KageKirin.github.com/help/mulberry-cheat-sheet.html" >Tweet</a>
+
+<span class="byline author vcard">Posted by <span class="fn">Chris Helmich</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-05T00:57:00+09:00" pubdate data-updated="true">Apr 5<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/tdd/'>TDD</a>, <a class='category' href='/blog/categories/shader/'>shader</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/" data-via="KageKirin" data-counturl="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -183,10 +258,21 @@
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2012/04/04/jekyll-plugin-for-graphviz/" title="Previous Post: Jekyll plugin for Graphviz">&laquo; Jekyll plugin for Graphviz</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -329,6 +415,22 @@
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'kagekirin';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/';
+        var disqus_url = 'http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

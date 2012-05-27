@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: shader | Code Alchemist]]></title>
+  <link href="http://KageKirin.github.com/blog/categories/shader/atom.xml" rel="self"/>
+  <link href="http://KageKirin.github.com/"/>
+  <updated>2012-04-07T23:34:04+09:00</updated>
+  <id>http://KageKirin.github.com/</id>
+  <author>
+    <name><![CDATA[Chris Helmich]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Test-Driven Shader Development (an idea)]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/"/>
+    <updated>2012-04-05T00:57:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea</id>
+    <content type="html"><![CDATA[<p>This post is more about an idea I had, than about its actual implementation.</p>
+
+<p>Test-driven Shader Development</p>
+
+<h2>Base idea</h2>
+
+<p>When doing shader development,
+be it for R&amp;D purposes or in a production environment,
+you will run into a couple of possible issues:</p>
+
+<ul>
+<li>shader not compiling</li>
+<li>shader not linking (in GL)</li>
+<li>incompatible vertex and pixel shader due to interpolator differences (Cg, DX)</li>
+<li>shader not running due to wrong input</li>
+<li>shader running but not giving the expected result (algorithmic error)</li>
+<li>shader not returning the expected result due to wrong input</li>
+<li>wrong output from one shader breaking another shader (happens often when playing with lighting models)</li>
+<li>shader computationally too heavy (instruction-bound or texture-fetch-bound)</li>
+<li>a lot of other stuff that can go wrong, and by Murphy's law, will go wrong.</li>
+</ul>
+
+
+<p>In many of these cases,
+nailing the problem down to a few causes,
+at best a single one,
+will allow for fast solutions
+and let the programmer focus on the more interesting parts.</p>
+
+<h2>Compiler/Driver issues</h2>
+
+<p>Those are mostly issues related to building and loading the shader.</p>
+
+<p>The straightforward solution is to implement hot reload,
+i.e. reloading while the engine or test environment is running,
+and this everytime the shader file is saved.</p>
+
+<p>The apported benefit is that this will allow for shader cooking,
+i.e. editing and tweaking of the shader depending on its "visual" result.<br/>
+(One of the features I loved on CryENGINE3, and that I'm totally missing on the current engine at work).</p>
+
+<p>An optimization to this:<br/>
+reload everytime a hash value depending on the full shader source,
+i.e. the <code>main</code> function file and all of its includes, changes.</p>
+
+<h2>Input issues</h2>
+
+<p>The straightforward solution is to have "static" inputs.
+Those can be:</p>
+
+<ul>
+<li>static textures to simulate a GBuffer</li>
+<li>static camera values</li>
+<li>static uniform settings</li>
+<li>static vertex settings</li>
+</ul>
+
+
+<p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
+
+<h2>Output issues</h2>
+
+<p>This kind of issues can be caught by creating a difference image to either</p>
+
+<ul>
+<li>a "reference" image (e.g. created through raytracing instead of rendering)</li>
+<li>the last "good" result image</li>
+</ul>
+
+
+<p>The frame "correctness" is the amount of errors/differences in relation to the reference image.</p>
+
+<h2>Algorithmic issues</h2>
+
+<ul>
+<li>using "random" inputs
+
+<ul>
+<li>shuffle inputs several times, test if output is correct</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Saving the tests</h2>
+
+<p>A great addition for this kind of framework is to save the test "artifacts" (in Jenkins' terms) along with its inputs to allow for later reproducibility.</p>
+
+<ul>
+<li>inputs: the shader files, static input values, user input values</li>
+<li>artifacts as such would be: random input values, output frames</li>
+</ul>
+
+
+<h2>Generalization</h2>
+
+<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1) and OpenGL (several versions as well, but ES2 would make my day).
+And support for the exots like GX2 ("Café") and GCM (PS3, Vita). (The shader in latter systems are based on GLSL and Cg, respectively, making the porting easier).</p>
+
+<p>Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
+(As would SPU jobs do, but that's limited to a certain type of hardware).</p>
+
+<p>A general solution would allow to have "any" kind of data
+processed by "any" kind of "processor", be it DX, GL, CL, CUDA or C++AMP.</p>
+
+<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?</p>
+]]></content>
+  </entry>
+  
+</feed>

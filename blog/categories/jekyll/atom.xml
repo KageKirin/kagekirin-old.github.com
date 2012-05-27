@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jekyll | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/jekyll/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-03-08T02:43:43+09:00</updated>
+  <updated>2012-04-07T23:34:04+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jekyll plugin for Graphviz]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/"/>
+    <updated>2012-04-04T23:28:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz</id>
+    <content type="html"><![CDATA[<p>I stumbled over this small Jekyll plugin for Octopress
+which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation inside a blog post.<br/>
+<a href="http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/">original link</a></p>
+
+<p>Obviously, you need to have graphviz installed on your generating system.
+(<code>port install graphviz</code> should do it if you have MacPorts installed, or well, <a href="http://mxcl.github.com/homebrew/">Brew</a>).</p>
+
+<p>Here's a short test</p>
+
+<pre><code>{\% graphviz \%}
+  digraph G {
+  compound=true;
+  subgraph cluster0 {
+    a -&gt; b;
+    a -&gt; c;
+    b -&gt; d;
+    c -&gt; d;
+  }
+  subgraph cluster1 {
+    e -&gt; g;
+    e -&gt; f;
+  }
+  b -&gt; f [lhead=cluster1];
+  d -&gt; e;
+  c -&gt; g [ltail=cluster0, lhead=cluster1];
+  c -&gt; e [ltail=cluster0];
+  d -&gt; h;
+}
+{\% endgraphviz \%}
+</code></pre>
+
+<p>should give the diagram below:</p>
+
+<p><img src='/images/graphviz/g-57023c2552f7752921d58001f1867c02.svg'></p>
+
+<p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
+
+<p>You probably should install the plugin from
+<a href="https://github.com/dryman/dryman.github.com/blob/src/plugins/graphviz_block.rb">its repository</a>
+or wait until it has been integrated into the mainline Octopress branch.</p>
+
+<p>And for the hardcore coders, it should be possible to add it to Mulberry/Toura as well, as it's based on Jekyll as well.
+(Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).</p>
+
+<p>EDIT: I just saw a perfect application for graphs in an app that I'm working on, namely, a diagram for tournaments or championships, to show how the candidates (fighters in this case) advance from round to round.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rediscovering Web Development in 2012]]></title>

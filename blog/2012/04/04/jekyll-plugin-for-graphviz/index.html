@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mulberry Cheat Sheet - Code Alchemist</title>
+  <title>Jekyll plugin for Graphviz - Code Alchemist</title>
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="Mulberry Cheat Sheet Feb 20th, 2012 Official documentation Installation Installation is mostly automatic. It&#8217;s started by running install/&lt; &hellip;">
+  <meta name="description" content="I stumbled over this small Jekyll plugin for Octopress
+which allows to use graphviz notation inside a blog post.
+original link Obviously, you need to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://KageKirin.github.com/help/mulberry-cheat-sheet.html">
+  <link rel="canonical" href="http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -77,85 +79,15 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Mulberry Cheat Sheet</h1>
-    <p class="meta">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-20T01:39:00+09:00" pubdate data-updated="true">Feb 20<span>th</span>, 2012</time></p>
-  </header>
-  
-  <p><a href="https://github.com/Toura/mulberry/wiki/">Official documentation</a></p>
-
-<h1>Installation</h1>
-
-<p>Installation is mostly automatic. It&#8217;s started by running <code>install/&lt;your-platform&gt;/install.sh</code>.</p>
-
-<h2>Required base packages</h2>
-
-<h3>OSX</h3>
-
-<p>For OSX, the required packages are:<br/>
--  Xcode in version 4.3 or later
--  Java</p>
-
-<h2>Packages built and installed by script if not found:</h2>
-
-<h3>OSX</h3>
-
-<ul>
-<li>RVM</li>
-<li>Ruby (in version 1.9.2 or 1.9.3 depending on script). Ruby@1.9.3 might <em>NOT</em> build on OSX 10.7.3.</li>
-<li>Rubygems and following gems:</li>
-<li> Bundler</li>
-<li> Mulberry (obviously)</li>
-<li>Homebrew</li>
-<li>Ant (through Brew)</li>
-<li>Android SDK</li>
-<li>PhoneGap</li>
-</ul>
-
-
-<h1>Basic commands</h1>
-
-<pre><code>mulberry scaffold
-</code></pre>
-
-<p>creates a new app scaffolding</p>
-
-<pre><code>mulberry serve
-</code></pre>
-
-<p>builds app for web and starts http server on port 3001</p>
-
-<pre><code>mulberry deploy
-</code></pre>
-
-<p>builds app for deployment and creates xcode workspaces</p>
-
-<pre><code>mulberry test
-</code></pre>
-
-<p>builds app for deployment, creates xcode workspaces and opens them for testing. Apple-R to run in simulator/on device.</p>
-
-<h1>Content creation commands</h1>
-
-  
-    <footer>
+    
+      <h1 class="entry-title">Jekyll Plugin for Graphviz</h1>
+    
+    
       <p class="meta">
         
-        
 
 
 
@@ -167,13 +99,97 @@
   
 
 
-<time datetime="2012-02-20T01:39:00+09:00" pubdate data-updated="true">Feb 20<span>th</span>, 2012</time>
+<time datetime="2012-04-04T23:28:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I stumbled over this small Jekyll plugin for Octopress
+which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation inside a blog post.<br/>
+<a href="http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/">original link</a></p>
+
+<p>Obviously, you need to have graphviz installed on your generating system.
+(<code>port install graphviz</code> should do it if you have MacPorts installed, or well, <a href="http://mxcl.github.com/homebrew/">Brew</a>).</p>
+
+<p>Here&#8217;s a short test</p>
+
+<pre><code>{\% graphviz \%}
+  digraph G {
+  compound=true;
+  subgraph cluster0 {
+    a -&gt; b;
+    a -&gt; c;
+    b -&gt; d;
+    c -&gt; d;
+  }
+  subgraph cluster1 {
+    e -&gt; g;
+    e -&gt; f;
+  }
+  b -&gt; f [lhead=cluster1];
+  d -&gt; e;
+  c -&gt; g [ltail=cluster0, lhead=cluster1];
+  c -&gt; e [ltail=cluster0];
+  d -&gt; h;
+}
+{\% endgraphviz \%}
+</code></pre>
+
+<p>should give the diagram below:</p>
+
+<p><img src='/images/graphviz/g-57023c2552f7752921d58001f1867c02.svg'></p>
+
+<p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
+
+<p>You probably should install the plugin from
+<a href="https://github.com/dryman/dryman.github.com/blob/src/plugins/graphviz_block.rb">its repository</a>
+or wait until it has been integrated into the mainline Octopress branch.</p>
+
+<p>And for the hardcore coders, it should be possible to add it to Mulberry/Toura as well, as it&#8217;s based on Jekyll as well.
+(Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).</p>
+
+<p>EDIT: I just saw a perfect application for graphs in an app that I&#8217;m working on, namely, a diagram for tournaments or championships, to show how the candidates (fighters in this case) advance from round to round.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-        <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/help/mulberry-cheat-sheet.html" data-via="KageKirin" data-counturl="http://KageKirin.github.com/help/mulberry-cheat-sheet.html" >Tweet</a>
+
+<span class="byline author vcard">Posted by <span class="fn">Chris Helmich</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-04T23:28:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jekyll/'>jekyll</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/" data-via="KageKirin" data-counturl="http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -183,10 +199,23 @@
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2012/03/22/more-mulberry/" title="Previous Post: More Mulberry">&laquo; More Mulberry</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/04/05/test-driven-shader-development-an-idea/" title="next Post: Test-Driven Shader Development (an idea)">Test-Driven Shader Development (an idea) &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -329,6 +358,22 @@
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'kagekirin';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/';
+        var disqus_url = 'http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

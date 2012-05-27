@@ -9,8 +9,7 @@
   <meta name="author" content="Chris Helmich">
 
   
-  <meta name="description" content="I&#8217;ve been tinkering with Mulberry/Toura (read Mulberry by Toura) lately. It&#8217;s surprisingly easy how you can create a simple app.
-For my &hellip;">
+  <meta name="description" content="This post is more about an idea I had, than about its actual implementation. Test-driven Shader Development Base idea When doing shader development, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +84,448 @@ For my &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/04/05/test-driven-shader-development-an-idea/">Test-Driven Shader Development (an Idea)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-05T00:57:00+09:00" pubdate data-updated="true">Apr 5<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/05/test-driven-shader-development-an-idea/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post is more about an idea I had, than about its actual implementation.</p>
+
+<p>Test-driven Shader Development</p>
+
+<h2>Base idea</h2>
+
+<p>When doing shader development,
+be it for R&amp;D purposes or in a production environment,
+you will run into a couple of possible issues:</p>
+
+<ul>
+<li>shader not compiling</li>
+<li>shader not linking (in GL)</li>
+<li>incompatible vertex and pixel shader due to interpolator differences (Cg, DX)</li>
+<li>shader not running due to wrong input</li>
+<li>shader running but not giving the expected result (algorithmic error)</li>
+<li>shader not returning the expected result due to wrong input</li>
+<li>wrong output from one shader breaking another shader (happens often when playing with lighting models)</li>
+<li>shader computationally too heavy (instruction-bound or texture-fetch-bound)</li>
+<li>a lot of other stuff that can go wrong, and by Murphy&#8217;s law, will go wrong.</li>
+</ul>
+
+
+<p>In many of these cases,
+nailing the problem down to a few causes,
+at best a single one,
+will allow for fast solutions
+and let the programmer focus on the more interesting parts.</p>
+
+<h2>Compiler/Driver issues</h2>
+
+<p>Those are mostly issues related to building and loading the shader.</p>
+
+<p>The straightforward solution is to implement hot reload,
+i.e. reloading while the engine or test environment is running,
+and this everytime the shader file is saved.</p>
+
+<p>The apported benefit is that this will allow for shader cooking,
+i.e. editing and tweaking of the shader depending on its &#8220;visual&#8221; result.<br/>
+(One of the features I loved on CryENGINE3, and that I&#8217;m totally missing on the current engine at work).</p>
+
+<p>An optimization to this:<br/>
+reload everytime a hash value depending on the full shader source,
+i.e. the <code>main</code> function file and all of its includes, changes.</p>
+
+<h2>Input issues</h2>
+
+<p>The straightforward solution is to have &#8220;static&#8221; inputs.
+Those can be:</p>
+
+<ul>
+<li>static textures to simulate a GBuffer</li>
+<li>static camera values</li>
+<li>static uniform settings</li>
+<li>static vertex settings</li>
+</ul>
+
+
+<p>In the same idea, being able to tweak parameters and see its outcome is likely to help finding input values that lead to computational errors. (Div-by-zero anyone?).</p>
+
+<h2>Output issues</h2>
+
+<p>This kind of issues can be caught by creating a difference image to either</p>
+
+<ul>
+<li>a &#8220;reference&#8221; image (e.g. created through raytracing instead of rendering)</li>
+<li>the last &#8220;good&#8221; result image</li>
+</ul>
+
+
+<p>The frame &#8220;correctness&#8221; is the amount of errors/differences in relation to the reference image.</p>
+
+<h2>Algorithmic issues</h2>
+
+<ul>
+<li>using &#8220;random&#8221; inputs
+
+<ul>
+<li>shuffle inputs several times, test if output is correct</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Saving the tests</h2>
+
+<p>A great addition for this kind of framework is to save the test &#8220;artifacts&#8221; (in Jenkins&#8217; terms) along with its inputs to allow for later reproducibility.</p>
+
+<ul>
+<li>inputs: the shader files, static input values, user input values</li>
+<li>artifacts as such would be: random input values, output frames</li>
+</ul>
+
+
+<h2>Generalization</h2>
+
+<p>Such a framework would be great to be generalized to work with both Direct3D (several versions, but at least DX9.5 for Xenon and DX11.1) and OpenGL (several versions as well, but ES2 would make my day).
+And support for the exots like GX2 (&#8220;Café&#8221;) and GCM (PS3, Vita). (The shader in latter systems are based on GLSL and Cg, respectively, making the porting easier).</p>
+
+<p>Furthermore, OpenCL and ComputeShaders would equally profit fropm such a system.
+(As would SPU jobs do, but that&#8217;s limited to a certain type of hardware).</p>
+
+<p>A general solution would allow to have &#8220;any&#8221; kind of data
+processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL, CUDA or C++AMP.</p>
+
+<p><strong> tl;dr</strong> Is there some student/grad student that would feel like implementing such a system as a master/diploma/doctorate thesis?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/04/jekyll-plugin-for-graphviz/">Jekyll Plugin for Graphviz</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-04T23:28:00+09:00" pubdate data-updated="true">Apr 4<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/04/04/jekyll-plugin-for-graphviz/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I stumbled over this small Jekyll plugin for Octopress
+which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation inside a blog post.<br/>
+<a href="http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/">original link</a></p>
+
+<p>Obviously, you need to have graphviz installed on your generating system.
+(<code>port install graphviz</code> should do it if you have MacPorts installed, or well, <a href="http://mxcl.github.com/homebrew/">Brew</a>).</p>
+
+<p>Here&#8217;s a short test</p>
+
+<pre><code>{\% graphviz \%}
+  digraph G {
+  compound=true;
+  subgraph cluster0 {
+    a -&gt; b;
+    a -&gt; c;
+    b -&gt; d;
+    c -&gt; d;
+  }
+  subgraph cluster1 {
+    e -&gt; g;
+    e -&gt; f;
+  }
+  b -&gt; f [lhead=cluster1];
+  d -&gt; e;
+  c -&gt; g [ltail=cluster0, lhead=cluster1];
+  c -&gt; e [ltail=cluster0];
+  d -&gt; h;
+}
+{\% endgraphviz \%}
+</code></pre>
+
+<p>should give the diagram below:</p>
+
+<p><img src='/images/graphviz/g-57023c2552f7752921d58001f1867c02.svg'></p>
+
+<p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
+
+<p>You probably should install the plugin from
+<a href="https://github.com/dryman/dryman.github.com/blob/src/plugins/graphviz_block.rb">its repository</a>
+or wait until it has been integrated into the mainline Octopress branch.</p>
+
+<p>And for the hardcore coders, it should be possible to add it to Mulberry/Toura as well, as it&#8217;s based on Jekyll as well.
+(Although I see hardly any need to generate diagrams for an app. Then again, there might be a need for it).</p>
+
+<p>EDIT: I just saw a perfect application for graphs in an app that I&#8217;m working on, namely, a diagram for tournaments or championships, to show how the candidates (fighters in this case) advance from round to round.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/22/more-mulberry/">More Mulberry</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-22T01:25:00+09:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/22/more-mulberry/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I found <a href="http://www.slideshare.net/rmurphey/getting-started-with-mulberry">this presentation about Mulberry</a> and wanted to share it.<br/>
+It explains the core functionality of Mulberry.</p>
+
+<p><strong>tl;dr</strong> Thinks to retain:</p>
+
+<p><em>Routes</em> manage high-level application state.</p>
+
+<p><em>Components</em> receive and render data and react to user input.</p>
+
+<p><em>Capabilities</em> provide data to components and broker communications between them.</p>
+
+<p><em>Page definitions</em> are reusable groupings of components and capabilities.</p>
+
+<p><em>Stores</em> persist data on the device, make that data query-able, and return model instances.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/14/mulberry-jam-contd/">Mulberry Jam (Cont&#8217;d)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-14T01:00:00+09:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/14/mulberry-jam-contd/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Follow up on last week&#8217;s post about Mulberry.</p>
+
+<p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time&#8230;
+In the end, I had to re-scaffold my test-apps from scratch and move my content over because of a few noteworthy changes.<br/>
+Incidentally, those changes concern the parts I did not treat in detail in my last post (or just brushed over without investigating it into depth),
+thus this follow-up makes a lot of sense.</p>
+
+<p>Giving the demo-app &#8220;kitchensink&#8221; (located in <code>demos</code>) a closer look cleared a couple of questions I still had, so here I go:</p>
+
+<h2>Customization</h2>
+
+<h3>Page-defs</h3>
+
+<p>A page-def defines the template for generated pages, i.e. the layout, components and capabilities to be used on a page.<br/>
+Custom page-defs can be generated with the command below:</p>
+
+<pre><code>mulberry create page_def &lt;name&gt;
+</code></pre>
+
+<p>which will create a file at <code>&lt;app-root&gt;/page_defs/&lt;name&gt;.yml</code>.<br/>
+More info <a href="https://github.com/Toura/mulberry/wiki/Page-Definitions">here</a></p>
+
+<p>All pre-existing page-defs lie in <code>&lt;mulberry-root&gt;/base_apps/toura/page_defs</code> and have their purpose written in their name, making it easy to guess what they may be intended for.<br/>
+Here&#8217;s a list of them, subject to changes as new versions arise:</p>
+
+<pre><code>audio-with-images-phone.yml
+audio-with-images-tablet.yml
+debug.yml
+default.yml
+favorites.yml
+feed-item.yml
+feed-list-phone.yml
+feed-list-tablet.yml
+full-screen-images.yml
+google-map-phone.yml
+google-map-tablet.yml
+grid-view.yml
+home-phone.yml
+home-tablet.yml
+home-with-header-phone.yml
+home-with-header-tablet.yml
+hotspots.yml
+images-and-text-phone.yml
+images-and-text-tablet.yml
+location-list.yml
+node-gallery.yml
+search.yml
+videos-and-text-phone.yml
+videos-and-text-tablet.yml
+</code></pre>
+
+<p>If you are creating your own page-defs for more than one project, it would probably make sense to put them inside this folder (and to commit them back to the Mulberry project in order to contribute to it).</p>
+
+<p>A page-def defines which components will be visible for pages based on it. E.g.:</p>
+
+<pre><code>home-with-header-phone:
+  screens:
+  - name: index
+    backgroundImage: true
+    regions:
+    - className: header-image
+      components:
+      - PageHeaderImage
+
+    - scrollable: true
+      components:
+      - BodyText
+      - ChildNodes
+
+    - className: nav
+      components:
+      - AppNav
+</code></pre>
+
+<h3>Components</h3>
+
+<pre><code>mulberry create component &lt;name&gt;
+</code></pre>
+
+<p>which will create a Dojo UI component at <code>&lt;app-root&gt;/app/components/&lt;name&gt;.js</code> and <code>&lt;app-root&gt;/app/components/&lt;name&gt;/&lt;name&gt;.haml</code>).<br/>
+See <a href="https://github.com/Toura/mulberry/wiki/Creating-Custom-Components">here</a> for more info.</p>
+
+<h3>Capability</h3>
+
+<p><strong>obsolete</strong></p>
+
+<pre><code>mulberry create capability &lt;name&gt;
+</code></pre>
+
+<p>which will create a file at <code>&lt;app-root&gt;/javascript/capabilities/&lt;name&gt;.js</code>.<br/>
+<a href="https://github.com/Toura/mulberry/wiki/Capabilities">More info</a></p>
+
+<h3>Datasource</h3>
+
+<pre><code>mulberry create datasource &lt;name&gt;
+</code></pre>
+
+<p>which will create a JSON file at <code>&lt;app-root&gt;/assets/data/&lt;name&gt;.json</code>. It can hold any data (as long as it&#8217;s valid JSON) and it&#8217;s up to the app to implement the functionality to read and use it.</p>
+
+<h3>Feature flags</h3>
+
+<p>See <a href="https://github.com/Toura/mulberry/wiki/Feature-Flags">here</a> for info on feature flags that determine whether a given feature is active or not.</p>
+
+<h2>Xcode-side customization</h2>
+
+<h3>App Icon, Splash Screen, and Project file</h3>
+
+<p>When generating the app, the default PhoneGap app icon and splash screen, as well as the default Toura (xcodeproj) projects are copied into the app&#8217;s <code>&lt;app-root&gt;/build</code> folder,
+where they can be further customized. (Although I&#8217;m not sure if re-generating the app overwrites the customized versions).</p>
+
+<p>The source files are located at <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura</code> for the projects and further below in <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/icons</code>
+and <code>&lt;mulberry-root&gt;/builder/project_templates/iOS/Toura/Resources/splash</code> respectively for icons and splash screens.</p>
+
+<p>It would be a nice extension to Mulberry if I could refer to my custom icons, loading screens, etc. in the config.yml and having those replace the default versions.</p>
+
+<h3>Universal build</h3>
+
+<p>At the moment, the iPhone and iPad have 2 separate projects (<code>Toura.xcodeproj</code> and <code>Toura-iPad.xcodeproj</code>).
+But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal apps might be another welcome extension.</p>
+
+<h3>Automatic build</h3>
+
+<p>Command line and Jenkins integration
+<a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
+
+<p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
+I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
+
+<p>Next up: Further Mulberry app customization &#8211; adapting style and layout.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/03/07/mulberry-jam/">Mulberry Jam</a></h1>
     
     
@@ -123,12 +564,11 @@ In fact, you should fork it first, then clone your fork, and finally add the off
 
 <p>The <a href="https://github.com/Toura/mulberry/tree/master/install/osx">installation</a> script will install all the missing parts but you will need to have Java and Xcode4 (on OSX, obviously) installed beforehand.</p>
 
-<p>Although the installation script should fetch everything automatically, there are 2 points that need attention:
--  the PhoneGap version that comes with it lags 2 minor revisions behind (1.5.0 was just released), so you will want to update PhoneGap from the <a href="link%20here">official release</a> (or its GitHub repo if you&#8217;re feeling like it).
--  Ruby 1.9.2 might fail to install on OSX for some reason.</p>
+<p>Although the installation script should fetch everything automatically, there are 2 points that need attention:<br/>
+-   the PhoneGap version that comes with it lags 2 minor revisions behind (1.5.0 was just released), so you will want to update PhoneGap from the <a href="link%20here">official release</a> (or its GitHub repo if you&#8217;re feeling like it).
+-   Ruby 1.9.2 might fail to install on OSX for some reason.</p>
 
-<p>Actually, if you&#8217;re installing from the GitHub clone, just modify <code>install.sh</code> to the following (starting around line 133):<br/>
-(Search-and-replace is your friend).</p>
+<p>Actually, if you&#8217;re installing from the GitHub clone, just modify the reference to PhoneGap 1.3.0 to the new version in <code>install.sh</code> like this (starting around line 133, and search-and-replace is your friend):</p>
 
 <figure class='code'><figcaption><span>starting around line 133 of osx/install.sh</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -171,7 +611,7 @@ But you can install Ruby 1.9.2 (i.e. leave your Ruby installation for Octopress 
 <pre><code>rvm use 1.9.2@mulberry
 </code></pre>
 
-<p>The (probably safer) alternative way is to modify install.sh again to install Ruby 1.9.2 instead. (Again, search-and-replace works miracles for that).</p>
+<p>The (probably safer) alternative way is to modify <code>install.sh</code> again to install Ruby 1.9.2 instead. (Again, search-and-replace works miracles for that).</p>
 
 <figure class='code'><figcaption><span>starting at around line 66 of osx/install.sh</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -216,7 +656,7 @@ But you can install Ruby 1.9.2 (i.e. leave your Ruby installation for Octopress 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Here&#8217;s the full change:</p>
+<p>Here&#8217;s the fully changed file:</p>
 
 <div><script src='https://gist.github.com/1990770.js?file='></script>
 <noscript><pre><code># install.sh: Installation script for OSX
@@ -374,38 +814,49 @@ fi
 
 <h2>Hello Mulberry and Terminology</h2>
 
-<p>In Mulberry&#8217;s terms, creating the base for an app is called &#8220;to scaffold&#8221;, so this is the first command to invoke.<br/>
+<p>In Mulberry&#8217;s terms, creating the base for an app is called <em>to scaffold</em>, so this is the first command to invoke.<br/>
 Note that you have to be inside the folder you installed Mulberry to for it to work. (That&#8217;s an issue related to RVM, afaik).</p>
 
 <p>In my setup, I created an folder called <code>Apps</code> in the root folder of Mulberry and symbolically linked it to ~/Documents/Coding/Apps so I can retrieve it easily.</p>
 
-<p>In <code>&lt;mulberry-root&gt;/&lt;my-apps&gt;</code>, just run</p>
+<p>To create the scaffolding of your very own app, in <code>&lt;mulberry-root&gt;/&lt;my-apps&gt;</code>, just run</p>
 
 <pre><code>mulberry scaffold HelloMulberry
 </code></pre>
 
-<p>to create the scaffolding of your very own app, called <code>HelloMulberry</code> in this case, and which should not exist prior to running the command.
-<strong>Note for git</strong>: since your project will lie inside mulberry&#8217;s root folder, it will be tracked by the base repo.
+<p>which will an app called <code>HelloMulberry</code> in the folder <code>&lt;mulberry-root&gt;/&lt;my-apps&gt;/HelloMulberry</code> in this case. Note that the folder should not exist prior to running the command, or else the command will most probably fail.</p>
+
+<p><strong>Note for git</strong>: since your project will lie inside mulberry&#8217;s root folder, it will be tracked by the base repo.
 To change this, you could move the app folder to some temp folder, run <code>git init</code> there and move it back (and <code>git submodule add</code> it if required).</p>
 
 <p>For all the remaining commands to work, you need to be inside the folder created for your app.</p>
 
-<p>Once the scaffold command has returned safely, you can directly test your app with these commands:</p>
+<p>Once the <code>scaffold</code> command has returned safely, you can directly test your app with these commands:</p>
+
+<p>To generate all the pages and create the custom components:</p>
 
 <pre><code>mulberry generate
 </code></pre>
 
-<p>to generate all the pages and create the custom components.</p>
+<p>To generate and launch a webserver (on port 3001 by default) from where you can access your app in Mobile Safari:</p>
 
 <pre><code>mulberry serve
 </code></pre>
 
-<p>to generate and launch a webserver (on port 3001 by default) from where you can access your app in Mobile Safari.</p>
+<p>To launch the full build process for debug builds, at which end it will start Xcode from where you can Apple-R(un) the app either in the simulator or on your provisioned device:</p>
 
 <pre><code>mulberry test
 </code></pre>
 
-<p>to launch the full compilation process, at which end it will start Xcode from where you can Apple-R(un) the app either in the simulator or on your provisioned device.</p>
+<p>Debug builds include the debugging toolbar and uncompressed Javascript.</p>
+
+<p>To launch the full build process for builds ready to be submitted, use</p>
+
+<pre><code>mulberry deploy
+</code></pre>
+
+<p>which builds for all devices specified in the <code>config.yml</code>.<br/>
+Deploy builds do NOT include the debugging toolbar, nor the uncompressed Javascript.</p>
 
 <p>There is a fully featured demo in <code>&lt;mulberry-root&gt;/demo</code> that is worth checking out as an example. There used to be other apps in previous revisions (which disappeared in a recent update),
 but it might be interesting to branch them as well.</p>
@@ -414,7 +865,7 @@ but it might be interesting to branch them as well.</p>
 
 <p>The base command to create new content is</p>
 
-<pre><code>mulberry create &lt;what&gt; &lt;name&gt;
+<pre><code>mulberry create &lt;content-type&gt; &lt;name&gt;
 </code></pre>
 
 <p>with a few exceptions I will explain later.</p>
@@ -449,7 +900,7 @@ but it might be interesting to branch them as well.</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Pages all lie in <code>&lt;app-root&gt;/pages/</code>, without any hierarchy. Good naming (prefixes?) might greatly ease the pain of dealing with lots of pages.</p>
+<p>Note: all pages lie in <code>&lt;app-root&gt;/pages/</code>, without any folder hierarchy. Good naming (prefixes?) might greatly ease the pain of dealing with lots of pages.</p>
 
 <h3>Adding images, videos and audios</h3>
 
@@ -457,7 +908,7 @@ but it might be interesting to branch them as well.</p>
 This also counts for all the other type of implemented assets, or for your custom ones.</p>
 
 <p>Any asset needs to be placed inside the correct folder, which is<br/>
-<code>&lt;app-root&gt;/assets/&lt;asset-type&gt;/</code> for the asset file itself,<br/>
+<code>&lt;app-root&gt;/assets/&lt;asset-type&gt;/</code> for the <em>asset</em> file itself,<br/>
 <code>&lt;app-root&gt;/assets/&lt;asset-type&gt;/captions/</code> for a <em>caption</em> describing the asset, which is a markdown file with the same name as the asset,<br/>
 and the reference to it must be placed inside the page referring to it.<br/>
 (Don&#8217;t panic, it&#8217;ll all become much clearer in the example below).</p>
@@ -466,47 +917,37 @@ and the reference to it must be placed inside the page referring to it.<br/>
 
 <ol>
 <li>We place our asset <code>sample_video.mp4</code> into <code>&lt;app-root&gt;/assets/videos/sample_video.mp4</code>.</li>
-<li>We create the caption <code>sample_video.md</code> in <code>&lt;app-root&gt;/assets/videos/captions/sample_video.md</code>. (e.g. <code>touch &lt;app-root&gt;/assets/videos/captions/sample_video.md</code>).</li>
-<li>We edit <code>sample_video.md</code> as follows (the only YAML front matter needed is the name of the video):</li>
-</ol>
+<li>We create the caption <code>sample_video.md</code> in <code>&lt;app-root&gt;/assets/videos/captions/sample_video.md</code>.
 
+<pre><code>touch &lt;app-root&gt;/assets/videos/captions/sample_video.md
+</code></pre></li>
+<li>We edit <code>sample_video.md</code> as follows (the only YAML front matter needed is the name of the video):
 
-<figure class='code'><figcaption><span>an example markdown for a sample video</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">A sample video</span>
-</span><span class='line'><span class="nn">---</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">This is a sample video.</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
+<pre><code>---
+name: A sample video
+---
+This is a sample video.
+</code></pre></li>
 <li>We create a new page for this video with <code>mulberry create page video_page</code> and edit it as follows:</li>
 <li><ol>
-<li>We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.<br/>
-page_def:
-phone: videos-and-text-phone
-tablet: videos-and-text-tablet</li>
-</ol>
-</li>
-<li><ol>
-<li>We add a reference to our video to the <code>videos</code> list in the front matter:<br/>
-videos: sample_video.mp4</li>
-</ol>
-</li>
-<li><ol>
-<li>Optionally, we add a header image and a short describing text inside the markdown area after the front matter.<br/>
-And that&#8217;s it.</li>
+<li>We change the page_def to a page able to display the video: <code>videos-and-text-&lt;platform&gt;</code> sounds like a good candidate.
+
+<pre><code>page_def:
+    phone: videos-and-text-phone
+    tablet: videos-and-text-tablet
+</code></pre></li>
+<li>We add a reference to our video to the <code>videos</code> list in the front matter:
+
+<pre><code>videos: sample_video.mp4
+</code></pre></li>
+<li>Optionally, we add a header image and a short describing text inside the markdown area after the front matter.</li>
 </ol>
 </li>
 </ol>
 
 
-<p>The <code>&lt;app-root&gt;/pages/video_page.md</code> should look like this:</p>
+<p>And that&#8217;s it.<br/>
+The <code>&lt;app-root&gt;/pages/video_page.md</code> should look like this:</p>
 
 <figure class='code'><figcaption><span>a sample page for videos</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -553,34 +994,32 @@ And that&#8217;s it.</li>
 
 <h3>Adding data, feeds, locations</h3>
 
-<p>What the <a href="https://github.com/Toura/mulberry/wiki/Command-Line-Interface">doc</a> says, but honestly, I have no idea what they mean. Could you explain it to me?
-What do they mean by data (a database, a blob?), feed (RSS/ATOM feed reference?) and locations (GPS or Google Maps locations?) ?</p>
+<p>Those 3 types of assets can be created from the command line.</p>
 
-<p>I have not really investigated, nor understood the stuff below, but I&#8217;ll edit this later once the understanding is there.</p>
+<p>To create a data file that can contain custom data to be used by the app, use</p>
 
-<hr />
+<pre><code>mulberry create data &lt;name&gt;
+</code></pre>
 
-<h2>Customization</h2>
+<p>which will create a file at <code>&lt;app-root&gt;/assets/data/&lt;name&gt;.yml</code>.</p>
 
-<h3>Page-defs</h3>
+<p>(I haven&#8217;t figured out, what kind of data the docs mean, but I guess it&#8217;s up to the application or a custom component to read and use it).</p>
 
-<h3>Components</h3>
+<p>To create a file associated with an RSS/ATOM feed, use</p>
 
-<h2>App Icon</h2>
+<pre><code>mulberry create feed &lt;name&gt;
+</code></pre>
 
-<h2>Flash screen</h2>
+<p>which will create a file at <code>&lt;app-root&gt;/assets/feeds/&lt;name&gt;.yml</code>.<br/>
+(Note to self: run and see what kind of files are created).</p>
 
-<h2>Universal Apps</h2>
+<p>To create a geographic location that gets included in the app, run</p>
 
-<p>there should be way to create them&#8230;</p>
+<pre><code>mulberry create location &lt;name&gt;
+</code></pre>
 
-<h2>Automatic build</h2>
-
-<p>Command line and Jenkins integration
-<a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
-
-<p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
-I&#8217;ve created a <a href="/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
+<p>which will create a file at <code>&lt;app-root&gt;/assets/locations/&lt;name&gt;.yml</code>.<br/>
+(I still need to investigate its format and the use of this).</p>
 </div>
   
   
@@ -1021,23 +1460,23 @@ This looks nicer than a generic lorem ipsum.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/04/05/test-driven-shader-development-an-idea/">Test-Driven Shader Development (an idea)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/04/jekyll-plugin-for-graphviz/">Jekyll plugin for Graphviz</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/22/more-mulberry/">More Mulberry</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/14/mulberry-jam-contd/">Mulberry Jam (cont&#8217;d)</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/03/07/mulberry-jam/">Mulberry Jam</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/03/01/an-outlook-and-some-orientation/">An outlook and some orientation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/02/22/playing-with-octopress-custom-asides/">Playing with Octopress &#8211; Custom Asides</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/02/19/rediscovering-web-development-2012/">Rediscovering Web Development in 2012</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/02/15/opening-post/">Opening Post</a>
       </li>
     
   </ul>
