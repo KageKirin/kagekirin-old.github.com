@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Generalized Motion Blur idea - Code Alchemist</title>
+  <meta name="author" content="Chris Helmich">
+
+  
+  <meta name="description" content="The are several existing techniques
+to apply Motion Blur,
+each with a slightly different purpose and outcome. I will try to roughly classify those &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Code Alchemist" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29293069-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Code Alchemist</a></h1>
+  
+    <h2>KageKirin's Dev Blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:KageKirin.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Generalized Motion Blur Idea</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-26T14:03:00+09:00" pubdate data-updated="true">May 26<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>The are several existing techniques
+to apply Motion Blur,
+each with a slightly different purpose and outcome.</p>
+
+<p>I will try to roughly classify those techniques
+by showing the method behind,
+and then propose a possible generalization
+that allows to apply those different techniques to the same scene
+in a computation economical way.</p>
+
+<p>Ideally, rendering at high framerates (>60 fps)
+would not require any motion blur,
+as the human brain would create
+the impression of blur
+to compensate for the
+eye&#8217;s framerate of 24 fps.
+Sadly, such an approach is
+technically
+&#8211; rendering a 60+ frames
+on curreny gen consoles
+is hardly possibly
+or would require other limitations
+in terms of rendering quality &#8211;
+and artistically limited
+&#8211; motion blur might be wanted
+to express certain aesthetics &#8211;
+hence not practical.</p>
+
+<p>The main goal is
+to apply several kinds
+of motion blur
+to a given scene
+in a as little
+drawcalls and fullscreen passes as possible,
+and also
+using a little framebuffers (memory consumption) as possible.</p>
+
+<p>I will also write about
+possible ways to further optimize
+the processus.</p>
+
+<h2>Types of Motion Blur</h2>
+
+<h3>Last Frame Blended Motion Blur</h3>
+
+<p>This motion blur processus consists
+in blending the (n) last frame(s)
+with the current frame,
+which results in an
+impression of after image.</p>
+
+<p>In the old OpenGL versions,
+it could be implemented using an Accumulation Buffer,
+but on modern machines,
+I would implement it
+to use the last frame&#8217;s final image
+(i.e. blurred with frame (t-2)&#8217;s final image)
+as an input to blend with the current frame&#8217;s final image.
+This would result in a series of recursive blurs,
+which might give a nice result.</p>
+
+<p>On the downside, this would have me
+store a fullres buffer of frame (t-1),
+and possible fast camera movements
+might yield very strange results,
+such as after images instead of blurred lines.</p>
+
+<h3>Object Deformation Motion Blur</h3>
+
+<p>This motion blur processus consists
+in deforming moving objects
+in the vertex shader
+along their
+frame interpolated movement vector.</p>
+
+<p>It was used in a demo from AMD (insert link)[here].</p>
+
+<p>The difficulty of the method lies
+in the vertex shader
+where we would need to transform
+the vertices differently,
+according to
+their position relative to the center of the object
+and the motion vector.
+This works for simple objects where
+the start and end of said object are easily defined
+(e.g. spheres, as in the AMD demo),
+but becomes more difficult
+as the object&#8217;s shape gets more complex.
+(Although it could be done by
+approximating each vertex to a unit sphere
+around the center of the object
+and distort vertices
+from the lower hemisphere
+with respect to the motion vector.
+Something like this (untested):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>float3 posRadius = normalize(os_position);   //unit sphere radius vector for a given vertex in object space
+</span><span class='line'>float hemisphere = sign(dot(posRadius, normalize(vMotion)));  //define which part of the sphere of the sphere we're on, w/r to the motion vector
+</span><span class='line'>os_position += vMotion * saturate(-hemisphere);   //distort the vertex along the motion vector when on the lower hemisphere
+</span><span class='line'>// continue vertex transform as usual</span></code></pre></td></tr></table></div></figure>
+
+
+<p>) The result of this is unpredictable, though,
+and might lead to strangely deformed shapes).</p>
+
+<p>On modern PC GPUs, this could be solved by issuing
+more vertices to be drawn via a geometry shader.
+Current gen console GPUs on the other don&#8217;t
+support geometry shader per se,
+making this approach not practical
+for cross-platform titles.</p>
+
+<h3>Camera Motion Blur</h3>
+
+<p>This blur is applicable as post-processing effect,
+as it does not modify any geometry.
+It consists of using the current and the previous frames&#8217;
+view-projection matrices to reproject the Z-buffer
+into world space, and to build a difference in position (the movement)
+from the coordinates.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>float4x4 invViewProj_curr;
+</span><span class='line'>float4x4 invViewProj_prev;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>float zDepth = tex2D(depthBuffer, ssTC);
+</span><span class='line'>float4 sscoords = float4x4(ssTC, zDepth, 1);
+</span><span class='line'>
+</span><span class='line'>float4 wpos_curr = mul(invViewProj_curr, sscoords);
+</span><span class='line'>float4 wpos_prev = mul(invViewProj_prev, sscoords); 
+</span><span class='line'>
+</span><span class='line'>float4 wmov = wpos_curr - wpos_prev;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We can then project the movement vector back to screen space
+and use it to apply a linear blur on the scene texture.</p>
+
+<h3>Object Motion Blur</h3>
+
+<p>This blur method requires the blurred objects
+to be drawn in another render pass,
+which resulting buffer is used later
+to apply a per-pixel linear blur.</p>
+
+<p>For each object,
+we pass its current and previous world matrices as input,
+project the project into screen space,
+and write the per-pixel movement
+computed from transforming each of the objects vertices
+by the current and previous world space matrices.</p>
+
+<p>Most of the work can be done in the vertex shader,
+and the position difference can be done in the pixel shader for accuracy.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>float4x4 World_curr;
+</span><span class='line'>float4x4 World_prev;
+</span><span class='line'>float4x4 ViewProj;
+</span><span class='line'>
+</span><span class='line'>struct VS_OUT
+</span><span class='line'>{
+</span><span class='line'>    float4 HPos : POSITION;
+</span><span class='line'>    float4 wp_curr : TEXCOORD0;
+</span><span class='line'>    float4 wp_prev : TEXCOORD1;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>VS_OUT VS_main(float4 Position : POSITION)
+</span><span class='line'>{
+</span><span class='line'>    VS_OUT out = (VS_OUT)01;
+</span><span class='line'>    
+</span><span class='line'>    float4 w_curr = mul(World_curr, Position);
+</span><span class='line'>    float4 w_prev = mul(World_prev, Position);
+</span><span class='line'>    
+</span><span class='line'>    out.HPos = mul(ViewProj, w_curr);
+</span><span class='line'>    out.wp_curr = w_curr;
+</span><span class='line'>    out.wp_prev = w_prev;
+</span><span class='line'>    
+</span><span class='line'>    return out;
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>float4 PS_main(VS_OUT in) : COLOR0
+</span><span class='line'>{
+</span><span class='line'>    float4 Color = (float4)0;
+</span><span class='line'>    
+</span><span class='line'>    float4 wp_diff = in.wp_curr - in.wp_prev;
+</span><span class='line'>    Color = wp_diff;
+</span><span class='line'>    
+</span><span class='line'>    return Color;
+</span><span class='line'>}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then again, as for the Camera motion blur,
+we use this movement vector
+(projected into screen space)
+as input to the linear blur.</p>
+
+<h3>Animation Motion Blur</h3>
+
+<p>This method is an extension
+upon the object motion blur
+for skinned objects
+that takes the animation into account
+to build the motion vector.</p>
+
+<p>As such, the motion vector will be
+the difference between
+the world position of one vertex
+using the current skin and world space matrices
+and the world position of the same vertex
+using the previous skin and world space matrices.</p>
+
+<p>The algorithm differs
+depending on how
+the skinning is computed,
+but given the case it&#8217;s done on the GPU,
+it will look like follows:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>float4x4 World_curr;
+</span><span class='line'>float4x4 World_prev;
+</span><span class='line'>float4x4 ViewProj;
+</span><span class='line'>
+</span><span class='line'>float4x4 skinning_matrices_curr[n];
+</span><span class='line'>float4x4 skinning_matrices_prev[n];
+</span><span class='line'>
+</span><span class='line'>struct VS_OUT
+</span><span class='line'>{
+</span><span class='line'>    float4 HPos : POSITION;
+</span><span class='line'>    float4 wp_curr : TEXCOORD0;
+</span><span class='line'>    float4 wp_prev : TEXCOORD1;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>VS_OUT VS_main(
+</span><span class='line'>    float4 Position : POSITION,
+</span><span class='line'>    float4 Weight : TEXOORD0,
+</span><span class='line'>    int4 Indeces : TEXCOORD1
+</span><span class='line'>)
+</span><span class='line'>{
+</span><span class='line'>    VS_OUT out = (VS_OUT)01;
+</span><span class='line'>    
+</span><span class='line'>    float4 skinnedPos_curr = computeSkinnedVertex(Position, Indeces, Weight, skinning_matrices_curr);
+</span><span class='line'>    float4 skinnedPos_prev = computeSkinnedVertex(Position, Indeces, Weight, skinning_matrices_prev);    
+</span><span class='line'>    
+</span><span class='line'>    float4 w_curr = mul(World_curr, skinnedPos_curr);
+</span><span class='line'>    float4 w_prev = mul(World_prev, skinnedPos_prev);
+</span><span class='line'>    
+</span><span class='line'>    out.HPos = mul(ViewProj, w_curr);
+</span><span class='line'>    out.wp_curr = w_curr;
+</span><span class='line'>    out.wp_prev = w_prev;
+</span><span class='line'>    
+</span><span class='line'>    return out;
+</span><span class='line'>}
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The final movement vector
+and linear blur computation
+is the same as in the
+Object motion blur.</p>
+
+<h2>Generalization</h2>
+
+<p>Since 3 (4 with some algorithmic changes) of these methods
+consist of writing the motion vector
+into a motion (or velocity) buffer,
+and using this buffer as input to
+a per-pixel linear blur,
+generalizing the blurs seems straightforward.</p>
+
+<p>We choose a texture format
+that allows blending
+and signed values.
+On Xbox360, such a format would be the 32-bit
+<code>D3DFMT_Q8W8V8U8</code>
+or its 64-bit counterpart
+<code>D3DFMT_Q16W16V16U16</code>.</p>
+
+<p>Since the Xenon GPU does not allow floating-point textures
+to be blended, it would be impractical to use such formats
+and doing the blending after a readback of the previous draw pass,
+as this would imply a lot of resolving and texture fetches.</p>
+
+<p>Unsigned formats, on the other hand, make the
+writing of negative values impossible,
+hence they fall out of choice for screen or world space motion vectors.</p>
+
+<p>As such, the generalized algorithm looks as follows:<br/>
+1.  write the Z-Buffer reprojected Camera motion into the velocity buffer as an opaque blend to overwrite any existing value from the previous frame.<br/>
+2.  write the Object motion with Z-testing against the previously used Z-buffer to avoid writing more than necessary. Blending should be additive.<br/>
+3.  write the Skinned Object motion in the same way, blending additively.<br/>
+4.  write some motion vectors (more on that in an ulterior post)
+5.  resolve into a texture of possibly the same format as the render target surface.
+6.  using this velocity texture, apply a per-pixel linear blur on the scene texture.</p>
+
+<h2>More blurring&#8230;</h2>
+
+<p>We can optimize and even batch more blurring into the motion blur pass,
+but I will post more on it a later post.</p>
+
+<p><strong>tl;dr</strong><br/>
+There are several types of Motion blur passes,
+and they can be batched for a more optimal render process.
+More on blurring later.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Chris Helmich</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-26T14:03:00+09:00" pubdate data-updated="true">May 26<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/" data-via="KageKirin" data-counturl="http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/04/05/test-driven-shader-development-an-idea/" title="Previous Post: Test-Driven Shader Development (an idea)">&laquo; Test-Driven Shader Development (an idea)</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/05/29/testisatestisatestisatest/" title="next Post: testisatestisatestisatest">testisatestisatestisatest &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>I'm an european graphics programmer working in Japan and doing alchemistic experiments on code in my free time.</p>
+  <p>This blog is the fruit of one of these experiments.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/05/29/testisatestisatestisatest/">testisatestisatestisatest</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/26/generalized-motion-blur-idea/">Generalized Motion Blur idea</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/05/test-driven-shader-development-an-idea/">Test-Driven Shader Development (an idea)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/04/jekyll-plugin-for-graphviz/">Jekyll plugin for Graphviz</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/03/22/more-mulberry/">More Mulberry</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Github Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/KageKirin">@KageKirin</a> on Github
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'KageKirin',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("KageKirin", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/KageKirin" class="twitter-follow-button" data-show-count="false">Follow @KageKirin</a>
+  
+</section>
+
+
+<section>
+  <h1>Coderwall Badges</h1>
+  <p>
+    <script type="text/javascript">
+      function display_coderwall(args) {
+        var badges = args["data"]["badges"];
+        var wall = '';
+        for ( var i = 0; i < badges.length; i++ ) {
+          var alt_txt = badges[i]["name"];
+          var title_txt = badges[i]["name"] + ' - ' + badges[i]["description"];
+          wall += '<a href="http://coderwall.com/KageKirin/"><img src="'
+            + badges[i]["badge"]
+            + '" width="48" height="48" alt="' + alt_txt
+            + '" title="' + title_txt
+            + '"/></a>';
+        }
+        document.write(wall);
+      }
+    </script>
+    <script src="http://coderwall.com/KageKirin.json?callback=display_coderwall"></script>
+  </p>
+  
+  <p><a href="http://coderwall.com/KageKirin"><img src="http://api.coderwall.com/KageKirin/endorsecount.png" /></a></p>
+  
+</section>
+
+
+
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/kurisu.kirin@gmail.com?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+<section>
+  <h1>Xbox Live</h1>
+  <iframe src="http://gamercard.xbox.com/KageKirin.card" scrolling="no" frameBorder="0" height="140" width="204">KageKirin</iframe>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Chris Helmich -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kagekirin';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/';
+        var disqus_url = 'http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+
+</body>
+</html>

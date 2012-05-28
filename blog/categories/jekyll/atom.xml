@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jekyll | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/jekyll/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-04-07T23:34:04+09:00</updated>
+  <updated>2012-05-29T00:33:39+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -51,7 +51,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p><img src='/images/graphviz/g-57023c2552f7752921d58001f1867c02.svg'></p>
+<p>Liquid error: undefined method `join' for #<String:0x007f93cb8622a0></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
