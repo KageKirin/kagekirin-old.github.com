@@ -9,9 +9,10 @@ categories: ["graphics", "post-processing effects"]
 I hope to cover some more aspects and enhancements of the
 Generalized Motion Blur
 I have not treated in my previous post.
+
 As such there are:  
-*   particle motion blur
-*   generating other blur patterns through a different kind of particles
+*   particle motion blur  
+*   generating other blur patterns through a different kind of particles  
 *   batching screen-space deformation to our scene buffer lookups.
 
 
@@ -146,7 +147,7 @@ but not A2W10V10U10 since we need the Q-channel as well),
 the new buffer layout looks as follows:
 
 ```
-     U8V8            W8Q8
+[    U8V8     ][     W8Q8      ]
 [ssVelocity.xy][ssWarpOffset.xy]
 ```
 (I reversed the channel order for simplicity).
