@@ -11,8 +11,7 @@
   
   <meta name="description" content="I hope to cover some more aspects and enhancements of the
 Generalized Motion Blur
-I have not treated in my previous post.
-As such there are:
+I have not treated in my previous post. As such there are:
 * &hellip;">
   
 
@@ -112,10 +111,11 @@ As such there are:
 
 <div class="entry-content"><p>I hope to cover some more aspects and enhancements of the
 Generalized Motion Blur
-I have not treated in my previous post.
-As such there are:<br/>
-*   particle motion blur
-*   generating other blur patterns through a different kind of particles
+I have not treated in my previous post.</p>
+
+<p>As such there are:<br/>
+*   particle motion blur<br/>
+*   generating other blur patterns through a different kind of particles<br/>
 *   batching screen-space deformation to our scene buffer lookups.</p>
 
 <h2>Particle Motion blur</h2>
@@ -253,7 +253,7 @@ the new buffer layout looks as follows:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'> U8V8            W8Q8
+</pre></td><td class='code'><pre><code class=''><span class='line'>[    U8V8     ][     W8Q8      ]
 </span><span class='line'>[ssVelocity.xy][ssWarpOffset.xy]</span></code></pre></td></tr></table></div></figure>
 
 

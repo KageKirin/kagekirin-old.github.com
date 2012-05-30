@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-05-31T01:57:21+09:00</updated>
+  <updated>2012-05-31T02:01:58+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -51,7 +51,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join' for #<String:0x007fd9a4278898></p>
+<p>Liquid error: undefined method `join' for #<String:0x007fa6bc9d0cc8></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 

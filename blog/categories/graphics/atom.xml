@@ -4,7 +4,7 @@
   <title><![CDATA[Category: graphics | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/graphics/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-05-31T01:57:21+09:00</updated>
+  <updated>2012-05-31T02:01:58+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -20,10 +20,11 @@
     <id>http://KageKirin.github.com/blog/2012/05/31/generalized-motion-blur-contd</id>
     <content type="html"><![CDATA[<p>I hope to cover some more aspects and enhancements of the
 Generalized Motion Blur
-I have not treated in my previous post.
-As such there are:<br/>
-*   particle motion blur
-*   generating other blur patterns through a different kind of particles
+I have not treated in my previous post.</p>
+
+<p>As such there are:<br/>
+*   particle motion blur<br/>
+*   generating other blur patterns through a different kind of particles<br/>
 *   batching screen-space deformation to our scene buffer lookups.</p>
 
 <h2>Particle Motion blur</h2>
@@ -159,13 +160,10 @@ into the 2 remaining channels.</p>
 but not A2W10V10U10 since we need the Q-channel as well),
 the new buffer layout looks as follows:</p>
 
-<p>```</p>
-
-<pre><code> U8V8            W8Q8
-</code></pre>
-
-<p>[ssVelocity.xy][ssWarpOffset.xy]
-```
+<p><code>
+[    U8V8     ][     W8Q8      ]
+[ssVelocity.xy][ssWarpOffset.xy]
+</code>
 (I reversed the channel order for simplicity).</p>
 
 <h3>Drawing offsets</h3>
