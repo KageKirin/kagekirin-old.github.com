@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Generalized Motion Blur idea"
+title: "Generalized Motion Blur (idea)"
 date: 2012-05-26 14:03
 comments: true
-categories: 
+categories: ["graphics", "post-processing effects"]
 ---
 
 The are several existing techniques
@@ -55,7 +55,7 @@ This motion blur processus consists
 in blending the (n) last frame(s)
 with the current frame,
 which results in an
-impression of after image.
+impression of afterimage.
 
 In the old OpenGL versions,
 it could be implemented using an Accumulation Buffer,
@@ -71,11 +71,11 @@ On the downside, this would have me
 store a fullres buffer of frame (t-1),
 and possible fast camera movements
 might yield very strange results,
-such as after images instead of blurred lines.
+such as strange afterimages instead of blurred lines.
 
 
 ### Object Deformation Motion Blur
-This motion blur processus consists
+This motion blur procedure consists
 in deforming moving objects
 in the vertex shader
 along their
@@ -95,6 +95,7 @@ the start and end of said object are easily defined
 (e.g. spheres, as in the AMD demo),
 but becomes more difficult
 as the object's shape gets more complex.
+
 (Although it could be done by
 approximating each vertex to a unit sphere
 around the center of the object
@@ -108,7 +109,7 @@ float hemisphere = sign(dot(posRadius, normalize(vMotion)));	//define which part
 os_position += vMotion * saturate(-hemisphere);	//distort the vertex along the motion vector when on the lower hemisphere
 // continue vertex transform as usual
 ```
-) The result of this is unpredictable, though,
+The result of this is unpredictable on complex geometry, though,
 and might lead to strangely deformed shapes).
 
 
