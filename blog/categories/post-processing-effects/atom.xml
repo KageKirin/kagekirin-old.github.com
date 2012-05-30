@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: post-processing effects | Code Alchemist]]></title>
+  <link href="http://KageKirin.github.com/blog/categories/post-processing-effects/atom.xml" rel="self"/>
+  <link href="http://KageKirin.github.com/"/>
+  <updated>2012-05-31T01:57:21+09:00</updated>
+  <id>http://KageKirin.github.com/</id>
+  <author>
+    <name><![CDATA[Chris Helmich]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Generalized Motion Blur (cont'd)]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/05/31/generalized-motion-blur-contd/"/>
+    <updated>2012-05-31T01:17:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/05/31/generalized-motion-blur-contd</id>
+    <content type="html"><![CDATA[<p>I hope to cover some more aspects and enhancements of the
+Generalized Motion Blur
+I have not treated in my previous post.
+As such there are:<br/>
+*   particle motion blur
+*   generating other blur patterns through a different kind of particles
+*   batching screen-space deformation to our scene buffer lookups.</p>
+
+<h2>Particle Motion blur</h2>
+
+<p>Particles,
+especially fast moving ones,
+should get a motion blur as well
+to improve realism.
+This can be done in the same way
+we did it for object motion blur (unskinned geometry),
+namely by computing and writing out the
+frame-based position difference,
+but there are a few things to take care of.</p>
+
+<h3>Alpha testing and translucence</h3>
+
+<p>I did not cover this in the previous post,
+but it pretty clear that alpha tested or alpha blended
+geometry ideally requires the motion blur
+to take the blending into account.<br/>
+Practically, not taking it into account
+might lead to a few artifacts,
+but I doubt they would be that visible in the final result,
+so we can ignore this part
+and simply blend this motion vector
+on top of the motion in the buffer.
+(We can alter the motion length by some factor
+to account translucency
+and to make it less apparent).</p>
+
+<h3>World transform matrices</h3>
+
+<p>Depending on your architecture,
+particles might get computed a bit differently
+from normal objects.
+While objects can be drawn one by one
+using their world transform matrix,
+this is likely to not being that optimal
+when it comes to drawing thousands of particles.
+In this, it is going to require
+a little extra engineering effort
+to buffer the last frame's particle positions
+and to inject them into the drawing of this frame's ones
+during the motion blur pass.</p>
+
+<p>As this will double the drawcall cost,
+it seems wiser to detect the particles that really
+need motion blur,
+and to just draw these.</p>
+
+<h3>Geometry deformation</h3>
+
+<p>I covered this method in my previous post,
+stating that its result might be unpredictable.
+This still holds true for complex geometry,
+but in the case of particles,
+the geometry ought not be too complex,
+since most particles are just quads
+rendered as billboards.</p>
+
+<p>Since rendering motion blur
+on top of already blurred particles
+will look pretty bad,
+such motion blur deformed particles should
+rendered after the motion blur pass.
+But there is another type of particles,
+that could avoid us the work required to
+either blur thousands of particles at once,
+or to separate the particle passes into
+motion-blur-deformed and normal ones.</p>
+
+<h2>Motion blur particles</h2>
+
+<p>(I did not find a better name despite intensive brainstorming, so beer with it).</p>
+
+<p>The idea is to (slightly) abuse
+the generalized motion blur method
+by writing motion vectors
+directly into the motion buffer.
+This allows us to have a finer control
+over what kind of motion vectors get written,
+as they are based on a "motion vector" texture.<br/>
+For example,
+a motion texture can hold a unique direction
+-- the texture being then of one color with no grading --
+and turn this vector to the "right" direction through rotation
+to write a motion vector.</p>
+
+<p>But since this texture based,
+we can go one step further,
+and use this method to generate
+other blurs,
+that are usually drawn in other passes.
+Best example would a radial blur,
+which is nothing more than a linear blur,
+following centroid lines.</p>
+
+<p>In fact, this is the point
+where the generalized motion blur
+can play its strength,
+by allowing us to batch more
+effects into one single pass.<br/>
+The next section covers even more batching.</p>
+
+<h2>Screen-space warping/refraction/deformation</h2>
+
+<p>The main idea is
+to batch particle based effects,
+that produce a refractive-like visual,
+like heat-haze or underwater "wobbling",
+into the motion blur pass.<br/>
+Since the linear blur pass
+mostly consists of texture fetches
+from the scene buffer,
+we can piggy-back on this
+by "jittering" or "warping",
+thus deforming,
+the screen-space texture coordinates.</p>
+
+<p>To batch this into our existing framework,
+we need to change the layout of the motion buffer a bit.
+Since the "warping" is nothing more
+than offsetting the screen-space coordinates,
+it requires 2 channels to be effective.
+Hence, the motion vector has to be reduced to 2 channels as well,
+which can be achieved by projecting the motion vector
+into screen-space first,
+and then write its 2 values
+into the 2 remaining channels.</p>
+
+<p>Using a QWVU texture format
+(Q8W8V8U8 or Q16W16V16U16,
+but not A2W10V10U10 since we need the Q-channel as well),
+the new buffer layout looks as follows:</p>
+
+<p>```</p>
+
+<pre><code> U8V8            W8Q8
+</code></pre>
+
+<p>[ssVelocity.xy][ssWarpOffset.xy]
+```
+(I reversed the channel order for simplicity).</p>
+
+<h3>Drawing offsets</h3>
+
+<p>Just as with the motion vectors,
+we can write the offset vectors
+into the 2 channels of the motion buffer.
+Writing needs to be additive as well,
+to accumulate offset movements
+from different layers
+of particles,
+so nothing really differs
+from the motion (particle) passes,
+but the target channels.
+To avoid writing into the wrong channels,
+one can set up write masks before the draw pass
+(and reset them at the end).</p>
+
+<p>Particles need to be Z-tested against the Z-buffer
+to mask out foreground geometry,
+and can profit from being smoothly depth-blended,
+by modulating their strength
+with respect to a factor
+depending on the Z-buffer pixel depth
+and the particle's.
+But these conditions have to fulfilled
+for the motion blur particles pass
+as well.</p>
+
+<p>To further optimize the particle passes,
+it's possible to batch drawing
+the motion blur particles
+and the warp particles
+at the same,
+going as far as modifying the shader
+to draw both values at once as needed.</p>
+
+<p>So far for the second post on the
+Generalized Motion Blur method.
+We covered which particle passes
+can be batched
+and why drawing all particles again
+to generate a motion vector field on them
+might not be such a good idea.</p>
+
+<p>In the next posts of the series,
+We will cover the different aspects
+of the actual linear blur pass,
+and show even more effects
+that can be batched into it.</p>
+
+<p><strong>tl;dr</strong><br/>
+Bad idea: Drawing thousands of particles twice to generate motion blur on them.<br/>
+Good idea: Drawing special particles with motion vectors is more efficient.<br/>
+Super idea: Batch screen-space warping particles into the motion particles.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Generalized Motion Blur (idea)]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/"/>
+    <updated>2012-05-26T14:03:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea</id>
+    <content type="html"><![CDATA[<p>The are several existing techniques
+to apply Motion Blur,
+each with a slightly different purpose and outcome.</p>
+
+<p>I will try to roughly classify those techniques
+by showing the method behind,
+and then propose a possible generalization
+that allows to apply those different techniques to the same scene
+in a computation economical way.</p>
+
+<p>Ideally, rendering at high framerates (>60 fps)
+would not require any motion blur,
+as the human brain would create
+the impression of blur
+to compensate for the
+eye's framerate of 24 fps.
+Sadly, such an approach is
+technically
+-- rendering a 60+ frames
+on curreny gen consoles
+is hardly possibly
+or would require other limitations
+in terms of rendering quality --
+and artistically limited
+-- motion blur might be wanted
+to express certain aesthetics --
+hence not practical.</p>
+
+<p>The main goal is
+to apply several kinds
+of motion blur
+to a given scene
+in a as little
+drawcalls and fullscreen passes as possible,
+and also
+using a little framebuffers (memory consumption) as possible.</p>
+
+<p>I will also write about
+possible ways to further optimize
+the processus.</p>
+
+<h2>Types of Motion Blur</h2>
+
+<h3>Last Frame Blended Motion Blur</h3>
+
+<p>This motion blur processus consists
+in blending the (n) last frame(s)
+with the current frame,
+which results in an
+impression of afterimage.</p>
+
+<p>In the old OpenGL versions,
+it could be implemented using an Accumulation Buffer,
+but on modern machines,
+I would implement it
+to use the last frame's final image
+(i.e. blurred with frame (t-2)'s final image)
+as an input to blend with the current frame's final image.
+This would result in a series of recursive blurs,
+which might give a nice result.</p>
+
+<p>On the downside, this would have me
+store a fullres buffer of frame (t-1),
+and possible fast camera movements
+might yield very strange results,
+such as strange afterimages instead of blurred lines.</p>
+
+<h3>Object Deformation Motion Blur</h3>
+
+<p>This motion blur procedure consists
+in deforming moving objects
+in the vertex shader
+along their
+frame interpolated movement vector.</p>
+
+<p>It was used in a demo from AMD (insert link)[here].</p>
+
+<p>The difficulty of the method lies
+in the vertex shader
+where we would need to transform
+the vertices differently,
+according to
+their position relative to the center of the object
+and the motion vector.
+This works for simple objects where
+the start and end of said object are easily defined
+(e.g. spheres, as in the AMD demo),
+but becomes more difficult
+as the object's shape gets more complex.</p>
+
+<p>(Although it could be done by
+approximating each vertex to a unit sphere
+around the center of the object
+and distort vertices
+from the lower hemisphere
+with respect to the motion vector.
+Something like this (untested):
+<code>
+float3 posRadius = normalize(os_position);  //unit sphere radius vector for a given vertex in object space
+float hemisphere = sign(dot(posRadius, normalize(vMotion)));    //define which part of the sphere of the sphere we're on, w/r to the motion vector
+os_position += vMotion * saturate(-hemisphere); //distort the vertex along the motion vector when on the lower hemisphere
+// continue vertex transform as usual
+</code>
+The result of this is unpredictable on complex geometry, though,
+and might lead to strangely deformed shapes).</p>
+
+<p>On modern PC GPUs, this could be solved by issuing
+more vertices to be drawn via a geometry shader.
+Current gen console GPUs on the other don't
+support geometry shader per se,
+making this approach not practical
+for cross-platform titles.</p>
+
+<h3>Camera Motion Blur</h3>
+
+<p>This blur is applicable as post-processing effect,
+as it does not modify any geometry.
+It consists of using the current and the previous frames'
+view-projection matrices to reproject the Z-buffer
+into world space, and to build a difference in position (the movement)
+from the coordinates.</p>
+
+<p>```
+float4x4 invViewProj_curr;
+float4x4 invViewProj_prev;</p>
+
+<p>float zDepth = tex2D(depthBuffer, ssTC);
+float4 sscoords = float4x4(ssTC, zDepth, 1);</p>
+
+<p>float4 wpos_curr = mul(invViewProj_curr, sscoords);
+float4 wpos_prev = mul(invViewProj_prev, sscoords);</p>
+
+<p>float4 wmov = wpos_curr - wpos_prev;
+```</p>
+
+<p>We can then project the movement vector back to screen space
+and use it to apply a linear blur on the scene texture.</p>
+
+<h3>Object Motion Blur</h3>
+
+<p>This blur method requires the blurred objects
+to be drawn in another render pass,
+which resulting buffer is used later
+to apply a per-pixel linear blur.</p>
+
+<p>For each object,
+we pass its current and previous world matrices as input,
+project the project into screen space,
+and write the per-pixel movement
+computed from transforming each of the objects vertices
+by the current and previous world space matrices.</p>
+
+<p>Most of the work can be done in the vertex shader,
+and the position difference can be done in the pixel shader for accuracy.</p>
+
+<p>```
+float4x4 World_curr;
+float4x4 World_prev;
+float4x4 ViewProj;</p>
+
+<p>struct VS_OUT
+{</p>
+
+<pre><code>float4 HPos : POSITION;
+float4 wp_curr : TEXCOORD0;
+float4 wp_prev : TEXCOORD1;
+</code></pre>
+
+<p>};</p>
+
+<p>VS_OUT VS_main(float4 Position : POSITION)
+{</p>
+
+<pre><code>VS_OUT out = (VS_OUT)01;
+
+float4 w_curr = mul(World_curr, Position);
+float4 w_prev = mul(World_prev, Position);
+
+out.HPos = mul(ViewProj, w_curr);
+out.wp_curr = w_curr;
+out.wp_prev = w_prev;
+
+return out;
+</code></pre>
+
+<p>}</p>
+
+<p>float4 PS_main(VS_OUT in) : COLOR0
+{</p>
+
+<pre><code>float4 Color = (float4)0;
+
+float4 wp_diff = in.wp_curr - in.wp_prev;
+Color = wp_diff;
+
+return Color;
+</code></pre>
+
+<p>}</p>
+
+<p>```</p>
+
+<p>Then again, as for the Camera motion blur,
+we use this movement vector
+(projected into screen space)
+as input to the linear blur.</p>
+
+<h3>Animation Motion Blur</h3>
+
+<p>This method is an extension
+upon the object motion blur
+for skinned objects
+that takes the animation into account
+to build the motion vector.</p>
+
+<p>As such, the motion vector will be
+the difference between
+the world position of one vertex
+using the current skin and world space matrices
+and the world position of the same vertex
+using the previous skin and world space matrices.</p>
+
+<p>The algorithm differs
+depending on how
+the skinning is computed,
+but given the case it's done on the GPU,
+it will look like follows:</p>
+
+<p>```
+float4x4 World_curr;
+float4x4 World_prev;
+float4x4 ViewProj;</p>
+
+<p>float4x4 skinning_matrices_curr[n];
+float4x4 skinning_matrices_prev[n];</p>
+
+<p>struct VS_OUT
+{</p>
+
+<pre><code>float4 HPos : POSITION;
+float4 wp_curr : TEXCOORD0;
+float4 wp_prev : TEXCOORD1;
+</code></pre>
+
+<p>};</p>
+
+<p>VS_OUT VS_main(</p>
+
+<pre><code>float4 Position : POSITION,
+float4 Weight : TEXOORD0,
+int4 Indeces : TEXCOORD1
+</code></pre>
+
+<p>)
+{</p>
+
+<pre><code>VS_OUT out = (VS_OUT)01;
+
+float4 skinnedPos_curr = computeSkinnedVertex(Position, Indeces, Weight, skinning_matrices_curr);
+float4 skinnedPos_prev = computeSkinnedVertex(Position, Indeces, Weight, skinning_matrices_prev);    
+
+float4 w_curr = mul(World_curr, skinnedPos_curr);
+float4 w_prev = mul(World_prev, skinnedPos_prev);
+
+out.HPos = mul(ViewProj, w_curr);
+out.wp_curr = w_curr;
+out.wp_prev = w_prev;
+
+return out;
+</code></pre>
+
+<p>}</p>
+
+<p>```</p>
+
+<p>The final movement vector
+and linear blur computation
+is the same as in the
+Object motion blur.</p>
+
+<h2>Generalization</h2>
+
+<p>Since 3 (4 with some algorithmic changes) of these methods
+consist of writing the motion vector
+into a motion (or velocity) buffer,
+and using this buffer as input to
+a per-pixel linear blur,
+generalizing the blurs seems straightforward.</p>
+
+<p>We choose a texture format
+that allows blending
+and signed values.
+On Xbox360, such a format would be the 32-bit
+<code>D3DFMT_Q8W8V8U8</code>
+or its 64-bit counterpart
+<code>D3DFMT_Q16W16V16U16</code>.</p>
+
+<p>Since the Xenon GPU does not allow floating-point textures
+to be blended, it would be impractical to use such formats
+and doing the blending after a readback of the previous draw pass,
+as this would imply a lot of resolving and texture fetches.</p>
+
+<p>Unsigned formats, on the other hand, make the
+writing of negative values impossible,
+hence they fall out of choice for screen or world space motion vectors.</p>
+
+<p>As such, the generalized algorithm looks as follows:<br/>
+1.  write the Z-Buffer reprojected Camera motion into the velocity buffer as an opaque blend to overwrite any existing value from the previous frame.<br/>
+2.  write the Object motion with Z-testing against the previously used Z-buffer to avoid writing more than necessary. Blending should be additive.<br/>
+3.  write the Skinned Object motion in the same way, blending additively.<br/>
+4.  write some motion vectors (more on that in an ulterior post)
+5.  resolve into a texture of possibly the same format as the render target surface.
+6.  using this velocity texture, apply a per-pixel linear blur on the scene texture.</p>
+
+<h2>More blurring...</h2>
+
+<p>We can optimize and even batch more blurring into the motion blur pass,
+but I will post more on it a later post.</p>
+
+<p><strong>tl;dr</strong><br/>
+There are several types of Motion blur passes,
+and they can be batched for a more optimal render process.
+More on blurring later.</p>
+]]></content>
+  </entry>
+  
+</feed>
