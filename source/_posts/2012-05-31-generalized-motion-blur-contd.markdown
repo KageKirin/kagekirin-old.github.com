@@ -10,7 +10,8 @@ I hope to cover some more aspects and enhancements of the
 Generalized Motion Blur
 I have not treated in my previous post.
 
-As such there are:  
+As such there are:
+
 *   particle motion blur  
 *   generating other blur patterns through a different kind of particles  
 *   batching screen-space deformation to our scene buffer lookups.
