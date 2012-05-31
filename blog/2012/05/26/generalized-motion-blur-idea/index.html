@@ -127,7 +127,7 @@ eye&#8217;s framerate of 24 fps.
 Sadly, such an approach is
 technically
 &#8211; rendering a 60+ frames
-on curreny gen consoles
+on current gen consoles
 is hardly possibly
 or would require other limitations
 in terms of rendering quality &#8211;
@@ -183,7 +183,9 @@ in the vertex shader
 along their
 frame interpolated movement vector.</p>
 
-<p>It was used in a demo from AMD (insert link)[here].</p>
+<p>It was used for example in the
+<a href="http://developer.amd.com/archive/legacydemos/pages/ATIRadeon9700Real-TimeDemos.aspx">Radeon 9700 Animusic &#8220;Pipe Dream&#8221; demo from ATI</a>
+to apply a motion blur on the balls.</p>
 
 <p>The difficulty of the method lies
 in the vertex shader
@@ -261,6 +263,9 @@ from the coordinates.</p>
 
 <p>We can then project the movement vector back to screen space
 and use it to apply a linear blur on the scene texture.</p>
+
+<p>Note: this method was presented by nVidia in the
+<a href="http://http.developer.nvidia.com/GPUGems3/gpugems3_ch27.html">GPU Gems 3</a>.</p>
 
 <h3>Object Motion Blur</h3>
 

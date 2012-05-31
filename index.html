@@ -11,8 +11,7 @@
   
   <meta name="description" content="I hope to cover some more aspects and enhancements of the
 Generalized Motion Blur
-I have not treated in my previous post. As such there are:
-* &hellip;">
+I have not treated in my previous post. As such there are: particle &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -116,10 +115,14 @@ I have not treated in my previous post. As such there are:
 Generalized Motion Blur
 I have not treated in my previous post.</p>
 
-<p>As such there are:<br/>
-*   particle motion blur<br/>
-*   generating other blur patterns through a different kind of particles<br/>
-*   batching screen-space deformation to our scene buffer lookups.</p>
+<p>As such there are:</p>
+
+<ul>
+<li>particle motion blur</li>
+<li>generating other blur patterns through a different kind of particles</li>
+<li>batching screen-space deformation to our scene buffer lookups.</li>
+</ul>
+
 
 <h2>Particle Motion blur</h2>
 
@@ -371,7 +374,7 @@ eye&#8217;s framerate of 24 fps.
 Sadly, such an approach is
 technically
 &#8211; rendering a 60+ frames
-on curreny gen consoles
+on current gen consoles
 is hardly possibly
 or would require other limitations
 in terms of rendering quality &#8211;
@@ -427,7 +430,9 @@ in the vertex shader
 along their
 frame interpolated movement vector.</p>
 
-<p>It was used in a demo from AMD (insert link)[here].</p>
+<p>It was used for example in the
+<a href="http://developer.amd.com/archive/legacydemos/pages/ATIRadeon9700Real-TimeDemos.aspx">Radeon 9700 Animusic &#8220;Pipe Dream&#8221; demo from ATI</a>
+to apply a motion blur on the balls.</p>
 
 <p>The difficulty of the method lies
 in the vertex shader
@@ -505,6 +510,9 @@ from the coordinates.</p>
 
 <p>We can then project the movement vector back to screen space
 and use it to apply a linear blur on the scene texture.</p>
+
+<p>Note: this method was presented by nVidia in the
+<a href="http://http.developer.nvidia.com/GPUGems3/gpugems3_ch27.html">GPU Gems 3</a>.</p>
 
 <h3>Object Motion Blur</h3>
 
@@ -954,7 +962,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fa6bb9e7988></p>
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fd224bedd88></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
