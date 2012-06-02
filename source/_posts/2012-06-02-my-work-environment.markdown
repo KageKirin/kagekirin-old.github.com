@@ -3,7 +3,7 @@ layout: post
 title: "My Work Environment (Valhalla, 2012)"
 date: 2012-06-02 19:07
 comments: true
-categories: 
+categories: ["rant", "work"]
 ---
 
 One of those posts, where I rant about my work environment.

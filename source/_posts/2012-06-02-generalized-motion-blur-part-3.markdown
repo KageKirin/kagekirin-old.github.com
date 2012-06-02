@@ -3,7 +3,7 @@ layout: post
 title: "Generalized Motion Blur - the linear blur and beyond"
 date: 2012-06-02 13:32
 comments: true
-categories: ["graphics". "post-processing effect"]
+categories: ["graphics", "post-processing effect"]
 published: false
 ---
 
