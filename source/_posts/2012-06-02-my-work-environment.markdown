@@ -13,15 +13,15 @@ since all the tools only work there.
 So, I'm running Windows7
 (to which I got upgraded just recently, for the sake of my own sanity,
 which was at stake for using Vista in 2012)
-on a DELL Precision T3500 with Radeon Graphics.  
+on a DELL Precision T3500 with AMD Radeon Graphics.  
 For the IDE, it's naturally Visual Studio,
 namely Visual Studio 2008 Team System.
-Per default, I had no version of Visual Assist X,
+Per default, I had no version of [Visual Assist X](http://www.wholetomato.com/),
 forcing me to buy my own license
 (talking about "tools of the trade" when you can't have access to the swiss army knife of VS).  
-I also installed MetalScroll,
+I also installed [MetalScroll](http://code.google.com/p/metalscroll/),
 which makes finding references inside of one file pretty easy.  
-And IncrediBuild,
+And [IncrediBuild](http://www.xoreax.com/),
 which apparently costs way more in Japan,
 due to some dirty tricks from the Isreali Embassy (the only provider of this product in Japan),
 which tries to suck the lifeblood out of japanese software companies through their pricing.
@@ -45,7 +45,7 @@ I configured P4 to use P4merge for merging files,
 since I like the 3 way-view with
 "theirs", "base" and "ours" on the top,
 and "merge result" below.  
-For diffs, I'm using a very handy tool called ["diffuse"](http://diffuse.sf.net),
+For diffs, I'm using a very handy tool called ["Diffuse"](http://diffuse.sf.net),
 which allows for super fast diff'ing with only keyboard interaction.
 (The only issue I'm having with it is that it tends to break files with japanese encoding --
 but then again, it's the comments that are in japanese,
