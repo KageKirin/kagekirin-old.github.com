@@ -4,7 +4,7 @@
   <title><![CDATA[Category: work | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/work/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-06-02T19:16:27+09:00</updated>
+  <updated>2012-06-02T19:19:07+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -24,14 +24,14 @@
 since all the tools only work there.
 So, I'm running Windows7
 (to which I got upgraded just recently, for the sake of my own sanity, which was at stake for using Vista in 2012)
-on a DELL Precision T3500 with Radeon Graphics.
+on a DELL Precision T3500 with Radeon Graphics.<br/>
 For the IDE, it's naturally Visual Studio,
 namely Visual Studio 2008 Team System.
 Per default, I had no version of Visual Assist X,
 forcing me to buy my own license
-(talking about "tools of the trade" when you can't have access to the swiss army knife of VS).
+(talking about "tools of the trade" when you can't have access to the swiss army knife of VS).<br/>
 I also installed MetalScroll,
-which makes finding references inside of one file pretty easy.
+which makes finding references inside of one file pretty easy.<br/>
 And IncrediBuild,
 which apparently costs way more in Japan,
 due to some dirty tricks from the Isreali Embassy (the only provider of this product in Japan),
@@ -44,7 +44,7 @@ and despite there being a couple of welcome improvements in the latest versions,
 i.e. streams,
 I don't have access to them as the server is running in older version.
 In fact, I often wish (at least 5 times a day) I could use git locally,
-but the git-p4 bridges don't work that well.
+but the git-p4 bridges don't work that well.<br/>
 (The hg-p4 bridge does work well, but I don't remember the way I set it up at my former employer).</p>
 
 <p>For file editing related things (other than C++),
@@ -54,10 +54,10 @@ doesn't give me headaches about usability issues.</p>
 
 <p>I set up P4 to use P4merge for merging files, since I like the 3 way-view with
 "theirs", "base" and "ours" on the top,
-and "merge result" below.
+and "merge result" below.<br/>
 For diffs, I'm using a very handy tool called "diffuse",
 which allows for super fast diff'ing with only keyboard interaction.
-(The only issue I'm having with it is that it tends to break files with japanese encoding.
+(The only issue I'm having with it is that it tends to break files with japanese encoding.<br/>
 But then again, it's the comments that are in japanese,
 and I just delete them since "you shouldn't need to comment your code").</p>
 
@@ -68,7 +68,7 @@ or Total Commander (which is my preference when it comes to moving lots of files
 <p>JWPce is my preference for writing Japanese,
 as it includes a pretty neat dictionary,
 and I'm so used to this tool,
-that I can hardly read Japanese without.
+that I can hardly read Japanese without.<br/>
 (Yeah, I'm lazy and I know it).</p>
 
 <p>For the other dev tools,
@@ -82,7 +82,7 @@ and I'm running one from time to time to test software before installing it on m
 It's also pretty cool to track down hardware or driver issues that occur on the host system,
 but should not be reproducible on the VM.</p>
 
-<p>And that's pretty much it.
+<p>And that's pretty much it.<br/>
 I'm using some batch files to simplify a couple of workflows,
 but nothing really extraordinary.</p>
 ]]></content>
