@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-06-02T19:19:07+09:00</updated>
+  <updated>2012-06-02T22:22:50+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[My Work Environment (Valhalla, 2012)]]></title>
+    <title type="html"><![CDATA[My Work Environment (at work, 2012)]]></title>
     <link href="http://KageKirin.github.com/blog/2012/06/02/my-work-environment/"/>
     <updated>2012-06-02T19:07:00+09:00</updated>
     <id>http://KageKirin.github.com/blog/2012/06/02/my-work-environment</id>
@@ -857,7 +857,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007f9b6a30b940></p>
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007f9783150aa0></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
