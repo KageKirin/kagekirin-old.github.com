@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-06-01T02:02:16+09:00</updated>
+  <updated>2012-06-02T19:16:27+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My Work Environment (Valhalla, 2012)]]></title>
+    <link href="http://KageKirin.github.com/blog/2012/06/02/my-work-environment/"/>
+    <updated>2012-06-02T19:07:00+09:00</updated>
+    <id>http://KageKirin.github.com/blog/2012/06/02/my-work-environment</id>
+    <content type="html"><![CDATA[<p>One of those posts, where I rant about my work environment.</p>
+
+<p>At work, I&#8217;m pretty much bound to a Windows environment,
+since all the tools only work there.
+So, I&#8217;m running Windows7
+(to which I got upgraded just recently, for the sake of my own sanity, which was at stake for using Vista in 2012)
+on a DELL Precision T3500 with Radeon Graphics.
+For the IDE, it&#8217;s naturally Visual Studio,
+namely Visual Studio 2008 Team System.
+Per default, I had no version of Visual Assist X,
+forcing me to buy my own license
+(talking about &#8220;tools of the trade&#8221; when you can&#8217;t have access to the swiss army knife of VS).
+I also installed MetalScroll,
+which makes finding references inside of one file pretty easy.
+And IncrediBuild,
+which apparently costs way more in Japan,
+due to some dirty tricks from the Isreali Embassy (the only provider of this product in Japan),
+which tries to suck the lifeblood out of japanese software companies through their pricing.</p>
+
+<p>For the source version control,
+we&#8217;re using Perforce,
+so I&#8217;m stuck with their tools,
+and despite there being a couple of welcome improvements in the latest versions,
+i.e. streams,
+I don&#8217;t have access to them as the server is running in older version.
+In fact, I often wish (at least 5 times a day) I could use git locally,
+but the git-p4 bridges don&#8217;t work that well.
+(The hg-p4 bridge does work well, but I don&#8217;t remember the way I set it up at my former employer).</p>
+
+<p>For file editing related things (other than C++),
+I&#8217;m using Notepad++,
+which, although not perfect,
+doesn&#8217;t give me headaches about usability issues.</p>
+
+<p>I set up P4 to use P4merge for merging files, since I like the 3 way-view with
+&#8220;theirs&#8221;, &#8220;base&#8221; and &#8220;ours&#8221; on the top,
+and &#8220;merge result&#8221; below.
+For diffs, I&#8217;m using a very handy tool called &#8220;diffuse&#8221;,
+which allows for super fast diff&#8217;ing with only keyboard interaction.
+(The only issue I&#8217;m having with it is that it tends to break files with japanese encoding.
+But then again, it&#8217;s the comments that are in japanese,
+and I just delete them since &#8220;you shouldn&#8217;t need to comment your code&#8221;).</p>
+
+<p>For other file related actions,
+I&#8217;m either using the vanilla explorer,
+or Total Commander (which is my preference when it comes to moving lots of files).</p>
+
+<p>JWPce is my preference for writing Japanese,
+as it includes a pretty neat dictionary,
+and I&#8217;m so used to this tool,
+that I can hardly read Japanese without.
+(Yeah, I&#8217;m lazy and I know it).</p>
+
+<p>For the other dev tools,
+it&#8217;s pretty classic,
+XDK for working on Xbox360,
+and SN Tools for working on PS3.</p>
+
+<p>Oh yeah, one of the tools that come in handy is Oracle&#8217;s -Sun&#8217;s- Virtual Machine VirtualBox.
+I have already a (several) Linux installation to automatize some backups
+and I&#8217;m running one from time to time to test software before installing it on my main system.
+It&#8217;s also pretty cool to track down hardware or driver issues that occur on the host system,
+but should not be reproducible on the VM.</p>
+
+<p>And that&#8217;s pretty much it.
+I&#8217;m using some batch files to simplify a couple of workflows,
+but nothing really extraordinary.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Generalized Motion Blur (cont'd)]]></title>
@@ -782,7 +857,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007ffa8c38b628></p>
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fa681b6d6e8></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
