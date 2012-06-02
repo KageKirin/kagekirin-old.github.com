@@ -4,7 +4,7 @@
   <title><![CDATA[Category: work | Code Alchemist]]></title>
   <link href="http://KageKirin.github.com/blog/categories/work/atom.xml" rel="self"/>
   <link href="http://KageKirin.github.com/"/>
-  <updated>2012-06-02T22:32:24+09:00</updated>
+  <updated>2012-06-02T23:06:10+09:00</updated>
   <id>http://KageKirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -25,15 +25,15 @@ since all the tools only work there.
 So, I'm running Windows7
 (to which I got upgraded just recently, for the sake of my own sanity,
 which was at stake for using Vista in 2012)
-on a DELL Precision T3500 with Radeon Graphics.<br/>
+on a DELL Precision T3500 with AMD Radeon Graphics.<br/>
 For the IDE, it's naturally Visual Studio,
 namely Visual Studio 2008 Team System.
-Per default, I had no version of Visual Assist X,
+Per default, I had no version of <a href="http://www.wholetomato.com/">Visual Assist X</a>,
 forcing me to buy my own license
 (talking about "tools of the trade" when you can't have access to the swiss army knife of VS).<br/>
-I also installed MetalScroll,
+I also installed <a href="http://code.google.com/p/metalscroll/">MetalScroll</a>,
 which makes finding references inside of one file pretty easy.<br/>
-And IncrediBuild,
+And <a href="http://www.xoreax.com/">IncrediBuild</a>,
 which apparently costs way more in Japan,
 due to some dirty tricks from the Isreali Embassy (the only provider of this product in Japan),
 which tries to suck the lifeblood out of japanese software companies through their pricing.</p>
@@ -57,7 +57,7 @@ doesn't give me headaches about usability issues.</p>
 since I like the 3 way-view with
 "theirs", "base" and "ours" on the top,
 and "merge result" below.<br/>
-For diffs, I'm using a very handy tool called <a href="http://diffuse.sf.net">"diffuse"</a>,
+For diffs, I'm using a very handy tool called <a href="http://diffuse.sf.net">"Diffuse"</a>,
 which allows for super fast diff'ing with only keyboard interaction.
 (The only issue I'm having with it is that it tends to break files with japanese encoding --
 but then again, it's the comments that are in japanese,
