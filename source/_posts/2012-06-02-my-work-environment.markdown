@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "My Work Environment (Valhalla, 2012)"
+title: "My Work Environment (at work, 2012)"
 date: 2012-06-02 19:07
 comments: true
 categories: ["rant", "work"]
