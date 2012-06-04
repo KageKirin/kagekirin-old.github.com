@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Code Alchemist]]></title>
-  <link href="http://KageKirin.github.com/atom.xml" rel="self"/>
-  <link href="http://KageKirin.github.com/"/>
-  <updated>2012-06-03T17:22:57+09:00</updated>
-  <id>http://KageKirin.github.com/</id>
+  <link href="http://kagekirin.github.com/atom.xml" rel="self"/>
+  <link href="http://kagekirin.github.com/"/>
+  <updated>2012-06-05T00:27:58+09:00</updated>
+  <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[My Work Environment (at work, 2012)]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/06/02/my-work-environment/"/>
+    <link href="http://kagekirin.github.com/blog/2012/06/02/my-work-environment/"/>
     <updated>2012-06-02T19:07:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/06/02/my-work-environment</id>
+    <id>http://kagekirin.github.com/blog/2012/06/02/my-work-environment</id>
     <content type="html"><![CDATA[<p>One of those posts, where I rant about my work environment.</p>
 
 <p>At work, I&#8217;m pretty much bound to a Windows environment,
@@ -96,9 +96,9 @@ but nothing really extraordinary.</p>
   
   <entry>
     <title type="html"><![CDATA[Generalized Motion Blur (cont'd)]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/05/31/generalized-motion-blur-contd/"/>
+    <link href="http://kagekirin.github.com/blog/2012/05/31/generalized-motion-blur-contd/"/>
     <updated>2012-05-31T01:17:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/05/31/generalized-motion-blur-contd</id>
+    <id>http://kagekirin.github.com/blog/2012/05/31/generalized-motion-blur-contd</id>
     <content type="html"><![CDATA[<p>I hope to cover some more aspects and enhancements of the
 Generalized Motion Blur
 I have not treated in my previous post.</p>
@@ -311,9 +311,9 @@ Super idea: Batch screen-space warping particles into the motion particles.</p>
   
   <entry>
     <title type="html"><![CDATA[Generalized Motion Blur (idea)]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/"/>
+    <link href="http://kagekirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/"/>
     <updated>2012-05-26T14:03:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea</id>
+    <id>http://kagekirin.github.com/blog/2012/05/26/generalized-motion-blur-idea</id>
     <content type="html"><![CDATA[<p>The are several existing techniques
 to apply Motion Blur,
 each with a slightly different purpose and outcome.</p>
@@ -713,9 +713,9 @@ More on blurring later.</p>
   
   <entry>
     <title type="html"><![CDATA[Test-Driven Shader Development (an idea)]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/"/>
+    <link href="http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/"/>
     <updated>2012-04-05T00:57:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea</id>
+    <id>http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea</id>
     <content type="html"><![CDATA[<p>This post is more about an idea I had, than about its actual implementation.</p>
 
 <p>Test-driven Shader Development</p>
@@ -827,9 +827,9 @@ processed by &#8220;any&#8221; kind of &#8220;processor&#8221;, be it DX, GL, CL
   
   <entry>
     <title type="html"><![CDATA[Jekyll plugin for Graphviz]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/"/>
+    <link href="http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/"/>
     <updated>2012-04-04T23:28:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz</id>
+    <id>http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz</id>
     <content type="html"><![CDATA[<p>I stumbled over this small Jekyll plugin for Octopress
 which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation inside a blog post.<br/>
 <a href="http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/">original link</a></p>
@@ -863,7 +863,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fa0da06d6f0></p>
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fd7fab4feb8></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
@@ -880,9 +880,9 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
   
   <entry>
     <title type="html"><![CDATA[More Mulberry]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/03/22/more-mulberry/"/>
+    <link href="http://kagekirin.github.com/blog/2012/03/22/more-mulberry/"/>
     <updated>2012-03-22T01:25:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/03/22/more-mulberry</id>
+    <id>http://kagekirin.github.com/blog/2012/03/22/more-mulberry</id>
     <content type="html"><![CDATA[<p>I found <a href="http://www.slideshare.net/rmurphey/getting-started-with-mulberry">this presentation about Mulberry</a> and wanted to share it.<br/>
 It explains the core functionality of Mulberry.</p>
 
@@ -902,9 +902,9 @@ It explains the core functionality of Mulberry.</p>
   
   <entry>
     <title type="html"><![CDATA[Mulberry Jam (cont'd)]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/"/>
+    <link href="http://kagekirin.github.com/blog/2012/03/14/mulberry-jam-contd/"/>
     <updated>2012-03-14T01:00:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd</id>
+    <id>http://kagekirin.github.com/blog/2012/03/14/mulberry-jam-contd</id>
     <content type="html"><![CDATA[<p>Follow up on last week&#8217;s post about Mulberry.</p>
 
 <p>There have been a couple of changes with Xcode 4.3, iOS 5.1 and some updates in Mulberry that gave me a hard time&#8230;
@@ -1031,7 +1031,7 @@ But I guess, having a third <code>Toura-universal.xcodeproj</code> for universal
 <a href="http://nachbaur.com/blog/building-ios-apps-for-over-the-air-adhoc-distribution">This link</a> looks helpful.</p>
 
 <p><strong>tl;dr</strong> I hope this short guide was useful to you.<br/>
-I&#8217;ve created a <a href="http://KageKirin.github.com/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
+I&#8217;ve created a <a href="http://kagekirin.github.com/help/mulberry-cheat-sheet.html">help page</a> and although it&#8217;s more a reminder for myself, you can use it as an easy overview.</p>
 
 <p>Next up: Further Mulberry app customization &#8211; adapting style and layout.</p>
 ]]></content>
@@ -1039,9 +1039,9 @@ I&#8217;ve created a <a href="http://KageKirin.github.com/help/mulberry-cheat-sh
   
   <entry>
     <title type="html"><![CDATA[Mulberry Jam]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/03/07/mulberry-jam/"/>
+    <link href="http://kagekirin.github.com/blog/2012/03/07/mulberry-jam/"/>
     <updated>2012-03-07T01:00:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/03/07/mulberry-jam</id>
+    <id>http://kagekirin.github.com/blog/2012/03/07/mulberry-jam</id>
     <content type="html"><![CDATA[<p>I&#8217;ve been tinkering with <a href="http://mulberry.toura.com">Mulberry/Toura</a> (read Mulberry by Toura) lately. It&#8217;s surprisingly easy how you can create a simple app.
 For my needs, a simple &#8220;information app&#8221;, it&#8217;s really perfect.<br/>
 But since I had some starter issues, here&#8217;s a short tutorial on what I did.<br/>
@@ -1516,9 +1516,9 @@ The <code>&lt;app-root&gt;/pages/video_page.md</code> should look like this:</p>
   
   <entry>
     <title type="html"><![CDATA[An outlook and some orientation]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/"/>
+    <link href="http://kagekirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/"/>
     <updated>2012-03-01T00:17:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation</id>
+    <id>http://kagekirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation</id>
     <content type="html"><![CDATA[<p>What will this blog be about?</p>
 
 <p>I stated in my opening post that I will blog about graphics programming, programming on a general level, and add some tadbits about web programming. To concretize this plan, or rather as a TODO list, I wrote this post.</p>
@@ -1607,9 +1607,9 @@ I have no clue what I will write about on this blog. But be sure that it&#8217;l
   
   <entry>
     <title type="html"><![CDATA[Playing with Octopress -- Custom Asides]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/"/>
+    <link href="http://kagekirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/"/>
     <updated>2012-02-22T01:31:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides</id>
+    <id>http://kagekirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides</id>
     <content type="html"><![CDATA[<p>If you&#8217;ve followed this blog, you might have noticed a couple of changes in the last days.
 In fact, I&#8217;ve been playing around with customizing Octopress and added a couple of custom asides.</p>
 
@@ -1619,7 +1619,7 @@ In fact, I&#8217;ve been playing around with customizing Octopress and added a c
 
 <p>As customization on the original code, I added the img@alt and img@title attributes to be generated from Coderwall&#8217;s JSON response data. This gives a nice addition for hovering over the badge to get its description, and an alternative description for non-graphic browsers.</p>
 
-<figure class='code'><figcaption><span> (coderwall.html)</span> <a href='http://KageKirin.github.com/downloads/code/../../_includes/asides/coderwall.html'>download</a></figcaption>
+<figure class='code'><figcaption><span> (coderwall.html)</span> <a href='http://kagekirin.github.com/downloads/code/../../_includes/asides/coderwall.html'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -1681,7 +1681,7 @@ In fact, I&#8217;ve been playing around with customizing Octopress and added a c
 
 <p>The second custom aside I created follows the implementation as described on the official Xbox site, which is using an iframe to embed the card. I don&#8217;t really like the iframe to embed an external page, but this implementation was small and function, which is the essential.</p>
 
-<figure class='code'><figcaption><span> (xboxlive.html)</span> <a href='http://KageKirin.github.com/downloads/code/../../_includes/asides/xboxlive.html'>download</a></figcaption>
+<figure class='code'><figcaption><span> (xboxlive.html)</span> <a href='http://kagekirin.github.com/downloads/code/../../_includes/asides/xboxlive.html'>download</a></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -1712,9 +1712,9 @@ Creating asides is super easy with Jekyll/Octopress. And I&#8217;ll probably cre
   
   <entry>
     <title type="html"><![CDATA[Rediscovering Web Development in 2012]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/"/>
+    <link href="http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/"/>
     <updated>2012-02-19T22:49:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012</id>
+    <id>http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012</id>
     <content type="html"><![CDATA[<p>I&#8217;m not a web developer by birth.
 I&#8217;ve done some web development as cheap jobs when I was a student. As such, I knew the vital parts of PHP, some bits of Javascript and of course the HTML4 DOM and the basics of CSS. Just enough to pound out a (-cheap-looking- programmer art) webpage, with MySQL for database support.
 That was between 1999 and 2006. Then I graduated.</p>
@@ -1747,9 +1747,9 @@ Actually, it&#8217;s awesome to see all the new evolutions of web technologies, 
   
   <entry>
     <title type="html"><![CDATA[Opening Post]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/02/15/opening-post/"/>
+    <link href="http://kagekirin.github.com/blog/2012/02/15/opening-post/"/>
     <updated>2012-02-15T23:32:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/02/15/opening-post</id>
+    <id>http://kagekirin.github.com/blog/2012/02/15/opening-post</id>
     <content type="html"><![CDATA[<p><strong>tl;dr</strong> I hereby declare this blog opened!</p>
 
 <p>Since my old WP blog died of (wilfull) neglect at least 2 years ago, I am starting a new one, and will try to keep it updated regularly. (I don&#8217;t promise anything, though).
@@ -1769,9 +1769,9 @@ And since I&#8217;m currently rediscovering a lot of web programming that I just
   
   <entry>
     <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/02/15/hello-world/"/>
+    <link href="http://kagekirin.github.com/blog/2012/02/15/hello-world/"/>
     <updated>2012-02-15T23:31:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/02/15/hello-world</id>
+    <id>http://kagekirin.github.com/blog/2012/02/15/hello-world</id>
     <content type="html"><![CDATA[<p>Like the first words an infant says, a coder starts his &#8220;coder life&#8221; by printing those simple words.</p>
 
 <p>More in detail, the point of creating a program that prints a little message is to prove that the programming statements are understood by the parser, can be translated into an abstract syntax, and finally translated into binary instructions understandable by the machine. In short, if this simple program can be compiled and linked, any other program can be built as well.</p>

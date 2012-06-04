@@ -1,99 +1,99 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/02/15/hello-world/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/02/15/hello-world/</loc>
         <lastmod>2012-06-01T01:58:50+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/02/15/opening-post/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/02/15/opening-post/</loc>
         <lastmod>2012-06-01T01:58:50+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/</loc>
         <lastmod>2012-06-01T01:58:50+09:00</lastmod>
     </url>
     <url>
         <loc>
-            http://KageKirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/
+            http://kagekirin.github.com/blog/2012/02/22/playing-with-octopress-custom-asides/
         </loc>
         <lastmod>2012-06-01T01:58:50+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/03/01/an-outlook-and-some-orientation/</loc>
         <lastmod>2012-06-01T01:58:50+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/03/07/mulberry-jam/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/03/07/mulberry-jam/</loc>
         <lastmod>2012-06-01T01:58:50+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/03/14/mulberry-jam-contd/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/03/14/mulberry-jam-contd/</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/03/22/more-mulberry/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/03/22/more-mulberry/</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
         <loc>
-            http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/
+            http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/
         </loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/05/26/generalized-motion-blur-idea/</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/05/31/generalized-motion-blur-contd/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/05/31/generalized-motion-blur-contd/</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/2012/06/02/my-work-environment/</loc>
+        <loc>http://kagekirin.github.com/blog/2012/06/02/my-work-environment/</loc>
         <lastmod>2012-06-02T23:04:10+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/about/cv.html</loc>
+        <loc>http://kagekirin.github.com/about/cv.html</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/about/graphics-programmer.html</loc>
+        <loc>http://kagekirin.github.com/about/graphics-programmer.html</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/about/</loc>
+        <loc>http://kagekirin.github.com/about/</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/about/resume.html</loc>
+        <loc>http://kagekirin.github.com/about/resume.html</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/blog/archives/</loc>
+        <loc>http://kagekirin.github.com/blog/archives/</loc>
         <lastmod>2012-06-02T23:04:10+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/help/</loc>
+        <loc>http://kagekirin.github.com/help/</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/help/mulberry-cheat-sheet.html</loc>
+        <loc>http://kagekirin.github.com/help/mulberry-cheat-sheet.html</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/help/octopress-cheat-sheet.html</loc>
+        <loc>http://kagekirin.github.com/help/octopress-cheat-sheet.html</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/</loc>
+        <loc>http://kagekirin.github.com/</loc>
         <lastmod>2012-06-02T23:04:10+09:00</lastmod>
     </url>
     <url>
-        <loc>http://KageKirin.github.com/test/</loc>
+        <loc>http://kagekirin.github.com/test/</loc>
         <lastmod>2012-06-01T01:58:51+09:00</lastmod>
     </url>
 </urlset>

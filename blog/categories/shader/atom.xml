@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: shader | Code Alchemist]]></title>
-  <link href="http://KageKirin.github.com/blog/categories/shader/atom.xml" rel="self"/>
-  <link href="http://KageKirin.github.com/"/>
-  <updated>2012-06-03T17:22:57+09:00</updated>
-  <id>http://KageKirin.github.com/</id>
+  <link href="http://kagekirin.github.com/blog/categories/shader/atom.xml" rel="self"/>
+  <link href="http://kagekirin.github.com/"/>
+  <updated>2012-06-05T00:27:58+09:00</updated>
+  <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Test-Driven Shader Development (an idea)]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/"/>
+    <link href="http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea/"/>
     <updated>2012-04-05T00:57:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea</id>
+    <id>http://kagekirin.github.com/blog/2012/04/05/test-driven-shader-development-an-idea</id>
     <content type="html"><![CDATA[<p>This post is more about an idea I had, than about its actual implementation.</p>
 
 <p>Test-driven Shader Development</p>

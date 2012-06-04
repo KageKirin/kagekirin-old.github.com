@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: jekyll | Code Alchemist]]></title>
-  <link href="http://KageKirin.github.com/blog/categories/jekyll/atom.xml" rel="self"/>
-  <link href="http://KageKirin.github.com/"/>
-  <updated>2012-06-03T17:22:57+09:00</updated>
-  <id>http://KageKirin.github.com/</id>
+  <link href="http://kagekirin.github.com/blog/categories/jekyll/atom.xml" rel="self"/>
+  <link href="http://kagekirin.github.com/"/>
+  <updated>2012-06-05T00:27:58+09:00</updated>
+  <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Jekyll plugin for Graphviz]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/"/>
+    <link href="http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz/"/>
     <updated>2012-04-04T23:28:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz</id>
+    <id>http://kagekirin.github.com/blog/2012/04/04/jekyll-plugin-for-graphviz</id>
     <content type="html"><![CDATA[<p>I stumbled over this small Jekyll plugin for Octopress
 which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation inside a blog post.<br/>
 <a href="http://dryman.github.com/blog/2012/04/04/jekyll-graphviz-plugin/">original link</a></p>
@@ -51,7 +51,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join' for #<String:0x007fa0da53c780></p>
+<p>Liquid error: undefined method `join' for #<String:0x007fd7fac74d98></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
@@ -68,9 +68,9 @@ or wait until it has been integrated into the mainline Octopress branch.</p>
   
   <entry>
     <title type="html"><![CDATA[Rediscovering Web Development in 2012]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/"/>
+    <link href="http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/"/>
     <updated>2012-02-19T22:49:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012</id>
+    <id>http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012</id>
     <content type="html"><![CDATA[<p>I'm not a web developer by birth.
 I've done some web development as cheap jobs when I was a student. As such, I knew the vital parts of PHP, some bits of Javascript and of course the HTML4 DOM and the basics of CSS. Just enough to pound out a (-cheap-looking- programmer art) webpage, with MySQL for database support.
 That was between 1999 and 2006. Then I graduated.</p>

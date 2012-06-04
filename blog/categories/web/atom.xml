@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: web | Code Alchemist]]></title>
-  <link href="http://KageKirin.github.com/blog/categories/web/atom.xml" rel="self"/>
-  <link href="http://KageKirin.github.com/"/>
-  <updated>2012-06-03T17:22:57+09:00</updated>
-  <id>http://KageKirin.github.com/</id>
+  <link href="http://kagekirin.github.com/blog/categories/web/atom.xml" rel="self"/>
+  <link href="http://kagekirin.github.com/"/>
+  <updated>2012-06-05T00:27:58+09:00</updated>
+  <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Rediscovering Web Development in 2012]]></title>
-    <link href="http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/"/>
+    <link href="http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012/"/>
     <updated>2012-02-19T22:49:00+09:00</updated>
-    <id>http://KageKirin.github.com/blog/2012/02/19/rediscovering-web-development-2012</id>
+    <id>http://kagekirin.github.com/blog/2012/02/19/rediscovering-web-development-2012</id>
     <content type="html"><![CDATA[<p>I'm not a web developer by birth.
 I've done some web development as cheap jobs when I was a student. As such, I knew the vital parts of PHP, some bits of Javascript and of course the HTML4 DOM and the basics of CSS. Just enough to pound out a (-cheap-looking- programmer art) webpage, with MySQL for database support.
 That was between 1999 and 2006. Then I graduated.</p>
