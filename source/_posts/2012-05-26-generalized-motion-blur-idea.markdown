@@ -50,6 +50,28 @@ the processus.
 
 ## Types of Motion Blur
 
+### Nature of Motion Blur
+
+Before we begin,
+let's define
+the nature of a motion blur.
+
+When we perceive
+a motion to be blurred,
+this is the effect of our eyes
+not being able
+to keep up with the movement,
+hence it appearing doubled,
+or blurred.
+
+Similarly with a camera,
+a motion blur is the result
+of a movement velocity being higher
+than shutter speed of the camera,
+respectively,
+higher than the CMOS capture speed.
+
+
 ### Last Frame Blended Motion Blur
 This motion blur processus consists
 in blending the (n) last frame(s)
