@@ -4,7 +4,7 @@
   <title><![CDATA[Code Alchemist]]></title>
   <link href="http://kagekirin.github.com/atom.xml" rel="self"/>
   <link href="http://kagekirin.github.com/"/>
-  <updated>2012-06-05T00:34:31+09:00</updated>
+  <updated>2012-08-14T15:52:54+09:00</updated>
   <id>http://kagekirin.github.com/</id>
   <author>
     <name><![CDATA[Chris Helmich]]></name>
@@ -356,6 +356,27 @@ possible ways to further optimize
 the processus.</p>
 
 <h2>Types of Motion Blur</h2>
+
+<h3>Nature of Motion Blur</h3>
+
+<p>Before we begin,
+let&#8217;s define
+the nature of a motion blur.</p>
+
+<p>When we perceive
+a motion to be blurred,
+this is the effect of our eyes
+not being able
+to keep up with the movement,
+hence it appearing doubled,
+or blurred.</p>
+
+<p>Similarly with a camera,
+a motion blur is the result
+of a movement velocity being higher
+than shutter speed of the camera,
+respectively,
+higher than the CMOS capture speed.</p>
 
 <h3>Last Frame Blended Motion Blur</h3>
 
@@ -863,7 +884,7 @@ which allows to use <a href="http://www.graphviz.org/">graphviz</a> notation ins
 
 <p>should give the diagram below:</p>
 
-<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fac823ec480></p>
+<p>Liquid error: undefined method `join&#8217; for #&lt;String:0x007fd104044840></p>
 
 <p>Now, where I see great use for this plugin (and probably gonna use it in the future), is to generate UML diagrams to describe a given architecture, flow charts to describe data or work flows, or schemata describing some algorithm.</p>
 
